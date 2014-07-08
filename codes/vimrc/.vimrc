@@ -5,6 +5,7 @@ set cin ai ar sm nu ru
 set mouse=a
 set bs=2
 set ww+=<,>,[,]
+set so=6
 
 set makeprg=g++\ -Wall\ -Wshadow\ -O2\ -o\ %<\ %
 
