@@ -61,7 +61,6 @@ tabsize=2,											% sets default tabsize to 2 spaces
 captionpos=b,										% sets the caption-position to bottom
 breaklines=true,									% sets automatic line breaking
 breakatwhitespace=false,							% sets if automatic breaks should only happen at whitespace
-title=\lstname,									% show the filename of files included with \lstinputlisting; also try caption instead of title
 escapeinside={\%*}{*)},							% if you want to add a comment within your code
 morekeywords={*},									% if you want to add more keywords to the set
 keywordstyle=\bfseries\color{Blue1},
@@ -85,40 +84,10 @@ stringstyle=\itshape\color{Green4},
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basic}
 \subsection{.vimrc}
-\begin{lstlisting}
-set guifont=Consolas:h14
-colo torte
-syn on
-set ts=4 sw=4
-set cin ai ar sm nu ru
-set mouse=a
-set bs=2
-set ww+=<,>,[,]
 
-map <F8> <ESC> : w <CR>: !g++ -Wall -Wshadow -std=c++98 % -o %< <CR>
-imap <F8> <ESC> : w <CR>: !g++ -Wall -Wshadow -std=c++98 % -o %< <CR>
-map <F9> <ESC> : !%< <CR>
-imap <F9> <ESC> : !%< <CR>
 
-map <F8> :call Compile()<CR>
-map! <F8> :call Compile()<CR>
-imap <F8> <ESC>:call Compile()<CR>
+\lstinputlisting{../codes/vimrc/.vimrc}
 
-map <F9> :call Run()<CR>
-map! <F9> :call Run()<CR>
-imap <F9> <ESC>:call Run()<CR>
-
-func! Compile()
-	exec "w"
-	exec "!g++ -Wall -Wshadow -fopenmp -O2 -Wl,--stack,214748364 -std=c++98 % -o %<"
-endfunc
-
-func! Run()
-	exec "!%<"
-endfunc
-
-cd C:\Users\hanhanW\Desktop\code
-\end{lstlisting}
 \subsection{IncreaseStackSize}
 \begin{lstlisting}
 //stack resize
