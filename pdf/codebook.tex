@@ -86,7 +86,7 @@ stringstyle=\itshape\color{Green4},
 \subsection{.vimrc}
 
 
-\lstinputlisting{../codes/vimrc/.vimrc}
+\lstinputlisting{../codes/Basic/vimrc/.vimrc}
 
 \subsection{IncreaseStackSize}
 \begin{lstlisting}
@@ -109,43 +109,9 @@ void increase_stack_size() {
 \end{lstlisting}
 
 \subsection{Default Code}
-\begin{lstlisting}
-#include<bits/stdc++.h>
-#include<ctime>
-#include<cmath>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<iostream>
-#include<algorithm>
-#include<vector>
-#include<map>
-#include<set>
-#include<string>
-//
-using namespace std;
-//
-#define REP(n,i) for(int (i)=0;(i)<(n);(i)++)
-#define CDREP(n,i) for(int (i)=((n)-1);(i)>=0;(i)--)
-#define CDFOR(s,e,i) for(int i=((e)-1);(i)>=(s);(i)--)
-#define _SZ(n) memset((n),0,sizeof(n))
-#define _SMO(n) memset((n),-1,sizeof(n))
-#define _MC(n,m) memcpy((n),(m),sizeof(n))
-#define _F first
-#define _S second
-#define _MP(a,b) make_pair((a),(b))
-#define _PB(a) push_back((a))
-#define FOR(x,y) for(__typeof(y.begin())x=y.begin();x!=y.end();x++)
-#define IOS ios_base::sync_with_stdio(0);
-// Let's Fight!
-
-int main()
-{
-	return 0;
-}
-
-\end{lstlisting}
+\lstinputlisting{../codes/Basic/Default_Code/Default_Code.cpp}
 \newpage
+
 \section{Data Structure}
 \subsection{Bigint}
 \begin{lstlisting}
@@ -874,7 +840,7 @@ int _ct(int a,int b,int m,int r)
 * 1010102101
 */
 \end{lstlisting}
-\section{Computational Geometry}
+\section{Geometry}
 \subsection{Minimum Covering Circle}
 \begin{lstlisting}
 const int N = 1000100;
@@ -935,104 +901,13 @@ int main(int argc, char** argv){
 }
 \end{lstlisting}
 
+\subsection{Intersection of two circles}
+\input{../codes/Geometry/Intersection_of_two_circles/Intersection_of_two_circles.tex}
+
 \section{String}
 \subsection{Suffix Array}
-\begin{lstlisting}
-const int MAX = 123123;
-//
-char ip[MAX];
-int len;
-int cc[30];
-int rk[MAX],sa[MAX],tsa[MAX],sm[MAX];
-pii tp[MAX];
-int he[MAX];
-//
-void meteor()
-{
-	REP(len,i)
-	{
-		cc[ip[i]-'a'+1]++;
-	}
-	REP(29,i)
-	{
-		cc[i+1]+=cc[i];
-	}
-	REP(len,i)
-	{
-		rk[i]=cc[ip[i]-'a'];
-	}
-	int nl=1;
-	while(nl<len)
-	{
-		REP(len,i)
-		{
-			tp[i]._F=rk[i];
-			if(i+nl<len)
-			{
-				tp[i]._S=rk[i+nl];
-			}else
-			{
-				tp[i]._S=-1;
-			}
-		}
-		_SZ(sm);
-		REP(len,i)
-		{
-			sm[tp[i]._S+2]++;
-		}
-		REP(len+2,i)
-		{
-			sm[i+1]+=sm[i];
-		}
-		REP(len,i)
-		{
-			tsa[sm[tp[i]._S+1]++]=i;
-		}
-		_SZ(sm);
-		REP(len,i)
-		{
-			sm[tp[tsa[i]]._F+1]++;
-		}
-		REP(len+2,i)
-		{
-			sm[i+1]+=sm[i];
-		}
-		REP(len,i)
-		{
-			sa[sm[tp[tsa[i]]._F]++]=tsa[i];
-		}
+\lstinputlisting{../codes/Stringology/Suffix_Array/Suffix_Array.cpp}
 
-		rk[sa[0]]=0;
-		FOR(1,len,i)
-		{
-			if(tp[sa[i]]==tp[sa[i-1]])
-			{
-				rk[sa[i]]=rk[sa[i-1]];
-			}else
-			{
-				rk[sa[i]]=i;
-			}
-		}
-		nl*=2;
-	}
-	int j,k=0;
-	for(int i=0;i<len;he[rk[i++]]=k)
-	{
-		for(k?k--:0,j=sa[rk[i]-1];ip[i+k]==ip[j+k];k++);
-	}
-}
-//
-int main()
-{
-	gets(ip);
-	len=strlen(ip);
-	meteor();
-	REP(len,i)
-	{
-		printf("%s [%d]\n",ip+sa[i],he[i]);
-	}
-}
-\end{lstlisting}
 \subsection{Aho-Corasick Algorithm}
 \begin{lstlisting}
 class ACautomata{
