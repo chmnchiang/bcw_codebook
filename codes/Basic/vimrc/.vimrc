@@ -9,9 +9,10 @@ set so=6
 
 set makeprg=g++\ -Wall\ -Wshadow\ -O2\ -o\ %<\ %
 
-map <F8> :wa<CR>:make!<CR>
-map <F9> :!./%< <CR>
-map <C-F9> :!./%< < %<.in <CR>
+map <F5> <ESC>:r default_code.cpp<CR>ggdd
+map <F8> <ESC>:wa<CR>:make!<CR>
+imap <F8> <ESC>:wa<CR>:make!<CR>
+map <F9> :!%< <CR>
+map <C-F9> :!%< < %<.in <CR>
 map <F10> :copen <CR>
 map <S-F10> :cclose <CR>
-
