@@ -8,8 +8,8 @@ set ww+=<,>,[,]
 set so=6
 
 set makeprg=g++\ -Wall\ -Wshadow\ -O2\ -o\ %<\ %
+au BufNewFile *.cpp 0r ~/default.cpp
 
-map <F5> <ESC>:r default_code.cpp<CR>ggdd
 map <F8> <ESC>:wa<CR>:make!<CR>
 imap <F8> <ESC>:wa<CR>:make!<CR>
 map <F9> :!%< <CR>
