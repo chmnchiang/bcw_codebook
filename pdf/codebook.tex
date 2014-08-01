@@ -88,6 +88,8 @@ stringstyle=\itshape\color{Green4},
 
 \lstinputlisting{../codes/Basic/vimrc/.vimrc}
 
+\newpage
+
 \subsection{IncreaseStackSize}
 \begin{lstlisting}
 //stack resize
@@ -114,166 +116,12 @@ void increase_stack_size() {
 
 \section{Data Structure}
 \subsection{Bigint}
-\begin{lstlisting}
-const int bL = 1000;
-const int bM = 10000;
+\lstinputlisting{../codes/Data_Structure/Bigint/Bigint.cpp}
 
-struct Bigint
-{
-    int v[bL],l;
-    Bigint(){ _SZ(v);l=0; }
-
-    void n()
-    {
-        for(;l;l--)
-            if(v[l-1]) return;
-    }
-
-    Bigint(long long a)
-    {
-        for(l=0;a;v[l++]=a%bM,a/=bM);
-    }
-    Bigint(char *a)
-    {
-        l=0;
-        int t=0,i=strlen(a),q=1;
-        while(i)
-        {
-            t+=(a[--i]-'0')*q;
-            if((q*=10)>=bM)
-            {
-                v[l++]=t;
-                t=0;
-                q=1;
-            }
-        }
-        if(t){ v[l++]=t; }
-    }
-
-    void prt()
-    {
-        if(l==0){ putchar('0');return; }
-        printf("%d",v[l-1]);
-        for(int i=l-2;i>=0;i--)
-            printf("%.4d",v[i]);
-    }
-
-    int cp3(const Bigint &b)const
-    {
-        if(l!=b.l) return l>b.l?1:-1;
-        for(int i=l-1;i>=0;i--)
-            if(v[i]!=b.v[i])
-                return v[i]>b.v[i]?1:-1;
-        return 0;
-    }
-
-    bool operator < (const Bigint &b)const{ return cp3(b)==-1; }
-    bool operator == (const Bigint &b)const{ return cp3(b)==0; }
-    bool operator > (const Bigint &b)const{ return cp3(b)==1; }
-
-    Bigint operator + (const Bigint &b)
-    {
-        Bigint r;
-        r.l=max(l,b.l);
-        for(int i=0;i<r.l;i++)
-        {
-            r.v[i]+=v[i]+b.v[i];
-            if(r.v[i]>=bM)
-            {
-                r.v[i+1]+=r.v[i]/bM;
-                r.v[i]%=bM;
-            }
-        }
-        if(r.v[r.l]) r.l++;
-        return r;
-    }
-
-    Bigint operator - (const Bigint &b)
-    {
-        Bigint r;
-        r.l=l;
-        for(int i=0;i<l;i++)
-        {
-            r.v[i]+=v[i];
-            if(i<b.l) r.v[i]-=b.v[i];
-            if(r.v[i]<0)
-            {
-                r.v[i]+=bM;
-                r.v[i+1]--;
-            }
-        }
-        r.n();
-        return r;
-    }
-
-    Bigint operator * (const Bigint &b)
-    {
-        Bigint r;
-        r.l=l+b.l;
-        for(int i=0;i<l;i++)
-        {
-            for(int j=0;j<b.l;j++)
-            {
-                r.v[i+j]+=v[i]*b.v[j];
-                if(r.v[i+j]>bM)
-                {
-                    r.v[i+j+1]+=r.v[i+j]/bM;
-                    r.v[i+j]%=bM;
-                }
-            }
-        }
-        r.n();
-        return r;
-    }
-
-    Bigint operator / (const Bigint &b)
-    {
-        Bigint r;
-        r.l=max(1,l-b.l+1);
-        for(int i=r.l-1;i>=0;i--)
-        {
-            int d=0,u=bM-1,m;
-            while(d<u)
-            {
-                m=(d+u+1)>>1;
-                r.v[i]=m;
-                if((r*b)>(*this)) u=m-1;
-                else d=m;
-            }
-            r.v[i]=d;
-        }
-        r.n();
-        return r;
-    }
-
-    Bigint operator % (const Bigint &b)
-    {
-        return (*this)-(*this)/b*b;
-    }
-};
-
-\end{lstlisting}
 \newpage
 \subsection{Leftist Heap}
-\begin{lstlisting}
-class Node{
-public:
-	int num,lc,rc;
-	Node () : num(0), lc(0), rc(0) {}
-	Node (int _v) : num(_v), lc(0), rc(0) {}
-}tree[MAXSIZE];
 
-int merge(int x, int y){
-    if (!x) return y;
-    if (!y) return x;
-    if (tree[x].num < tree[y].num)
-        swap(x, y);
-    tree[x].rc = merge(tree[x].rc, y);
-    swap(tree[x].lc, tree[x].rc);
-    return x;
-}
-
-\end{lstlisting}
+\lstinputlisting{../codes/Data_Structure/Leftist_Heap/Leftist_Heap.cpp}
 
 \subsection{Treap}
 \begin{lstlisting}
@@ -344,89 +192,10 @@ pair<int,int> split(int a, int k){
 \end{lstlisting}
 
 \section{Graph}
-\subsection{ISAP}
-\begin{lstlisting}
-class Isap{
-public:
-	class Edge{
-	public:
-		int v,f,re;
-		Edge (){ v=f=re=-1; }
-		Edge (int _v, int _f, int _r){
-			v = _v;
-			f = _f;
-			re = _r;
-		}
-	};
-	int n,s,t,h[N],gap[N];
-	vector<Edge> E[N];
-	void init(int _n, int _s, int _t){
-		n = _n;
-		s = _s;
-		t = _t;
-		for (int i=0; i<N; i++)
-			E[i].clear();
-	}
-	void add_edge(int u, int v, int f){
-		E[u]._PB(Edge(v,f,E[v].size()));
-		E[v]._PB(Edge(u,f,E[u].size()-1));
-	}
-	int DFS(int u, int nf, int res=0){
-		if (u == t) return nf;
-		FOR(it,E[u]){
-			if (h[u]==h[it->v]+1 && it->f>0){
-				int tf = DFS(it->v,min(nf,it->f));
-				res += tf;
-				nf -= tf;
-				it->f -= tf;
-				E[it->v][it->re].f += tf;
-				if (nf == 0) return res;
-			}
-		}
-		if (nf){
-			if (--gap[h[u]] == 0) h[s]=n;
-			gap[++h[u]]++;
-		}
-		return res;
-	}
-	int flow(int res=0){
-		_SZ(h);
-		_SZ(gap);
-		gap[0] = n;
-		while (h[s] < n)
-			res += DFS(s,2147483647);
-		return res;
-	}
-}flow;
-\end{lstlisting}
-\subsection{Bipartite Matching}
-\begin{lstlisting}
-bool DFS(int u){
-	FOR(it,E[u]){
-		if (!vst[*it]){
-			vst[*it]=1;
-			if (match[*it] == -1 || DFS(match[*it])){
-				match[*it] = u;
-				match[u] = *it;
-				return true;
-			}
-		}
-	}
-	return false;
-}
-int DoMatch(int res=0){
-	MSET(match,-1);
-	for (int i=1; i<=m; i++){
-		if (match[i] == -1){
-			memset(vst,0,sizeof(vst));
-			DFS(i);
-		}
-	}
-	for (int i=1; i<=m; i++)
-		if (match[i] != -1) res++;
-	return res;
-}
-\end{lstlisting}
+
+\subsection{Tarjan}
+\lstinputlisting{../codes/Graph/Tarjan/Tarjan.cpp}
+
 \subsection{Strongly Connected Components:Kosaraju's Algorithm}
 \begin{lstlisting}
 class Scc{
@@ -480,6 +249,7 @@ public:
 	}
 };
 \end{lstlisting}
+
 \subsection{DMST}
 \begin{lstlisting}
 // --- hanhanW v1.1 ---
@@ -600,6 +370,93 @@ int main(){
 	return 0;
 }
 \end{lstlisting}
+
+\section{Flow}
+\subsection{ISAP}
+\begin{lstlisting}
+class Isap{
+public:
+	class Edge{
+	public:
+		int v,f,re;
+		Edge (){ v=f=re=-1; }
+		Edge (int _v, int _f, int _r){
+			v = _v;
+			f = _f;
+			re = _r;
+		}
+	};
+	int n,s,t,h[N],gap[N];
+	vector<Edge> E[N];
+	void init(int _n, int _s, int _t){
+		n = _n;
+		s = _s;
+		t = _t;
+		for (int i=0; i<N; i++)
+			E[i].clear();
+	}
+	void add_edge(int u, int v, int f){
+		E[u]._PB(Edge(v,f,E[v].size()));
+		E[v]._PB(Edge(u,f,E[u].size()-1));
+	}
+	int DFS(int u, int nf, int res=0){
+		if (u == t) return nf;
+		FOR(it,E[u]){
+			if (h[u]==h[it->v]+1 && it->f>0){
+				int tf = DFS(it->v,min(nf,it->f));
+				res += tf;
+				nf -= tf;
+				it->f -= tf;
+				E[it->v][it->re].f += tf;
+				if (nf == 0) return res;
+			}
+		}
+		if (nf){
+			if (--gap[h[u]] == 0) h[s]=n;
+			gap[++h[u]]++;
+		}
+		return res;
+	}
+	int flow(int res=0){
+		_SZ(h);
+		_SZ(gap);
+		gap[0] = n;
+		while (h[s] < n)
+			res += DFS(s,2147483647);
+		return res;
+	}
+}flow;
+\end{lstlisting}
+\subsection{Bipartite Matching}
+\begin{lstlisting}
+bool DFS(int u){
+	FOR(it,E[u]){
+		if (!vst[*it]){
+			vst[*it]=1;
+			if (match[*it] == -1 || DFS(match[*it])){
+				match[*it] = u;
+				match[u] = *it;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+int DoMatch(int res=0){
+	MSET(match,-1);
+	for (int i=1; i<=m; i++){
+		if (match[i] == -1){
+			memset(vst,0,sizeof(vst));
+			DFS(i);
+		}
+	}
+	for (int i=1; i<=m; i++)
+		if (match[i] != -1) res++;
+	return res;
+}
+\end{lstlisting}
+
+
 \subsection{SW-Mincut}
 \begin{lstlisting}
 // --- hanhanW v1.1 ---
@@ -691,7 +548,14 @@ int main(){
     return 0;
 }
 \end{lstlisting}
+
+\subsection{Maximum Simple Graph Matching}
+\lstinputlisting{../codes/Flow/Maximum_Simple_Graph_Matching/Maximum_Simple_Graph_Matching.cpp}
+
 \section{Math}
+\subsection{ax+by=gcd}
+\lstinputlisting{../codes/Math/ax+by=gcd/ax+by=gcd.cpp}
+
 \subsection{Chinese Remainder}
 \begin{lstlisting}
 int pfn; // number of distinct prime factors
@@ -977,7 +841,7 @@ class ACautomata{
 \begin{lstlisting}
 char s[MAXLEN];
 int len,z[MAXLEN];
-inline void Z_value() {
+void Z_value() {
 	int i,j,left,right;
 	left=right=0; z[0]=len;
 	for(i=1;i<len;i++) {
@@ -1243,122 +1107,7 @@ int main(){
 	return 0;
 }
 \end{lstlisting}
-\subsection{Suffix Array Problem}
-\begin{lstlisting}
-const int MAX = 123123;
 
-int T;
-int N;
-char ip[MAX];
-int sa[MAX],rk[MAX];
-int sm[MAX];
-pair<int,int> trk[MAX];
-int tsa[MAX];
-
-int suffix_array()
-{
-    int t=0,q=0;
-    REP(N,i)
-    {
-        if(ip[i]=='0')
-        {
-            t++;
-        }
-    }
-    REP(N,i)
-    {
-        if(ip[i]=='0')
-        {
-            rk[i]=0;
-        }else
-        {
-            rk[i]=t;
-        }
-    }
-
-    for(int l=1; l<N ; l+=l)
-    {
-        REP(N,i)
-        {
-            trk[i]._F=rk[i]+1;
-            if(i+l>=N)
-            {
-                trk[i]._S=1;
-            }else
-            {
-                trk[i]._S=rk[i+l]+2;
-            }
-        }
-
-       // REP(N,i)
-      //  {
-      //      printf("(%d,%d)\n",trk[i]._F,trk[i]._S);
-      //  }
-       // system("pause");
-
-        REP(N+3,i) sm[i]=0;
-        REP(N,i) sm[trk[i]._S]++;
-        REP(N+3,i) sm[i+1]+=sm[i];
-        REP(N,i) tsa[sm[trk[i]._S-1]++]=i;
-        //REP(N,i)
-      // {
-       //     printf("%d,",tsa[i]);
-      //  }
-       // system("pause");
-        REP(N+3,i) sm[i]=0;
-        REP(N,i) sm[trk[i]._F]++;
-        REP(N+3,i) sm[i+1]+=sm[i];
-        REP(N,i) sa[sm[trk[tsa[i]]._F-1]++]=tsa[i];
-
-       // REP(N,i)
-       // {
-       //     printf("%d,",sa[i]);
-      //  }
-       // system("pause");
-
-        rk[sa[0]]=0;
-        for(int i=1;i<N;i++)
-        {
-            if(trk[sa[i]]==trk[sa[i-1]])
-            {
-                rk[sa[i]]=rk[sa[i-1]];
-            }else
-            {
-                rk[sa[i]]=i;
-            }
-        }
-    }
-}
-
-int main()
-{
-    scanf("%d",&T);
-
-    REP(T,hisdhioweryhuo)
-    {
-        scanf("%s",ip);
-
-        N=strlen(ip);
-
-        suffix_array();
-
-        int ans=1,nw=sa[0];
-
-        for(int i=1;i<N;i++)
-        {
-            if(sa[i]<nw)
-            {
-                nw=sa[i];
-                ans++;
-            }
-        }
-
-        printf("%d\n",ans);
-    }
-
-    return 0;
-}
-\end{lstlisting}
 \subsection{Flow Problem}
 \begin{lstlisting}
 const int MAXN = 64;
@@ -1494,6 +1243,7 @@ int main()
     return 0;
 }
 \end{lstlisting}
+
 \section{+1ironwood's code}
 \subsection{KDTreeAndNearestPoint}
 \begin{lstlisting}

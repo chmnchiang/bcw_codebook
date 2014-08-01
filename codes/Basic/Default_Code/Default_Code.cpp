@@ -6,12 +6,12 @@ using namespace std;
 #define SZ(n) memset((n),0,sizeof(n))
 #define SMO(n) memset((n),-1,sizeof(n))
 #define MC(n,m) memcpy((n),(m),sizeof(n))
-#define F first
-#define S second
+#define _F first
+#define _S second
 #define MP(a,b) make_pair((a),(b))
 #define PB(a) push_back((a))
 #define FOR(x,y) for(__typeof(y.begin())x=y.begin();x!=y.end();x++)
-#define IOS ios_base::sync_with_stdio(0);
+#define IOS ios_base::sync_with_stdio(0)
 // Let's Fight!
 
 int main()
