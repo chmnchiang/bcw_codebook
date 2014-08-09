@@ -1,3 +1,4 @@
+const int MAX = 1000;
 int len;
 char ip[MAX];
 char op[MAX*2];
@@ -10,7 +11,6 @@ int main(){
 
 	int l2 = len*2 - 1;
 	for(int i=0; i<l2; i++){
-		ad[i] = 0;
 		if(i&1) op[i] = '@';
 		else op[i] = ip[i/2];
 	}
