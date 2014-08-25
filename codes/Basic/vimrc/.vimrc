@@ -8,8 +8,8 @@ au BufNewFile *.cpp 0r ~/default.cpp
 map <F7> <ESC>:wa<CR>:make!<CR>
 imap <F7> <ESC>:wa<CR>:make!<CR>
 map <C-F7> <ESC>:tabe %<.in<CR>
-map <F8> :copen <CR>
-map <S-F8> :cclose <CR>
+map <F8> :cope <CR>
+map <S-F8> :ccl <CR>
 map <F9> :!./%< <CR>
 map <C-F9> :!./%< < %<.in <CR>
 
