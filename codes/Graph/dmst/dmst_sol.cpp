@@ -58,7 +58,7 @@ edge_t dmst(int rt){
             if (v != rt && !contracted[v] && prv[v].w == INF)
                 break;
         }
-        if (v > N) break; // end
+        if (v >= N) break; // end
         for (int i=0; i<M; i++){
             if (eg[i].v == v && eg[i].w < prv[v].w){
                 prv[v] = eg[i];
@@ -102,5 +102,3 @@ void solve(){
         prv[it->_S] = edge_t(it->_F,it->_S,0);
     }
 }
-
-int main(){}

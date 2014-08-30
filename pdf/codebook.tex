@@ -86,7 +86,7 @@ stringstyle=\itshape\color{Green4},
 \subsection{.vimrc}
 
 
-\lstinputlisting{../codes/Basic/vimrc/.vimrc}
+\lstinputlisting{../codes/Basic/.vimrc}
 
 \newpage
 
@@ -111,7 +111,7 @@ void increase_stack_size() {
 \end{lstlisting}
 
 \subsection{Default Code}
-\lstinputlisting{../codes/Basic/Default_Code/Default_Code.cpp}
+\lstinputlisting{../codes/Basic/default.cpp}
 \newpage
 
 \section{Data Structure}
@@ -251,125 +251,7 @@ public:
 \end{lstlisting}
 
 \subsection{DMST}
-\begin{lstlisting}
-// --- hanhanW v1.1 ---
-#include <cmath>
-#include <ctime>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <algorithm>
-#include <vector>
-#include <map>
-#include <set>
-#define MSET(x, y) memset(x, (y), sizeof(x))
-#define REP(x,y,z) for(int x=(y); x<=(z); x++)
-#define FORD(x,y,z) for(int x=(y); x>=(z); x--)
-#define FLST(x,y,z) for(int x=(y); x; x=z[x])
-#define PB push_back
-#define SZ size()
-#define MP make_pair
-#define F first
-#define S second
-
-typedef long long LL;
-typedef long double LD;
-typedef std::pair<int,int> PII;
-
-const int N = 304;
-const int INF = 2147483647>>1;
-
-struct Edge{
-	int u,v,c;
-}eg[N*N];
-int n, m, nSpe, nE, rd[N][N], bln[N], vst[N], dis[N], ismrg[N], prev[N];
-
-int DMST(int root){
-	MSET(ismrg,0);
-	int curW, ww;
-	curW=ww=0;
-	while (1){
-		MSET(prev,-1);
-		REP(i,0,nSpe-1) dis[i]=INF;
-		REP(i,0,nE-1){
-			if (eg[i].v!=eg[i].u && eg[i].v!=root && dis[eg[i].v] > eg[i].c){
-				dis[eg[i].v] = eg[i].c;
-				prev[eg[i].v] = eg[i].u;
-			}
-		}
-		
-		// find cycle
-		int sign=1;
-		curW=0;
-		MSET(bln,-1); MSET(vst, -1);
-		REP(i,0,nSpe-1){
-			if (ismrg[i]) continue;
-			if (prev[i]==-1 && i!=root) return INF;
-			if (i!=root) curW += dis[i];
-			int s;
-			for (s=i; s!=-1 && vst[s]==-1; s=prev[s])
-				vst[s]=i;
-			
-			if (s!=-1 && vst[s]==i){
-				sign=0;
-				int j=s;
-				while (1){
-					ismrg[j]=1;
-					bln[j]=s;
-					ww += dis[j];
-					j=prev[j];
-					if (j==s) break;
-				}
-				ismrg[s]=0;
-			}
-		}
-		
-		if (sign) break;
-		
-		// merge
-		REP(i,0,nE-1){
-			if (bln[eg[i].v]!=-1) eg[i].c -= dis[eg[i].v];
-			if (bln[eg[i].u]!=-1) eg[i].u = bln[eg[i].u];
-			if (bln[eg[i].v]!=-1) eg[i].v = bln[eg[i].v];
-			if (eg[i].u==eg[i].v) eg[i--] = eg[--nE];
-		}
-	//	system("pause");
-	}
-	return curW+ww;
-}
-void solve(){
-	REP(i,0,n-1){
-		REP(j,0,n-1)
-			rd[i][j]=INF;
-		rd[i][i]=0;
-	}
-	REP(i,1,m){
-		int u,v,c;
-		scanf("%d%d%d",&u,&v,&c);
-		rd[u][v]=std::min(rd[u][v],c);
-	}
-	REP(k,0,n-1)
-		REP(i,0,n-1)
-			REP(j,0,n-1)
-				rd[i][j] = std::min(rd[i][j], rd[i][k]+rd[k][j]);
-	nE=0;
-	REP(i,0,nSpe-1)
-		REP(j,1,nSpe-1)
-			if (i!=j && rd[i][j]!=INF){
-				eg[nE++]=(Edge){i,j,rd[i][j]};
-		//		printf("%d %d %d\n", i, j, rd[i][j]);
-			}
-	int ans=DMST(0);
-	if (ans==INF) puts("sad..");
-	else printf("%d\n", ans);
-}
-
-int main(){
-	while (~scanf("%d%d%d", &n, &m, &nSpe))
-		solve();
-	return 0;
-}
-\end{lstlisting}
+\lstinputlisting{../codes/Graph/dmst/dmst.cpp}
 \subsection{DMST_with_sol}
 \lstinputlisting{../codes/Graph/dmst/dmst_sol.cpp}
 
