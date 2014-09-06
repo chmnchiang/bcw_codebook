@@ -77,7 +77,7 @@ struct Bigint{
         for(int i=0;i<l;i++) {
             for(int j=0;j<b.l;j++) {
                 r.v[i+j]+=v[i]*b.v[j];
-                if(r.v[i+j]>bM) {
+                if(r.v[i+j]>=bM) {
                     r.v[i+j+1]+=r.v[i+j]/bM;
                     r.v[i+j]%=bM;
                 }
