@@ -24,13 +24,13 @@
 \textheight=780pt
 \footskip=0pt
 \voffset=-40pt
-\textwidth=520pt
+\textwidth=545pt
 \marginparsep=0pt
 \marginparwidth=0pt
 \marginparpush=0pt
 \oddsidemargin=0pt
 \evensidemargin=0pt
-\hoffset=-30pt
+\hoffset=-42pt
 
 %\renewcommand\listfigurename{圖目錄}
 %\renewcommand\listtablename{表目錄} 
@@ -118,9 +118,9 @@ void increase_stack_size() {
 \subsection{Bigint}
 \lstinputlisting{../codes/Data_Structure/Bigint/Bigint.cpp}
 
-\newpage
 \subsection{Leftist Heap}
 \lstinputlisting{../codes/Data_Structure/Leftist_Heap/Leftist_Heap.cpp}
+\newpage
 
 \subsection{extc\_balance\_tree}
 \lstinputlisting{../codes/Data_Structure/Balance_Tree/extc_bt.cpp}
@@ -134,58 +134,7 @@ void increase_stack_size() {
 \lstinputlisting{../codes/Graph/Tarjan/Tarjan.cpp}
 
 \subsection{Strongly Connected Components:Kosaraju's Algorithm}
-\begin{lstlisting}
-class Scc{
-public:
-	int n,vst[MAXN];
-	int nScc,bln[MAXN];
-	vector<int> E[MAXN], rE[MAXN], vc;
-	void init(int _n){
-		n = _n;
-		for (int i=0; i<MAXN; i++){
-			E[i].clear();
-			rE[i].clear();
-		}
-	}
-	void add_edge(int u, int v){
-		E[u]._PB(v);
-		rE[v]._PB(u);
-	}
-	void DFS(int u){
-		vst[u]=1;
-		FOR(it,E[u]){
-			if (!vst[*it])
-				DFS(*it);
-		}
-		vc._PB(u);
-	}
-	void rDFS(int u){
-		vst[u] = 1;
-		bln[u] = nScc;
-		FOR(it,rE[u]){
-			if (!vst[*it])
-				rDFS(*it);
-		}
-	}
-	void solve(){
-		nScc=0;
-		vc.clear();
-		_SZ(vst);
-		for (int i=0; i<n; i++){
-			if (!vst[i])
-				DFS(i);
-		}
-		reverse(vc.begin(),vc.end());
-		_SZ(vst);
-		FOR(it,vc){
-			if (!vst[*it]){
-				rDFS(*it);
-				nScc++;
-			}
-		}
-	}
-};
-\end{lstlisting}
+\lstinputlisting{../codes/Graph/scc/kosaraju.cpp}
 
 %\subsection{DMST}
 %\lstinputlisting{../codes/Graph/dmst/dmst.cpp}
@@ -195,89 +144,10 @@ public:
 
 \section{Flow}
 \subsection{ISAP}
-\begin{lstlisting}
-class Isap{
-public:
-	class Edge{
-	public:
-		int v,f,re;
-		Edge (){ v=f=re=-1; }
-		Edge (int _v, int _f, int _r){
-			v = _v;
-			f = _f;
-			re = _r;
-		}
-	};
-	int n,s,t,h[N],gap[N];
-	vector<Edge> E[N];
-	void init(int _n, int _s, int _t){
-		n = _n;
-		s = _s;
-		t = _t;
-		for (int i=0; i<N; i++)
-			E[i].clear();
-	}
-	void add_edge(int u, int v, int f){
-		E[u]._PB(Edge(v,f,E[v].size()));
-		E[v]._PB(Edge(u,f,E[u].size()-1));
-	}
-	int DFS(int u, int nf, int res=0){
-		if (u == t) return nf;
-		FOR(it,E[u]){
-			if (h[u]==h[it->v]+1 && it->f>0){
-				int tf = DFS(it->v,min(nf,it->f));
-				res += tf;
-				nf -= tf;
-				it->f -= tf;
-				E[it->v][it->re].f += tf;
-				if (nf == 0) return res;
-			}
-		}
-		if (nf){
-			if (--gap[h[u]] == 0) h[s]=n;
-			gap[++h[u]]++;
-		}
-		return res;
-	}
-	int flow(int res=0){
-		_SZ(h);
-		_SZ(gap);
-		gap[0] = n;
-		while (h[s] < n)
-			res += DFS(s,2147483647);
-		return res;
-	}
-}flow;
-\end{lstlisting}
-\subsection{Bipartite Matching}
-\begin{lstlisting}
-bool DFS(int u){
-	FOR(it,E[u]){
-		if (!vst[*it]){
-			vst[*it]=1;
-			if (match[*it] == -1 || DFS(match[*it])){
-				match[*it] = u;
-				match[u] = *it;
-				return true;
-			}
-		}
-	}
-	return false;
-}
-int DoMatch(int res=0){
-	MSET(match,-1);
-	for (int i=1; i<=m; i++){
-		if (match[i] == -1){
-			memset(vst,0,sizeof(vst));
-			DFS(i);
-		}
-	}
-	for (int i=1; i<=m; i++)
-		if (match[i] != -1) res++;
-	return res;
-}
-\end{lstlisting}
+\lstinputlisting{../codes/Graph/Flow/isap.cpp}
 
+\subsection{Bipartite Matching (Augmenting Path)}
+\lstinputlisting{../codes/Graph/Matching/augmenting_path.cpp}
 
 \subsection{SW-Mincut}
 \begin{lstlisting}
@@ -372,7 +242,7 @@ int main(){
 \end{lstlisting}
 
 \subsection{Maximum Simple Graph Matching}
-\lstinputlisting{../codes/Flow/Maximum_Simple_Graph_Matching/Maximum_Simple_Graph_Matching.cpp}
+\lstinputlisting{../codes/Graph/Matching/Maximum_Simple_Graph_Matching.cpp}
 
 \section{Math}
 \subsection{ax+by=gcd}
@@ -395,67 +265,10 @@ int main(){
 \lstinputlisting{../codes/Geometry/Point_operators/Point_operators.cpp}
 
 \subsection{Minimum Covering Circle}
-\begin{lstlisting}
-const int N = 1000100;
-
-class Coord{
-public:
-	double x,y;
-	Coord () { x=y=0; }
-	Coord (double _x, double _y){ x=_x; y=_y; }
-	Coord operator - (const Coord &a) const{
-		return Coord(x-a.x,y-a.y);
-	}
-}p[N],cen;
-
-int n,m;
-double r2;
-
-double abs2(Coord a){ return a.x*a.x+a.y*a.y; }
-double sqr(double a){ return a*a; }
-double dis2(Coord a, Coord b){ return sqr(a.x-b.x) + sqr(a.y-b.y); }
-double dot(Coord a, Coord b){ return a.x*b.x + a.y*b.y; }
-double X(Coord a, Coord b){ return a.x*b.y - a.y*b.x; }
-
-Coord center(Coord p0, Coord p1, Coord p2) {
-    double a1=p1.x-p0.x, b1=p1.y-p0.y, c1=(sqr(a1)+sqr(b1))/2;
-    double a2=p2.x-p0.x, b2=p2.y-p0.y, c2=(sqr(a2)+sqr(b2))/2;
-    double d = a1 * b2 - a2 * b1;
-    double x = p0.x + (c1 * b2 - c2 * b1) / d;
-    double y = p0.y + (a1 * c2 - a2 * c1) / d;
-	return Coord(x,y);
-}
-
-int main(int argc, char** argv){
-	while (~scanf("%d %d", &n, &m) && n && m){
-		for (int i=0; i<m; i++)
-			scanf("%lf %lf", &p[i].x, &p[i].y);
-		random_shuffle(p,p+m);
-		r2=0;
-		for (int i=0; i<m; i++){
-			if (dis2(cen,p[i]) <= r2) continue;
-			cen = p[i];
-			r2 = 0;
-			for (int j=0; j<i; j++){
-				if (dis2(cen,p[j]) <= r2) continue;
-				cen = Coord((p[i].x+p[j].x)/2.0, (p[i].y+p[j].y)/2.0);
-				r2 = dis2(cen,p[j]);
-				for (int k=0; k<j; k++){
-					if (dis2(cen,p[k]) <= r2) continue;
-					cen = center(p[i],p[j],p[k]);
-					r2 = dis2(cen,p[k]);
-				}
-			}
-		}
-		printf("%.3f\n", sqrt(r2));
-	}
-	
-	return 0;
-}
-\end{lstlisting}
+\lstinputlisting{../codes/Geometry/Minimum_covering_circle/mcc.cpp}
 
 \subsection{Intersection of two circles}
-\lstinputlisting{../codes/Geometry/Intersection_of_two_circles/Intersection_of_two_circles.tex}
+\input{../codes/Geometry/Intersection_of_two_circles/Intersection_of_two_circles.tex}
 
 \subsection{Intersection of two lines}
 \lstinputlisting{../codes/Geometry/Intersection_of_two_lines/Intersection_of_two_lines.cpp}
@@ -463,9 +276,12 @@ int main(int argc, char** argv){
 \subsection{Half line Intersection}
 \lstinputlisting{../codes/Geometry/Half_line_intersection/Half_line_intersection.cpp}
 
-\section{String}
+\section{Stringology}
 \subsection{Suffix Array}
 \lstinputlisting{../codes/Stringology/Suffix_Array/Suffix_Array.cpp}
+
+\subsection{Suffix Array (SAIS TWT514)}
+\lstinputlisting{../codes/Stringology/Suffix_Array/sais_twt514.cpp}
 
 \subsection{Aho-Corasick Algorithm}
 \begin{lstlisting}
@@ -595,7 +411,7 @@ public:
 	}
 };
 \end{lstlisting}
-\newpage
+
 \section{Problems}
 \subsection {Qtree IV}
 \begin{lstlisting}
