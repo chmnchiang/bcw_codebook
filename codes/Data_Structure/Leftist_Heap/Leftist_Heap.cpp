@@ -1,7 +1,3 @@
-#include<bits/stdc++.h>
-
-using namespace std;
-
 const int MAXSIZE = 10000;
 
 class Node{

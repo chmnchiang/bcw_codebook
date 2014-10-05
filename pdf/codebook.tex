@@ -44,7 +44,10 @@
 \setcounter{secnumdepth}{3}						%目錄顯示第三層
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\makeatletter
+\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+\@empty\z@\@empty
+\makeatother
 \lstset{											% Code顯示
 language=C++,										% the language of the code
 basicstyle=\footnotesize, 						% the size of the fonts that are used for the code
@@ -84,8 +87,6 @@ stringstyle=\itshape\color{Green4},
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basic}
 \subsection{.vimrc}
-
-
 \lstinputlisting{../codes/Basic/.vimrc}
 
 \newpage
@@ -94,6 +95,7 @@ stringstyle=\itshape\color{Green4},
 \begin{lstlisting}
 //stack resize
 asm( "mov %0,%%esp\n" ::"g"(mem+10000000) );
+//change esp to rsp if 64-bit system
 
 //stack resize (linux)
 #include <sys/resource.h>
@@ -143,106 +145,21 @@ void increase_stack_size() {
 \lstinputlisting{../codes/Graph/dmst/dmst_sol.cpp}
 
 \section{Flow}
-\subsection{ISAP}
+\subsection{ISAP} %Checked
 \lstinputlisting{../codes/Graph/Flow/isap.cpp}
 
 \subsection{Bipartite Matching (Augmenting Path)}
 \lstinputlisting{../codes/Graph/Matching/augmenting_path.cpp}
 
 \subsection{SW-Mincut}
-\begin{lstlisting}
-// --- hanhanW v1.1 ---
-#include <cmath>
-#include <ctime>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <algorithm>
-#include <vector>
-#include <map>
-#include <set>
-#define MSET(x, y) memset(x, y, sizeof(x))
-#define REP(x,y,z) for(int x=y; x<=z; x++)
-#define FORD(x,y,z) for(int x=y; x>=z; x--)
-#define PB push_back
-#define SZ size()
-#define MP make_pair
-#define F first
-#define S second
+\lstinputlisting{../codes/Graph/Flow/SW-mincut.cpp}
 
-typedef long long LL;
-typedef long double LD;
-typedef std::pair<int,int> PII;
-
-const int N=514;
-const int INF=2147483647>>1;
-
-int n, m, del[N], vst[N], wei[N], rd[N][N];
-
-PII sw(){
-    MSET(vst,0);
-    MSET(wei,0);
-    int p1=-1,p2=-1,mx,cur=0;
-    while(1){
-        mx=-1;
-        REP(i,1,n){
-            if (!del[i] && !vst[i] && mx<wei[i]){
-                cur=i;
-                mx=wei[i];
-            }
-        }
-        if (mx==-1) break;
-        vst[cur]=1;
-        p1=p2;
-        p2=cur;
-        REP(i,1,n)
-            if (!vst[i] && !del[i])
-                wei[i]+=rd[cur][i];
-    }
-    return std::MP(p1,p2);
-}
-void input(){
-    REP(i,1,n){
-        del[i]=0;
-        REP(j,1,n)
-            rd[i][j] = 0;
-    }
-    REP(i,1,m){
-        int u,v,c;
-        scanf("%d%d%d",&u,&v,&c);
-        ++u; ++v;
-        rd[u][v]+=c;
-        rd[v][u]+=c;
-    }
-}
-void solve(){
-    int ans=INF;
-    PII tmp;
-    REP(i,1,n-1){
-        tmp=sw();
-        int x=tmp.F;
-        int y=tmp.S;
-        if (wei[y] < ans) ans=wei[y];
-        del[y]=1;
-        REP(j,1,n){
-            rd[j][x]+=rd[j][y];
-            rd[x][j]+=rd[y][j];
-        }
-    }
-    printf("%d\n", ans);
-}
-
-int main(){
-    while (~scanf("%d%d", &n, &m)){
-        input();
-        solve();
-    }
-    return 0;
-}
-\end{lstlisting}
-
+%TODO Wrong
 \subsection{Maximum Simple Graph Matching}
 \lstinputlisting{../codes/Graph/Matching/Maximum_Simple_Graph_Matching.cpp}
+
+\subsection{2-Commodity Flow}
+\lstinputlisting{../codes/Graph/Flow/2comFlow.cpp}
 
 \section{Math}
 \subsection{ax+by=gcd}
@@ -250,6 +167,7 @@ int main(){
 
 \subsection{Chinese Remainder}
 \lstinputlisting{../codes/Math/Chinese_Remainder/Chinese_Remainder.cpp}
+
 \subsection{Miller Rabin}
 \lstinputlisting{../codes/Math/Miller_Rabin/Miller_Rabin.cpp}
 
@@ -260,7 +178,6 @@ int main(){
 \lstinputlisting{../codes/Math/primes.cpp}
 
 \section{Geometry}
-
 \subsection{Point operators}
 \lstinputlisting{../codes/Geometry/Point_operators/Point_operators.cpp}
 
@@ -273,6 +190,7 @@ int main(){
 \subsection{Intersection of two lines}
 \lstinputlisting{../codes/Geometry/Intersection_of_two_lines/Intersection_of_two_lines.cpp}
 
+%TODO wrong when intersection is empty
 \subsection{Half line Intersection}
 \lstinputlisting{../codes/Geometry/Half_line_intersection/Half_line_intersection.cpp}
 
@@ -284,479 +202,25 @@ int main(){
 \lstinputlisting{../codes/Stringology/Suffix_Array/sais_twt514.cpp}
 
 \subsection{Aho-Corasick Algorithm}
-\begin{lstlisting}
-class ACautomata{
-	public:
-	class Node{
-		public:
-		int cnt,dp;
-		Node *go[26], *fail;
-		Node (){
-			cnt = 0;
-			dp = -1;
-			memset(go,0,sizeof(go));
-			fail = 0;
-		}
-	};
-	
-	Node *root, pool[1048576];
-	int nMem;
+\lstinputlisting{../codes/Stringology/Automata/Aho-Corasick.cpp}
 
-	Node* new_Node(){
-		pool[nMem] = Node();
-		return &pool[nMem++];
-	}
-	void init(){
-		nMem = 0;
-		root = new_Node();
-	}
-	void add(const string &str){
-		insert(root,str,0);
-	}
-	void insert(Node *cur, const string &str, int pos){
-		if (pos >= (int)str.size()){
-			cur->cnt++;
-			return;
-		}
-		int c = str[pos]-'a';
-		if (cur->go[c] == 0){
-			cur->go[c] = new_Node();
-		}
-		insert(cur->go[c],str,pos+1);
-	}
+\subsection{Z value}
+\lstinputlisting{../codes/Stringology/Z_Value/zvalue.cpp}
 
-	void make_fail(){
-		queue<Node*> que;
-		que.push(root);
-		while (!que.empty()){
-			Node* fr=que.front();
-			que.pop();
-			for (int i=0; i<26; i++){
-				if (fr->go[i]){
-					Node *ptr = fr->fail;
-					while (ptr && !ptr->go[i])
-						ptr = ptr->fail;
-					if (!ptr)
-						fr->go[i]->fail = root;
-					else
-						fr->go[i]->fail = ptr->go[i];
-					que.push(fr->go[i]);
-				}
-			}
-		}
-	}
-};
-\end{lstlisting}
-
-\subsection{Z\_value}
-\begin{lstlisting}
-char s[MAXLEN];
-int len,z[MAXLEN];
-void Z_value() {
-	int i,j,left,right;
-	left=right=0; z[0]=len;
-	for(i=1;i<len;i++) {
-		j=max(min(z[i-left],right-i),0);
-		for(;i+j<len&&s[i+j]==s[j];j++);
-		z[i]=j;
-		if(i+z[i]>right) {
-			right=i+z[i];
-			left=i;
-		}
-	}
-}
-\end{lstlisting}
 \subsection{Z value (palindrome ver.)}
 \lstinputlisting{../codes/Stringology/Z_Value/zvalue_palindrome.cpp}
 
+%TODO update to vector version
 \subsection{Suffix Automaton}
-\begin{lstlisting}
-class SAM{ //SuffixAutomaton
-public:
-	class State{
-	public:
-		State *par, *go[26];
-		int val;
-		State (int _val) : 
-				par(0), val(_val){
-			MSET(go,0);
-		}
-	};
-	State *root, *tail;
-	
-	void init(const string &str){
-		root = tail = new State(0);
-		for (int i=0; i<SZ(str); i++)
-			extend(str[i]-'a');
-	}
-	void extend(int w){
-		State *p = tail, *np = new State(p->val+1);
-		for ( ; p && p->go[w]==0; p=p->par)
-			p->go[w] = np;
-		if (p == 0){
-			np->par = root;
-		} else {
-			if (p->go[w]->val == p->val+1){
-				np->par = p->go[w];
-			} else {
-				State *q = p->go[w], *r = new State(0);
-				*r = *q;
-				r->val = p->val+1;
-				q->par = np->par = r;
-				for ( ; p && p->go[w]==q; p=p->par)
-					p->go[w] = r;
-			}
-		}
-		tail = np;
-	}
-};
-\end{lstlisting}
+\lstinputlisting{../codes/Stringology/Automata/SAM.cpp}
 
 \section{Problems}
 \subsection {Qtree IV}
-\begin{lstlisting}
-const int MX = 100005;
-const int INF = 1029384756;
+\lstinputlisting{../codes/Problem/QTREE4.cpp}
 
-int N,fa[MX],faW[MX],sz[MX],belong[MX],color[MX],at[MX];
-int fr,bk,que[MX];
-vector<PII> E[MX];
-multiset<int> D[MX];
-multiset<int> ans;
-
-struct Chain{
-	int n;
-	vector<int> V;
-	struct Node{
-		int mxL, mxR, mx;
-	};
-	Node *tree;
-	int *d;
-
-	void init(){
-		n = V.size();
-		for (int i=0; i<n; i++)
-			at[V[i]] = i;
-		d = new int[n];
-		for (int i=1; i<n; i++)
-			d[i] = d[i-1] + faW[V[i-1]];
-		tree = new Node[4*n];
-	}
-	int max3(int a, int b, int c){
-		return max(a,max(b,c));
-	}
-	void pushUp(int L, int R, int id){
-		int M = (L+R)/2;
-		int lc = id*2+1;
-		int rc = id*2+2;
-		tree[id].mxL = max3(-INF, tree[lc].mxL, d[M+1]-d[L]+tree[rc].mxL);
-		tree[id].mxR = max3(-INF, tree[rc].mxR, d[R]-d[M]+tree[lc].mxR);
-		tree[id].mx = max3(tree[lc].mx, tree[rc].mx, tree[lc].mxR + d[M+1]-d[M] + tree[rc].mxL);
-	}
-	void build_tree(int L, int R, int id){
-		if (L == R){
-			multiset<int>::reverse_iterator ptr=D[V[L]].rbegin();
-			tree[id].mxL = tree[id].mxR = tree[id].mx = *ptr;
-			ptr++;
-			tree[id].mx = max(-INF,tree[id].mx+(*ptr));
-			return ;
-		}
-		int M = (L+R)/2;
-		build_tree(L,M,id*2+1);
-		build_tree(M+1,R,id*2+2);
-		pushUp(L,R,id);
-	}
-	void update_tree(int L, int R, int fn, int id){
-		if (L == R){
-			multiset<int>::reverse_iterator ptr=D[V[L]].rbegin();
-			tree[id].mxL = tree[id].mxR = tree[id].mx = *ptr;
-			ptr++;
-			tree[id].mx = max(-INF,tree[id].mx+(*ptr));
-			return ;
-		}
-		int M=(L+R)/2;
-		if (fn <= M) update_tree(L,M,fn,id*2+1);
-		else update_tree(M+1,R,fn,id*2+2);
-		pushUp(L,R,id);
-	}
-	int update(int x){
-		int u=V.back();
-		int p=fa[u];
-		if (p) D[p].erase(D[p].find(faW[u]+tree[0].mxR));
-		ans.erase(ans.find(tree[0].mx));
-		update_tree(0,n-1,at[x],0);
-		ans.insert(tree[0].mx);
-		if (p) D[p].insert(faW[u]+tree[0].mxR);
-		return p;
-	}
-
-}chain[MX];
-
-void DFS(int u){
-	Chain &c = chain[belong[u]];
-	c.init();
-	for (int i=0,v; i<c.n; i++){
-		u = c.V[i];
-		FOR(it,E[u]){
-			v = it->_F;
-			if (fa[u] == v || (i && v == c.V[i-1])) continue;
-			DFS(v);
-			D[u].insert(chain[belong[v]].tree[0].mxR+it->_S);
-		}
-		D[u].insert(-INF);
-		D[u].insert(-INF);
-		D[u].insert(0);
-	}
-	c.build_tree(0,c.n-1,0);
-	ans.insert(c.tree[0].mx);
-}
-int main(int argc, char** argv){
-	scanf("%d", &N);
-	for (int i=0,u,v,w; i<N-1; i++){
-		scanf("%d%d%d", &u, &v, &w);
-		E[u]._PB(_MP(v,w));
-		E[v]._PB(_MP(u,w));
-	}
-	fr=bk=0;	que[bk++] = 1;
-	while (fr < bk){
-		int u=que[fr++],v;
-		FOR(it,E[u]){
-			v = it->_F;
-			if (v == fa[u]) continue;
-			que[bk++] = v;
-			fa[v] = u;
-			faW[v] = it->_S;
-		}
-	}
-	for (int i=bk-1,u,v,pos; i>=0; i--){
-		u = que[i];
-		sz[u] = 1;
-		pos = 0;
-		FOR(it,E[u]){
-			v = it->_F;
-			if (v == fa[u]) continue;
-			sz[u] += sz[v];
-			if (sz[v] > sz[pos])
-				pos=v;
-		}
-		if (pos == 0) belong[u] = u;
-		else belong[u] = belong[pos];
-		chain[belong[u]].V._PB(u);
-	}
-	DFS(1);
-	int nq;
-	scanf("%d", &nq);
-	char cmd[10];
-	while (nq--){
-		scanf("%s", cmd);
-		if (cmd[0] == 'C'){
-			int x;
-			scanf("%d", &x);
-			if (color[x]){
-				D[x].insert(0);
-			} else {
-				D[x].erase(D[x].find(0));
-			}
-			color[x] ^= 1;
-			while (x){
-				x = chain[belong[x]].update(x);
-			}
-		} else {
-			if (*ans.rbegin() != -INF){
-				printf("%d\n", max(0,*ans.rbegin()));
-			} else {
-				puts("They have disappeared.");
-			}
-		}
-	}
-	return 0;
-}
-\end{lstlisting}
 \subsection{Find the maximun tangent (x,y is increasing)}
-\begin{lstlisting}
-#include <stdio.h>
-typedef long long LL;
-const int MAXN = 100010;
-struct Coord{
-	LL x, y;
-	Coord operator - (Coord ag) const{
-		Coord res;
-		res.x = x - ag.x;
-		res.y = y - ag.y;
-		return res;
-	}
-}sum[MAXN], pnt[MAXN], ans, calc;
+\lstinputlisting{../codes/Problem/maxtan.cpp}
 
-inline bool cross(Coord a, Coord b, Coord c){
-	return (c.y - a.y) * (c.x - b.x) > (c.x - a.x) * (c.y - b.y);
-}
-
-int main(){
-	int n, l, np, st, ed, now;
-	scanf("%d %d\n", &n, &l);
-	sum[0].x = sum[0].y = np = st = ed = 0;
-	for (int i = 1, v; i <= n; i++){
-		scanf("%d", &v);
-		sum[i].y = sum[i - 1].y + v;
-		sum[i].x = i;
-	}
-	ans.x = now = 1;
-	ans.y = -1;
-	for (int i = 0; i <= n - l; i++){
-		while (np > 1 && cross(pnt[np - 2], pnt[np - 1], sum[i]))
-			np--;
-		if (np < now && np != 0) now = np;
-		pnt[np++] = sum[i];
-		while (now < np && !cross(pnt[now - 1], pnt[now], sum[i + l]))
-			now++;
-		calc = sum[i + l] - pnt[now - 1];
-		if (ans.y * calc.x < ans.x * calc.y){
-			ans = calc;
-			st = pnt[now - 1].x;
-			ed = i + l;
-		}
-	}
-	double res = (sum[ed].y-sum[st].y)/(sum[ed].x-sum[st].x);
-	printf("%f\n", res);
-	return 0;
-}
-\end{lstlisting}
-
-\subsection{Flow Problem}
-\begin{lstlisting}
-const int MAXN = 64;
-const int INF = 1029384756;
-
-int N;
-int s1, s2, t1, t2, d1, d2, S, T;
-int edge[MAXN][MAXN];
-int cap[MAXN][MAXN];
-
-int h[MAXN], gap[MAXN];
-bool vis[MAXN];
-
-int isap(int v, int f)
-{
-    if(v == T)return f;
-
-    if(vis[v])return 0;
-    vis[v] = true;
-
-    for(int i=0; i<N+2; i++)
-    {
-        if(cap[v][i] <= 0)continue;
-        if(h[i] != h[v] - 1)continue;
-        int res = isap(i, min(cap[v][i], f));
-        if(res > 0)
-        {
-            cap[v][i] -= res;
-            cap[i][v] += res;
-            return res;
-        }
-    }
-
-    gap[h[v]]--;
-    if(gap[h[v]] <= 0)h[S] = N + 4;
-    h[v]++;
-    gap[h[v]]++;
-
-    return 0;
-}
-
-int get_flow()
-{
-    for(int i=0; i<MAXN; i++)
-    {
-        h[i] = gap[i] = 0;
-    }
-    gap[0] = N + 2;
-
-    int flow = 0;
-
-    while(h[S] <= N + 3)
-    {
-        for(int i=0; i<N+2; i++)
-        {
-            vis[i] = false;
-        }
-
-        int df = isap(S, INF);
-        flow += df;
-    }
-
-    return flow;
-}
-
-int main()
-{
-    ios_base::sync_with_stdio(0);
-
-    int TT;
-    cin>>TT;
-    while(TT--)
-    {
-        cin>>N;
-        cin>>s1>>t1>>d1>>s2>>t2>>d2;
-
-        for(int i=0; i<MAXN; i++)
-        {
-            for(int j=0; j<MAXN; j++)
-            {
-                edge[i][j] = 0;
-            }
-        }
-
-        for(int i=0; i<N; i++)
-        {
-            string s;
-            cin>>s;
-            for(int j=0; j<N; j++)
-            {
-                if(s[j] == 'X')edge[i][j] = 0;
-                else if(s[j] == 'O')edge[i][j] = 1;
-                else if(s[j] == 'N')edge[i][j] = INF;
-            }
-        }
-
-        int ans = 0;
-
-        S = N;
-        T = N + 1;
-
-        //first
-        for(int i=0; i<MAXN; i++)
-        {
-            for(int j=0; j<MAXN; j++)
-            {
-                cap[i][j] = edge[i][j];
-            }
-        }
-
-        cap[S][s1] = cap[t1][T] = d1;
-        cap[S][s2] = cap[t2][T] = d2;
-
-        ans = get_flow();
-
-        //second
-        for(int i=0; i<MAXN; i++)
-        {
-            for(int j=0; j<MAXN; j++)
-            {
-                cap[i][j] = edge[i][j];
-            }
-        }
-
-        cap[S][s1] = cap[t1][T] = d1;
-        cap[S][t2] = cap[s2][T] = d2;
-
-        ans = min(ans, get_flow());
-
-        cout<<(ans == d1 + d2 ? "Yes" : "No")<<endl;
-    }
-
-    return 0;
-}
-\end{lstlisting}
 
 \section{+1ironwood's code}
 \subsection{KDTreeAndNearestPoint}
