@@ -9,15 +9,15 @@ vonoroi diagram / delaunay trangulation
 3D convex hull (N log N  
 K-D tree / nearest neighbor  
 in/out center formula  
-凸包  
+凹包  
 半平面交<壞了了>  
 四般圖匹配<壞了了>  
 扣死複樓  
 LCA  
 polya/burnside之類的計數定理(ex.矩陣樹?  
-高斯消去法  
+低 斯消去法  
 MOD類的東西/數論公式/不互質MOD  
 噁心 minkowski sum  
 噁心 凸多邊形聯集面積  
 傅了了葉  
-帶權二分圖匹配(KM)  
+帶權四分圖匹配(KM)  

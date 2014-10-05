@@ -92,25 +92,7 @@ stringstyle=\itshape\color{Green4},
 \newpage
 
 \subsection{IncreaseStackSize}
-\begin{lstlisting}
-//stack resize
-asm( "mov %0,%%esp\n" ::"g"(mem+10000000) );
-//change esp to rsp if 64-bit system
-
-//stack resize (linux)
-#include <sys/resource.h>
-void increase_stack_size() {
-	const rlim_t ks = 64*1024*1024;
-	struct rlimit rl;
-	int res=getrlimit(RLIMIT_STACK, &rl);
-	if(res==0){
-		if(rl.rlim_cur<ks){
-			rl.rlim_cur=ks;
-			res=setrlimit(RLIMIT_STACK, &rl);
-		}
-	}
-}
-\end{lstlisting}
+\lstinputlisting{../codes/Basic/IncStack.cpp}
 
 \subsection{Default Code}
 \lstinputlisting{../codes/Basic/default.cpp}
@@ -122,7 +104,6 @@ void increase_stack_size() {
 
 \subsection{Leftist Heap}
 \lstinputlisting{../codes/Data_Structure/Leftist_Heap/Leftist_Heap.cpp}
-\newpage
 
 \subsection{extc\_balance\_tree}
 \lstinputlisting{../codes/Data_Structure/Balance_Tree/extc_bt.cpp}
@@ -144,6 +125,9 @@ void increase_stack_size() {
 \subsection{DMST\_with\_sol}
 \lstinputlisting{../codes/Graph/dmst/dmst_sol.cpp}
 
+\subsection{(+1) MinimumMeanCycle}
+\lstinputlisting{../codes/Graph/MinMeanCycle/MinMeanCycle.cpp}
+
 \section{Flow}
 \subsection{ISAP} %Checked
 \lstinputlisting{../codes/Graph/Flow/isap.cpp}
@@ -161,6 +145,12 @@ void increase_stack_size() {
 \subsection{2-Commodity Flow}
 \lstinputlisting{../codes/Graph/Flow/2comFlow.cpp}
 
+\subsection{(+1) SwGeneralGraphMaxMatching}
+\lstinputlisting{../codes/Graph/Matching/p1GenMatching.cpp}
+
+\subsection{(+1) SW-mincut $O(NM)$}
+\lstinputlisting{../codes/Graph/Flow/p1SWcutNM.cpp}
+
 \section{Math}
 \subsection{ax+by=gcd}
 \lstinputlisting{../codes/Math/ax+by=gcd/ax+by=gcd.cpp}
@@ -176,6 +166,9 @@ void increase_stack_size() {
 
 \subsection{Primes}
 \lstinputlisting{../codes/Math/primes.cpp}
+
+\subsection{(+1) PolynomialGenerator}
+\lstinputlisting{../codes/Math/PolyGen/PolyGen.cpp}
 
 \section{Geometry}
 \subsection{Point operators}
@@ -193,6 +186,12 @@ void increase_stack_size() {
 %TODO wrong when intersection is empty
 \subsection{Half line Intersection}
 \lstinputlisting{../codes/Geometry/Half_line_intersection/Half_line_intersection.cpp}
+
+\subsection{(+1) KDTreeAndNearestPoint}
+\lstinputlisting{../codes/Geometry/KD_tree/KD_Tree.cpp}
+
+\subsection{(+1) MinkowskiSum}
+\lstinputlisting{../codes/Geometry/Minkowski_Sum/Minkowski_Sum.cpp}
 
 \section{Stringology}
 \subsection{Suffix Array}
@@ -220,450 +219,5 @@ void increase_stack_size() {
 
 \subsection{Find the maximun tangent (x,y is increasing)}
 \lstinputlisting{../codes/Problem/maxtan.cpp}
-
-
-\section{+1ironwood's code}
-\subsection{KDTreeAndNearestPoint}
-\begin{lstlisting}
-#define INF 1100000000
-class NODE{ public:
-	int x,y,x1,x2,y1,y2;
-	int i,f;
-	NODE *L,*R;
-};
-inline long long dis(NODE& a,NODE& b){
-	long long dx=a.x-b.x;
-	long long dy=a.y-b.y;
-	return dx*dx+dy*dy;
-}
-NODE node[100000];
-bool cmpx(const NODE& a,const NODE& b){ return a.x<b.x; }
-bool cmpy(const NODE& a,const NODE& b){ return a.y<b.y; }
-NODE* KDTree(int L,int R,int dep){
-	if(L>R) return 0;
-	int M=(L+R)/2;
-	if(dep%2==0){
-		nth_element(node+L,node+M,node+R+1,cmpx);
-		node[M].f=0;
-	}else{
-		nth_element(node+L,node+M,node+R+1,cmpy);
-		node[M].f=1;
-	}
-	node[M].x1=node[M].x2=node[M].x;
-	node[M].y1=node[M].y2=node[M].y;
-	node[M].L=KDTree(L,M-1,dep+1);
-	if(node[M].L){
-		node[M].x1=min(node[M].x1,node[M].L->x1);
-		node[M].x2=max(node[M].x2,node[M].L->x2);
-		node[M].y1=min(node[M].y1,node[M].L->y1);
-		node[M].y2=max(node[M].y2,node[M].L->y2);
-	}
-	node[M].R=KDTree(M+1,R,dep+1);
-	if(node[M].R){
-		node[M].x1=min(node[M].x1,node[M].R->x1);
-		node[M].x2=max(node[M].x2,node[M].R->x2);
-		node[M].y1=min(node[M].y1,node[M].R->y1);
-		node[M].y2=max(node[M].y2,node[M].R->y2);
-	}
-	return node+M;
-}
-inline int touch(NODE* r,int x,int y,long long d){
-	long long d2;
-	d2 = (long long)(sqrt(d)+1);
-	if(x<r->x1-d2 || x>r->x2+d2 || y<r->y1-d2 || y>r->y2+d2)
-		return 0;
-	return 1;
-}
-void nearest(NODE* r,int z,long long &md){
-	if(!r || !touch(r,node[z].x,node[z].y,md)) return;
-	long long d;
-	if(node[z].i!=r->i){
-		d=dis(*r,node[z]);
-		if(d<md) md=d;
-	}
-	if(r->f==0){
-		if(node[z].x<r->x){
-			nearest(r->L,z,md);
-			nearest(r->R,z,md);
-		}else{
-			nearest(r->R,z,md);
-			nearest(r->L,z,md);
-		}
-	}else{
-		if(node[z].y<r->y){
-			nearest(r->L,z,md);
-			nearest(r->R,z,md);
-		}else{
-			nearest(r->R,z,md);
-			nearest(r->L,z,md);
-		}
-	}
-}
-int main(){
-	int TT,n,i;
-	long long d;
-	NODE* root;
-	scanf("%d",&TT);
-	while(TT--){
-		scanf("%d",&n);
-		for(i=0;i<n;i++){
-			scanf("%d %d",&node[i].x,&node[i].y);
-			node[i].i=i;
-		}
-		root=KDTree(0,n-1,0);
-		for(i=0;i<n;i++){
-			d=9000000000000000000LL;
-			nearest(root,i,d);
-			ans[node[i].i]=d;
-		}
-	}
-}
-\end{lstlisting}
-\subsection{MinkowskiSum}
-\begin{lstlisting}
-/* convex hull Minkowski Sum*/
-#define INF 100000000000000LL
-class PT{ public:
-	long long x,y;
-	int POS(){
-		if(y==0) return x>0?0:1;
-		return y>0?0:1;
-	}
-};
-PT pt[300000],qt[300000],rt[300000];
-long long Lx,Rx;
-int dn,un;
-inline bool cmp(PT a,PT b){
-	int pa=a.POS(),pb=b.POS();
-	if(pa==pb) return (a^b)>0;
-	return pa<pb;
-}
-int minkowskiSum(int n,int m){
-	int i,j,r,p,q,fi,fj;
-	for(i=1,p=0;i<n;i++){
-		if(pt[i].y<pt[p].y || (pt[i].y==pt[p].y && pt[i].x<
-					pt[p].x)) p=i; }
-	for(i=1,q=0;i<m;i++){
-		if(qt[i].y<qt[q].y || (qt[i].y==qt[q].y && qt[i].x<
-					qt[q].x)) q=i; }
-	rt[0]=pt[p]+qt[q];
-	r=1; i=p; j=q; fi=fj=0;
-	while(1){
-		if((fj&&j==q) || ((!fi||i!=p) && cmp(pt[(p+1)%n]-pt[
-						p],qt[(q+1)%m]-qt[q]))){
-			rt[r]=rt[r-1]+pt[(p+1)%n]-pt[p];
-			p=(p+1)%n;
-			fi=1;
-		}else{
-			rt[r]=rt[r-1]+qt[(q+1)%m]-qt[q];
-			q=(q+1)%m;
-			fj=1;
-		}
-		if(r<=1 || ((rt[r]-rt[r-1])^(rt[r-1]-rt[r-2]))!=0) r
-			++;
-		else rt[r-1]=rt[r];
-		if(i==p && j==q) break;
-	}
-	return r-1;
-}
-void initInConvex(int n){
-	int i,p,q;
-	long long Ly,Ry;
-	Lx=INF; Rx=-INF;
-	for(i=0;i<n;i++){
-		if(pt[i].x<Lx) Lx=pt[i].x;
-		if(pt[i].x>Rx) Rx=pt[i].x;
-	}
-	Ly=Ry=INF;
-	for(i=0;i<n;i++){
-		if(pt[i].x==Lx && pt[i].y<Ly){ Ly=pt[i].y; p=i; }
-		if(pt[i].x==Rx && pt[i].y<Ry){ Ry=pt[i].y; q=i; }
-	}
-	for(dn=0,i=p;i!=q;i=(i+1)%n){ qt[dn++]=pt[i]; }
-	qt[dn]=pt[q]; Ly=Ry=-INF;
-	for(i=0;i<n;i++){
-		if(pt[i].x==Lx && pt[i].y>Ly){ Ly=pt[i].y; p=i; }
-		if(pt[i].x==Rx && pt[i].y>Ry){ Ry=pt[i].y; q=i; }
-	}
-	for(un=0,i=p;i!=q;i=(i+n-1)%n){ rt[un++]=pt[i]; }
-	rt[un]=pt[q];
-}
-inline int inConvex(PT p){
-	int L,R,M;
-	if(p.x<Lx || p.x>Rx) return 0;
-	L=0;R=dn;
-	while(L<R-1){ M=(L+R)/2;
-		if(p.x<qt[M].x) R=M; else L=M; }
-		if(tri(qt[L],qt[R],p)<0) return 0;
-		L=0;R=un;
-		while(L<R-1){ M=(L+R)/2;
-			if(p.x<rt[M].x) R=M; else L=M; }
-			if(tri(rt[L],rt[R],p)>0) return 0;
-			return 1;
-}
-int main(){
-	int n,m,i;
-	PT p;
-	scanf("%d",&n);
-	for(i=0;i<n;i++) scanf("%I64d %I64d",&pt[i].x,&pt[i].y);
-	scanf("%d",&m);
-	for(i=0;i<m;i++) scanf("%I64d %I64d",&qt[i].x,&qt[i].y);
-	n=minkowskiSum(n,m);
-	for(i=0;i<n;i++) pt[i]=rt[i];
-	scanf("%d",&m);
-	for(i=0;i<m;i++) scanf("%I64d %I64d",&qt[i].x,&qt[i].y);
-	n=minkowskiSum(n,m);
-	for(i=0;i<n;i++) pt[i]=rt[i];
-	initInConvex(n);
-	scanf("%d",&m);
-	for(i=0;i<m;i++){
-		scanf("%I64d %I64d",&p.x,&p.y);
-		p.x*=3; p.y*=3;
-		puts(inConvex(p)?"YES":"NO");
-	}
-}
-\end{lstlisting}
-\subsection{MinimumMeanCycle}
-\begin{lstlisting}
-/* minimum mean cycle */
-class Edge { public:
-	int v,u;
-	double c;
-};
-int n,m;
-Edge e[MAXEDGE];
-double d[MAXNUM][MAXNUM];
-inline void relax(double &x,double val) { if(val<x) x=val; }
-inline void bellman_ford() {
-	int i,j;
-	for(j=0;j<n;j++) d[0][j]=0.0;
-	for(i=0;i<n;i++) {
-		for(j=0;j<n;j++) d[i+1][j]=inf;
-		for(j=0;j<m;j++)
-			if(d[i][e[j].v]<inf-eps) relax(d[i+1][e[j].u],d[i][
-					e[j].v]+e[j].c);
-	}
-}
-inline double karp_mmc() {
-	// returns inf if no cycle, mmc otherwise
-	int i,k; double mmc=inf,avg;
-	bellman_ford();
-	for(i=0;i<n;i++) {
-		avg=0.0;
-		for(k=0;k<n;k++) {
-			if(d[n][i]<inf-eps) avg=max(avg,(d[n][i]-d[k][i])/(
-						n-k));
-			else avg=max(avg,inf);
-		}
-		mmc=min(mmc,avg);
-	}
-	return mmc;
-}
-\end{lstlisting}
-
-\subsection{PolynomialGenerator}
-\begin{lstlisting}
-class PolynomialGenerator {
-	/* for a nth-order polynomial f(x), *
-	 * given f(0), f(1), ..., f(n) *
-	 * express f(x) as sigma_i{c_i*C(x,i)} */
-	public:
-		int n;
-		vector<long long> coef;
-		// initialize and calculate f(x), vector _fx should be
-		filled with f(0) to f(n)
-			PolynomialGenerator(int _n,vector<long long> _fx):n(_n
-					),coef(_fx) {
-				for(int i=0;i<n;i++)
-					for(int j=n;j>i;j--)
-						coef[j]-=coef[j-1];
-			}
-		// evaluate f(x), runs in O(n)
-		long long eval(int x) {
-			long long m=1,ret=0;
-			for(int i=0;i<=n;i++) {
-				ret+=coef[i]*m;
-				m=m*(x-i)/(i+1);
-			}
-			return ret;
-		}
-};
-\end{lstlisting}
-
-\subsection{SwGeneralGraphMaxMatching}
-\begin{lstlisting}
-#define N 256 // max vertex num
-class Graph { public:
-	// n,g[i][j]=0/1, match() => match: (i,mate[i]) (or mate[i]=-1)
-	int n, mate[N];
-	bool g[N][N], inQ[N], inBlo[N];
-	queue<int> Q;
-	int start, newBase, prev[N], base[N];
-	int lca(int u, int v) {
-		bool path[N] = { false };
-		while(true) {
-			u = base[u]; path[u] = true;
-			if(u == start) break;
-			u = prev[mate[u]];
-		}
-		while(true) {
-			v = base[v];
-			if(path[v]) break;
-			v = prev[mate[v]];
-		}
-		return v;
-	}
-	void trace(int u) {
-		while(base[u] != newBase) {
-			int v = mate[u];
-			inBlo[base[u]] = inBlo[base[v]] = true;
-			u = prev[v];
-			if(base[u] != newBase) prev[u] = v;
-		}
-	}
-	void contract(int u, int v) {
-		newBase = lca(u, v);
-		memset(inBlo, false, sizeof(inBlo));
-		trace(u); trace(v);
-		if(base[u] != newBase) prev[u] = v;
-		if(base[v] != newBase) prev[v] = u;
-		for(int i = 0; i < n; i++)
-			if(inBlo[base[i]]) {
-				base[i] = newBase;
-				if(!inQ[i]) { Q.push(i); inQ[i] = true; }
-			}
-	}
-	bool search() {
-		memset(inQ, false, sizeof(inQ));
-		memset(prev, -1, sizeof(prev));
-		for(int i = 0; i < n; i++) base[i] = i;
-		while(!Q.empty()) Q.pop();
-		Q.push(start); inQ[start] = true;
-		while(!Q.empty()) {
-			int u = Q.front(); Q.pop();
-			for(int i = 0; i < n; i++)
-				if(g[u][i] && base[u] != base[i] && mate[u] != i){
-					if(i == start || (mate[i] >= 0 && prev[mate[i]] >= 0)) contract(u, i);
-					else if(prev[i] < 0) {
-						prev[i] = u;
-						if(mate[i] != -1) { Q.push(mate[i]); inQ[mate[i]] = true; }
-						else { augment(i); return true; }
-					}
-				}
-		}
-		return false;
-	}
-	void augment(int u) {
-		while(u >= 0) {
-			int v = prev[u], w = mate[v];
-			mate[v] = u; mate[u] = v; u = w;
-		}
-	}
-	int match() {
-		memset(mate, -1, sizeof(mate));
-		int mth = 0;
-		for(int i = 0; i < n; i++) {
-			if(mate[i] >= 0) continue;
-			start = i;
-			if(search()) mth++;
-		}
-		return mth;
-	}
-};
-\end{lstlisting}
-\subsection{stoer-wagner-nm}
-\begin{lstlisting}
-// {{{ StoerWagner
-const int inf=1000000000;
-// should be larger than max.possible mincut
-class StoerWagner {
-	public:
-		int n,mc; // node id in [0,n-1]
-		vector<int> adj[MAXN];
-		int cost[MAXN][MAXN];
-		int cs[MAXN];
-		bool merged[MAXN],sel[MAXN];
-		// --8<-- include only if cut is explicitly needed
-			DisjointSet djs;
-		vector<int> cut;
-		//--8<--------------------------------------------
-			StoerWagner(int _n):n(_n),mc(inf),djs(_n) {
-				for(int i=0;i<n;i++)
-					merged[i]=0;
-				for(int i=0;i<n;i++)
-					for(int j=0;j<n;j++)
-						cost[i][j]=cost[j][i]=0;
-			}
-		void append(int v,int u,int c) {
-			if(v==u) return;
-			if(!cost[v][u]&&c) {
-				adj[v].PB(u);
-				adj[u].PB(v);
-			}
-			cost[v][u]+=c;
-			cost[u][v]+=c;
-		}
-		void merge(int v,int u) {
-			merged[u]=1;
-			for(int i=0;i<n;i++)
-				append(v,i,cost[u][i]);
-			// --8<-- include only if cut is explicitly needed
-				djs.merge(v,u);
-			//--8<--------------------------------------------
-		}
-		void phase() {
-			priority_queue<pii> pq;
-			for(int v=0;v<n;v++) {
-				if(merged[v]) continue;
-				cs[v]=0;
-				sel[v]=0;
-				pq.push(MP(0,v));
-			}
-			int v,s,pv;
-			while(pq.size()) {
-				if(cs[pq.top().S]>pq.top().F) {
-					pq.pop();
-					continue;
-				}
-				pv=v;
-				v=pq.top().S;
-				s=pq.top().F;
-				pq.pop();
-				sel[v]=1;
-				for(int i=0;i<adj[v].size();i++) {
-					int u=adj[v][i];
-					if(merged[u]||sel[u]) continue;
-					cs[u]+=cost[v][u];
-					pq.push(MP(cs[u],u));
-				}
-			}
-			if(s<mc) {
-				mc=s;
-				// --8<-- include only if cut is explicitly
-				needed ------
-					cut.clear();
-				for(int i=0;i<n;i++)
-					if(djs.getrep(i)==djs.getrep(v)) cut.PB(i);
-				//--8<----------------------------------------
-			}
-			merge(v,pv);
-		}
-		int mincut() {
-			if(mc==inf) {
-				for(int t=0;t<n-1;t++)
-					phase();
-			
-			return mc;
-		}
-		// --8<-- include only if cut is explicitly needed
-		------
-			vector<int> getcut() { // return one side of the cut
-				mincut();
-				return cut;
-			}
-		//--8<--------------------------------------------
-};
-// }}}
-\end{lstlisting}
 
 \end{document}
