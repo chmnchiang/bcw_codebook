@@ -10,7 +10,7 @@ vonoroi diagram / delaunay trangulation
 K-D tree(只有+1)  
 nearest neighbor(只有+1)  
 in/out center formula  
-凹包  
+凹包 (done and tested) 
 半平面交<壞了了>  
 四般圖匹配<壞了了>  
 扣死複樓  
