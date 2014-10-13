@@ -1,4 +1,6 @@
 struct SA{
+#define REP(i,n) for ( int i=0; i<int(n); i++ )
+#define REP1(i,a,b) for ( int i=(a); i<=int(b); i++ )
     static const int MXN = 300010;
     bool _t[MXN*2];
     int _s[MXN*2], _sa[MXN*2], _c[MXN*2], x[MXN], _p[MXN], _q[MXN*2], hei[MXN], r[MXN];
