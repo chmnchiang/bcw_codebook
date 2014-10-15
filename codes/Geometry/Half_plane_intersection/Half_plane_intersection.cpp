@@ -49,7 +49,7 @@ pdd interPnt(pdd p1, pdd p2, pdd q1, pdd q2){
 
 deque<Line> dq;
 
-void halfLineInter(){
+void halfPlaneInter(){
 	int n = lnlst.size();
 	vector<int> stlst;
 	for(int i=0; i<n; i++){
@@ -118,7 +118,11 @@ void halfLineInter(){
 		Line l2 = dq[dsz - 2];
 		Line l = dq[0];
 		pdd it12 = interPnt(l1.first, l1.second, l2.first, l2.second);
-		if((l.second - l.first) % (it12 - l.first) < 0){
+		if(std::isnan(it12._x)) {
+			dq.pop_back();
+			dq.pop_back();
+			dsz -= 2;
+		} else if((l.second - l.first) % (it12 - l.first) < 0){
 			dq.pop_back();
 			dsz --;
 		} else break;
@@ -136,9 +140,10 @@ int main(){
 		lnlst._PB(_MP(pdd(x1, y1), pdd(x2, y2)));
 	}
  
-	halfLineInter();
+	halfPlaneInter();
 
 	int dsz = dq.size();
+	cout << dsz << endl;
 	for(int i=0; i<dsz; i++){
 		int j = (i+1) % dsz;
 		pdd it = interPnt(dq[i].first, dq[i].second, dq[j].first, dq[j].second);
