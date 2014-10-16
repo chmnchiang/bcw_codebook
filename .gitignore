@@ -1,5 +1,6 @@
 *.*
 !*.cpp
+!*.java
 !.vimrc
 !*.tex
 !*.pdf
