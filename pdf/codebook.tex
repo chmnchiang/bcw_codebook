@@ -39,6 +39,7 @@
 
 \setmainfont{Consolas}				%主要字型
 \setCJKmainfont{Consolas}			%中文字型
+%\setmainfont{sourcecodepro}
 \XeTeXlinebreaklocale "zh"						%中文自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt				%設定段落之間的距離
 \setcounter{secnumdepth}{3}						%目錄顯示第三層
@@ -167,8 +168,14 @@ stringstyle=\itshape\color{Green4},
 \subsection{Primes}
 \lstinputlisting{../codes/Math/primes.cpp}
 
+\subsection{Gauss Elimination}
+\lstinputlisting{../codes/Math/Gauss_Elimination/Gauss_Elimination.cpp}
+
 \subsection{(+1) PolynomialGenerator}
 \lstinputlisting{../codes/Math/PolyGen/PolyGen.cpp}
+
+\subsection{Fast Fourier Transform}
+\lstinputlisting{../codes/Math/Fast_Fourier_Transform/Fast_Fourier_Transform.cpp}
 
 \section{Geometry}
 \subsection{Point operators}
@@ -181,8 +188,8 @@ stringstyle=\itshape\color{Green4},
 \lstinputlisting{../codes/Geometry/Intersection_of_two_lines/Intersection_of_two_lines.cpp}
 
 %TODO wrong when intersection is empty
-\subsection{Half line Intersection}
-\lstinputlisting{../codes/Geometry/Half_line_intersection/Half_line_intersection.cpp}
+\subsection{Half Plane Intersection}
+\lstinputlisting{../codes/Geometry/Half_plane_intersection/Half_plane_intersection.cpp}
 
 \subsection{Point Class}
 \lstinputlisting{../codes/Geometry/Point_operators/point_class.cpp}
