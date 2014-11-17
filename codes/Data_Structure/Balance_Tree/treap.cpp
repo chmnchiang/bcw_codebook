@@ -43,8 +43,8 @@ int merge(int a, int b){
 	return res;
 }
 pair<int,int> split(int a, int k){
-	if (k == 0) return MP(0,a);
-	if (k == tree[a].cnt) return MP(a,0);
+	if (k == 0) return _MP(0,a);
+	if (k == tree[a].cnt) return _MP(a,0);
 	int lc=tree[a].lc, rc=tree[a].rc;
 	pair<int,int> res;
 	int np=a; //get_node();
