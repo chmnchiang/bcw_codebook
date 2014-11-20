@@ -15,7 +15,7 @@ using namespace std;
 #define _MP make_pair
 #define _PB push_back
 #define FOR(x,y) for(__typeof(y.begin())x=y.begin();x!=y.end();x++)
-#define IOS ios_base::sync_with_stdio(0)
+#define IOS ios_base::sync_with_stdio(0); cin.tie(0)
 // Let's Fight!
 
 int main()
