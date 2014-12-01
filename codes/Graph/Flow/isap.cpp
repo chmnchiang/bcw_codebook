@@ -22,7 +22,7 @@ public:
   }
   void add_edge(int u, int v, int f){
     E[u]._PB(Edge(v,f,E[v].size()));
-    E[v]._PB(Edge(u,f,E[u].size()-1));
+    E[v]._PB(Edge(u,0,E[u].size()-1));
   }
   int DFS(int u, int nf, int res=0){
     if (u == t) return nf;
