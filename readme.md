@@ -1,6 +1,6 @@
-Codes used in the CodeBook of Team BCW.
+Codes used in the CodeBook of Team bcw0x1bd2.
 
-use \lstinputlisting{filename.cpp} to include external file.  
+use \lstinputlisting{filename.cpp} to include external file.
   
 =========  TODO  =========  
   
