@@ -33,9 +33,9 @@ struct edge_t{
             if (!sub.count(*it)) add.insert(*it);
             else sub.erase(*it);
         }
-        FOR (it, obj.add) {
-            if (!add.count(*it)) sub.insert(*it);
-            else add.erase(*it);
+        for (auto it : obj.add) {
+            if (!add.count(it)) sub.insert(it);
+            else add.erase(it);
         }
         return *this;
     }
@@ -97,8 +97,8 @@ edge_t dmst(int rt){
 
 void solve(){
     edge_t cost = dmst(0);
-    FOR(it,cost.add){ // find a solution
-        E[it->_F]._PB(it->_S);
-        prv[it->_S] = edge_t(it->_F,it->_S,0);
+    for (auto it : cost.add){ // find a solution
+        E[it._F]._PB(it._S);
+        prv[it._S] = edge_t(it._F,it._S,0);
     }
 }
