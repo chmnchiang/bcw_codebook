@@ -26,7 +26,7 @@ public:
   }
   int DFS(int u, int nf, int res=0){
     if (u == t) return nf;
-    for (auto it : E[u]){
+    for (auto &it : E[u]){
       if (h[u]==h[it.v]+1 && it.f>0){
         int tf = DFS(it.v,min(nf,it.f));
         res += tf;
