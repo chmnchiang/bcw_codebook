@@ -1,5 +1,6 @@
 class Isap{
 public:
+	static const int MXN = 10000;
   class Edge{
   public:
     int v,f,re;
@@ -10,13 +11,13 @@ public:
       re = _r;
     }
   };
-  int n,s,t,h[N],gap[N];
-  vector<Edge> E[N];
+  int n,s,t,h[MXN],gap[MXN];
+  vector<Edge> E[MXN];
   void init(int _n, int _s, int _t){
     n = _n;
     s = _s;
     t = _t;
-    for (int i=0; i<N; i++)
+    for (int i=0; i<n; i++)
       E[i].clear();
   }
   void add_edge(int u, int v, int f){
@@ -25,13 +26,13 @@ public:
   }
   int DFS(int u, int nf, int res=0){
     if (u == t) return nf;
-    FOR(it,E[u]){
-      if (h[u]==h[it->v]+1 && it->f>0){
-        int tf = DFS(it->v,min(nf,it->f));
+    for (auto it : E[u]){
+      if (h[u]==h[it.v]+1 && it.f>0){
+        int tf = DFS(it.v,min(nf,it.f));
         res += tf;
         nf -= tf;
-        it->f -= tf;
-        E[it->v][it->re].f += tf;
+        it.f -= tf;
+        E[it.v][it.re].f += tf;
         if (nf == 0) return res;
       }
     }
