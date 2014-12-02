@@ -1,8 +1,6 @@
-const int MAXN = 250;
-
-struct GenMatch {
-
-	int V, E;
+struct GenMatch { // 1-base
+	static const int MAXN = 250;
+	int V;
 	bool el[MAXN][MAXN];
 	int pr[MAXN];
 	bool inq[MAXN],inp[MAXN],inb[MAXN];
@@ -11,7 +9,8 @@ struct GenMatch {
 	int nb;
 	int bk[MAXN],djs[MAXN];
 	int ans;
-	void init() {
+	void init(int _V) {
+		V = _V;
 		memset(el,0,sizeof(el));
 		memset(pr,0,sizeof(pr));
 		memset(inq,0,sizeof(inq));
@@ -21,10 +20,7 @@ struct GenMatch {
 		memset(bk,0,sizeof(bk));
 		ans = 0;
 	}
-	void setve(int _v, int _e) {
-		V = _v; E = _e;
-	}
-	void edge(int u, int v) {
+	void add_edge(int u, int v) {
 		el[u][v] = el[v][u] = 1;
 	}
 	int lca(int u,int v) {
@@ -121,8 +117,7 @@ struct GenMatch {
 };
 
 int main() {
-	gp.init();
-	gp.setve(V, E);
+	gp.init(V);
 	for(int i=0; i<E; i++) {
 		int u, v;
 		cin >> u >> v;
