@@ -20,3 +20,11 @@ MOD類的東西/數論公式/不互質MOD
 點、邊BCC  
 steiner tree(?)  
 各種交點公式  
+Simplex
+樹分治 (1題 遇到可以看著改)
+字串最小表示 (有code 待放)
+Suffix Automata Machine (改 vector 版)
+平面圖全局最小割 (V^3 須修改 or add VE)
+link-cut Tree
+Pollard's rho algorithm (質因數分解 聽說很快)
+Miller Rabin 分解需要的數字
