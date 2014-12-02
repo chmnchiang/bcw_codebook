@@ -11,13 +11,9 @@ struct GenMatch { // 1-base
 	int ans;
 	void init(int _V) {
 		V = _V;
-		memset(el,0,sizeof(el));
-		memset(pr,0,sizeof(pr));
-		memset(inq,0,sizeof(inq));
-		memset(inp,0,sizeof(inp));
-		memset(inb,0,sizeof(inb));
-		memset(djs,0,sizeof(djs));
-		memset(bk,0,sizeof(bk));
+		_SZ(el); _SZ(pr);
+		_SZ(inq); _SZ(inp); _SZ(inb);
+		_SZ(bk); _SZ(djs);
 		ans = 0;
 	}
 	void add_edge(int u, int v) {
