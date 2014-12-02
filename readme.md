@@ -10,18 +10,13 @@ vonoroi diagram / delaunay trangulation
 K-D tree(只有+1)  
 nearest neighbor(只有+1)  
 in/out center formula  
-凹包 (done and tested) 
 半平面交<壞了了>  
-四般圖匹配<壞了了>  
 扣死複樓  
-LCA  
 polya/burnside之類的計數定理(ex.矩陣樹?  
-低斯消去法  
 MOD類的東西/數論公式/不互質MOD  
 噁心 minkowski sum  
 噁心 凸多邊形聯集面積  
-傅了了葉  
-帶權四分圖匹配(KM)  
+傅了了葉 (only test one problem ?)
 點、邊BCC  
 steiner tree(?)  
 各種交點公式  
