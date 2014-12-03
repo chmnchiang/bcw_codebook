@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define _SZ(n) memset((n),0,sizeof(n))
-#define _SMO(n) memset((n),-1,sizeof(n))
-#define _MC(n,m) memcpy((n),(m),sizeof(n))
-#define _F first
-#define _S second
-#define _MP make_pair
-#define _PB push_back
+#define FZ(n) memset((n),0,sizeof(n))
+#define FMO(n) memset((n),-1,sizeof(n))
+#define MC(n,m) memcpy((n),(m),sizeof(n))
+#define F first
+#define S second
+#define MP make_pair
+#define PB push_back
 #define FOR(x,y) for(__typeof(y.begin())x=y.begin();x!=y.end();x++)
 #define IOS ios_base::sync_with_stdio(0)
  
@@ -87,7 +87,7 @@ void init(){
 	nq = 0;
 	tID = 2;
 	sID = 2;
-	_SZ(fa);
+	FZ(fa);
 }
 int trash;
 void input(){
@@ -100,7 +100,7 @@ void input(){
 			int prvID;
 			char str[10];
 			trash = scanf("%d%s", &prvID, str);
-			E[prvID]._PB(sID);
+			E[prvID].PB(sID);
 			fa[0][sID] = prvID;
 			sCh[sID] = str[0];
 			sID++;
@@ -127,7 +127,7 @@ void input(){
 		} else if (cmd == 4){
 			int ti,sj;
 			trash = scanf("%d%d", &ti, &sj);
-			q[sj]._PB((query_t){ti,sj,nq});
+			q[sj].PB((query_t){ti,sj,nq});
 			nq++;
 		}
 	}
@@ -173,17 +173,17 @@ void prvSolve(){
 	}
 	suffix_array();
 	for (int i=0; i<30; i++)
-		azRange[i] = _MP(sID,0);
+		azRange[i] = MP(sID,0);
 	for (int i=1; i<sID; i++){
 		if (sa[i] == 1) continue;
 		int ch = sCh[sa[i]] - 'a';
-		azRange[ch]._F = min(azRange[ch]._F,i);
-		azRange[ch]._S = max(azRange[ch]._S,i);
+		azRange[ch].F = min(azRange[ch].F,i);
+		azRange[ch].S = max(azRange[ch].S,i);
 	}
 	for (int i=0; i<30; i++){
-		azRange[i]._S++;
-		if (azRange[i]._S == 1){
-			azRange[i]._F = azRange[i]._S = sID;
+		azRange[i].S++;
+		if (azRange[i].S == 1){
+			azRange[i].F = azRange[i].S = sID;
 		}
 	}
 
@@ -229,8 +229,8 @@ void prvSolve(){
 		} else if (tTree[i].tp == 1){
 			tTree[i].len = tTree[id1].len + 1;
 			int ch = tTree[i].ch;
-			int l = azRange[ch-'a']._F;
-			int r = azRange[ch-'a']._S;
+			int l = azRange[ch-'a'].F;
+			int r = azRange[ch-'a'].S;
 			if (id1 == 1){
 				tTree[i].l = l;
 				tTree[i].r = r;

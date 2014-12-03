@@ -2,8 +2,8 @@
 
 using namespace std;
 
-#define _PB push_back
-#define _MP make_pair
+#define PB push_back
+#define MP make_pair
 #define _x first
 #define _y second
 
@@ -53,7 +53,7 @@ void halfPlaneInter(){
 	int n = lnlst.size();
 	vector<int> stlst;
 	for(int i=0; i<n; i++){
-		stlst._PB(i);
+		stlst.PB(i);
 		pdd d = lnlst[i].second - lnlst[i].first;
 		atn[i] = atan2(d._y, d._x);
 	}
@@ -73,11 +73,11 @@ void halfPlaneInter(){
 				}else continue;
 			}
 		}
-		lst._PB(lnlst[stlst[i]]);
+		lst.PB(lnlst[stlst[i]]);
 	}
 
-	dq._PB(lst[0]);
-	dq._PB(lst[1]);
+	dq.PB(lst[0]);
+	dq.PB(lst[1]);
 	for(int i=2; i<n; i++){
 		int dsz = dq.size();
 		Line l = lst[i];
@@ -107,7 +107,7 @@ void halfPlaneInter(){
 
 		Line l1 = dq[dsz - 1];
 		if(!std::isnan(interPnt(l.first, l.second, l1.first,  l1.second)._x)){
-			dq._PB(l);
+			dq.PB(l);
 		}
 
 	}
@@ -137,7 +137,7 @@ int main(){
 	for(int i=0; i<N; i++){
 		double x1, x2, y1, y2;
 		cin >> x1 >> y1 >> x2 >> y2;
-		lnlst._PB(_MP(pdd(x1, y1), pdd(x2, y2)));
+		lnlst.PB(MP(pdd(x1, y1), pdd(x2, y2)));
 	}
  
 	halfPlaneInter();

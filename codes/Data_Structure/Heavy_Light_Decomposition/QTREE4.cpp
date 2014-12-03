@@ -81,10 +81,10 @@ void DFS(int u){
 	for (int i=0,v; i<c.n; i++){
 		u = c.V[i];
 		FOR(it,E[u]){
-			v = it->_F;
+			v = it->F;
 			if (fa[u] == v || (i && v == c.V[i-1])) continue;
 			DFS(v);
-			D[u].insert(chain[belong[v]].tree[0].mxR+it->_S);
+			D[u].insert(chain[belong[v]].tree[0].mxR+it->S);
 		}
 		D[u].insert(-INF);
 		D[u].insert(-INF);
@@ -97,18 +97,18 @@ int main(int argc, char** argv){
 	scanf("%d", &N);
 	for (int i=0,u,v,w; i<N-1; i++){
 		scanf("%d%d%d", &u, &v, &w);
-		E[u]._PB(_MP(v,w));
-		E[v]._PB(_MP(u,w));
+		E[u].PB(MP(v,w));
+		E[v].PB(MP(u,w));
 	}
 	fr=bk=0;	que[bk++] = 1;
 	while (fr < bk){
 		int u=que[fr++],v;
 		FOR(it,E[u]){
-			v = it->_F;
+			v = it->F;
 			if (v == fa[u]) continue;
 			que[bk++] = v;
 			fa[v] = u;
-			faW[v] = it->_S;
+			faW[v] = it->S;
 		}
 	}
 	for (int i=bk-1,u,v,pos; i>=0; i--){
@@ -116,7 +116,7 @@ int main(int argc, char** argv){
 		sz[u] = 1;
 		pos = 0;
 		FOR(it,E[u]){
-			v = it->_F;
+			v = it->F;
 			if (v == fa[u]) continue;
 			sz[u] += sz[v];
 			if (sz[v] > sz[pos])
@@ -124,7 +124,7 @@ int main(int argc, char** argv){
 		}
 		if (pos == 0) belong[u] = u;
 		else belong[u] = belong[pos];
-		chain[belong[u]].V._PB(u);
+		chain[belong[u]].V.PB(u);
 	}
 	DFS(1);
 	int nq;

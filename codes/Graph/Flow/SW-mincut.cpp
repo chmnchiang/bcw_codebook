@@ -4,15 +4,15 @@ struct SW{ // O(V^3)
 	int edge[MXN][MXN],wei[MXN];
 	void init(int _n){
 		n = _n;
-		_SZ(edge);
-		_SZ(del);
+		FZ(edge);
+		FZ(del);
 	}
 	void add_edge(int u, int v, int w){
 		edge[u][v] += w;
 		edge[v][u] += w;
 	}
 	void search(int &s, int &t){
-		_SZ(vst); _SZ(wei);
+		FZ(vst); FZ(wei);
 		s = t = -1;
 		while (true){
 			int mx=-1, cur=0;

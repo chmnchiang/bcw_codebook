@@ -11,7 +11,7 @@ public:
 
     void init(int v) {
         V = v; ans = 0;
-        _SZ(el); _SZ(dp);
+        FZ(el); FZ(dp);
     }
 
     /* Zero Base */

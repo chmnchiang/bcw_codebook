@@ -22,11 +22,11 @@ public:
       E[i].clear();
   }
   void add_edge(int u, int v, int f){
-    E[u]._PB(Edge(v,f,E[v].size()));
-    E[v]._PB(Edge(u,0,E[u].size()-1));
+    E[u].PB(Edge(v,f,E[v].size()));
+    E[v].PB(Edge(u,0,E[u].size()-1));
   }
   bool BFS(){
-		_SMO(level);
+		FMO(level);
 		fr = bk = 0;
 		que[bk++] = s;
 		level[s] = 0;

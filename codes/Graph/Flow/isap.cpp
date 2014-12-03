@@ -21,8 +21,8 @@ public:
       E[i].clear();
   }
   void add_edge(int u, int v, int f){
-    E[u]._PB(Edge(v,f,E[v].size()));
-    E[v]._PB(Edge(u,0,E[u].size()-1));
+    E[u].PB(Edge(v,f,E[v].size()));
+    E[v].PB(Edge(u,0,E[u].size()-1));
   }
   int DFS(int u, int nf, int res=0){
     if (u == t) return nf;
@@ -43,8 +43,8 @@ public:
     return res;
   }
   int flow(int res=0){
-    _SZ(h);
-    _SZ(gap);
+    FZ(h);
+    FZ(gap);
     gap[0] = n;
     while (h[s] < n)
       res += DFS(s,2147483647);

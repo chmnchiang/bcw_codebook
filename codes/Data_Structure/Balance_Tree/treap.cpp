@@ -43,22 +43,22 @@ int merge(int a, int b){
 	return res;
 }
 pair<int,int> split(int a, int k){
-	if (k == 0) return _MP(0,a);
-	if (k == tree[a].cnt) return _MP(a,0);
+	if (k == 0) return MP(0,a);
+	if (k == tree[a].cnt) return MP(a,0);
 	int lc=tree[a].lc, rc=tree[a].rc;
 	pair<int,int> res;
 	int np=a; //get_node();
 	//tree[np] = tree[a];
 	if (tree[lc].cnt >= k){
 		res = split(lc,k);
-		tree[np].lc = res._S;
-		res._S = np;
+		tree[np].lc = res.S;
+		res.S = np;
 	} else {
 		res = split(rc,k-tree[lc].cnt-1);
-		tree[np].rc = res._F;
-		res._F = np;
+		tree[np].rc = res.F;
+		res.F = np;
 	}
-	upd_node(res._F);
-	upd_node(res._S);
+	upd_node(res.F);
+	upd_node(res.S);
 	return res;
 }

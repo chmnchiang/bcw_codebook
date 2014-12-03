@@ -50,14 +50,14 @@ void build_chain(){
 		}
 		if (pos == 0) belong[u] = u;
 		else belong[u] = belong[pos];
-		chain[belong[u]].vec._PB(u);
+		chain[belong[u]].vec.PB(u);
 	}
 	DFS(1);
 }
 vector<int> get_path(int u){
 	vector<int> res;
 	while (u){
-		res._PB(belong[u]);
+		res.PB(belong[u]);
 		u = fa[chain[belong[u]].vec.back()];
 	}
 	return res;
@@ -77,12 +77,12 @@ pair<int,int> findLCA(int u, int v){
 	for (auto v1 : vec1){
 		for (auto v2 : vec2){
 			if (v1 == v2)
-				return sz[a] >= sz[b] ? _MP(1,a) : _MP(2,b);
+				return sz[a] >= sz[b] ? MP(1,a) : MP(2,b);
 			b = jump_chain(b);
 		}
 		a = jump_chain(a);
 	}
-	return _MP(0,0);
+	return MP(0,0);
 }
 int main(int argc, char** argv){
 	scanf("%d", &N);
@@ -91,8 +91,8 @@ int main(int argc, char** argv){
 	for (int i=0; i<N-1; i++){
 		int u,v;
 		scanf("%d%d", &u, &v);
-		E[u]._PB(v);
-		E[v]._PB(u);
+		E[u].PB(v);
+		E[v].PB(u);
 	}
 	build_chain();
 

@@ -4,11 +4,11 @@ struct Edge{
 int n, m, nSpe, nE, bln[N], vst[N], dis[N], ismrg[N], prev[N];
 
 int dmst(int root){
-	_SZ(ismrg);
+	FZ(ismrg);
 	int curW, ww;
 	curW=ww=0;
 	while (1){
-		_SMO(prev);
+		FMO(prev);
 		for (int i=0; i<nSpe; i++)
 			dis[i] = INF;
 		for (int i=0; i<nE; i++){
@@ -21,8 +21,8 @@ int dmst(int root){
 		// find cycle
 		int sign=1;
 		curW=0;
-		_SMO(bln);
-		_SMO(vst);
+		FMO(bln);
+		FMO(vst);
 		for (int i=0; i<nSpe; i++){
 			if (ismrg[i]) continue;
 			if (prev[i]==-1 && i!=root) return INF;

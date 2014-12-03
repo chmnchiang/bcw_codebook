@@ -11,8 +11,8 @@ public:
 		}
 	}
 	void add_edge(int u, int v){
-		E[u]._PB(v);
-		rE[v]._PB(u);
+		E[u].PB(v);
+		rE[v].PB(u);
 	}
 	void DFS(int u){
 		vst[u]=1;
@@ -20,7 +20,7 @@ public:
 			if (!vst[*it])
 				DFS(*it);
 		}
-		vc._PB(u);
+		vc.PB(u);
 	}
 	void rDFS(int u){
 		vst[u] = 1;
@@ -33,13 +33,13 @@ public:
 	void solve(){
 		nScc=0;
 		vc.clear();
-		_SZ(vst);
+		FZ(vst);
 		for (int i=0; i<n; i++){
 			if (!vst[i])
 				DFS(i);
 		}
 		reverse(vc.begin(),vc.end());
-		_SZ(vst);
+		FZ(vst);
 		FOR(it,vc){
 			if (!vst[*it]){
 				rDFS(*it);

@@ -12,7 +12,7 @@ struct edge_t{
         u = _u;
         v = _v;
         w = _w;
-        add.insert(_MP(_u,_v));
+        add.insert(MP(_u,_v));
     }
     edge_t& operator += (const edge_t& obj) {
         w += obj.w;
@@ -98,7 +98,7 @@ edge_t dmst(int rt){
 void solve(){
     edge_t cost = dmst(0);
     for (auto it : cost.add){ // find a solution
-        E[it._F]._PB(it._S);
-        prv[it._S] = edge_t(it._F,it._S,0);
+        E[it.F].PB(it.S);
+        prv[it.S] = edge_t(it.F,it.S,0);
     }
 }
