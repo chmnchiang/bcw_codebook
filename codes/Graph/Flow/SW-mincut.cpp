@@ -1,69 +1,41 @@
-typedef long long LL;
-typedef long double LD;
-typedef std::pair<int,int> PII;
-
-const int N=514;
-const int INF=2147483647>>1;
-
-int n, m, del[N], vst[N], wei[N], rd[N][N];
-
-PII sw(){
-    MSET(vst,0);
-    MSET(wei,0);
-    int p1=-1,p2=-1,mx,cur=0;
-    while(1){
-        mx=-1;
-        REP(i,1,n){
-            if (!del[i] && !vst[i] && mx<wei[i]){
-                cur=i;
-                mx=wei[i];
-            }
-        }
-        if (mx==-1) break;
-        vst[cur]=1;
-        p1=p2;
-        p2=cur;
-        REP(i,1,n)
-            if (!vst[i] && !del[i])
-                wei[i]+=rd[cur][i];
-    }
-    return std::MP(p1,p2);
-}
-void input(){
-    REP(i,1,n){
-        del[i]=0;
-        REP(j,1,n)
-            rd[i][j] = 0;
-    }
-    REP(i,1,m){
-        int u,v,c;
-        scanf("%d%d%d",&u,&v,&c);
-        ++u; ++v;
-        rd[u][v]+=c;
-        rd[v][u]+=c;
-    }
-}
-void solve(){
-    int ans=INF;
-    PII tmp;
-    REP(i,1,n-1){
-        tmp=sw();
-        int x=tmp.F;
-        int y=tmp.S;
-        if (wei[y] < ans) ans=wei[y];
-        del[y]=1;
-        REP(j,1,n){
-            rd[j][x]+=rd[j][y];
-            rd[x][j]+=rd[y][j];
-        }
-    }
-    printf("%d\n", ans);
-}
-
-int main(){
-    while (~scanf("%d%d", &n, &m)){
-        input();
-        solve();
-    }
-    return 0;
-}
+struct SW{ // O(V^3)
+	static const int MXN = 514;
+	int n,vst[MXN],del[MXN];
+	int edge[MXN][MXN],wei[MXN];
+	void init(int _n){
+		n = _n;
+		_SZ(edge);
+		_SZ(del);
+	}
+	void add_edge(int u, int v, int w){
+		edge[u][v] += w;
+		edge[v][u] += w;
+	}
+	void search(int &s, int &t){
+		_SZ(vst); _SZ(wei);
+		s = t = -1;
+		while (true){
+			int mx=-1, cur=0;
+			for (int i=0; i<n; i++)
+				if (!del[i] && !vst[i] && mx<wei[i])
+					cur = i, mx = wei[i];
+			if (mx == -1) break;
+			vst[cur] = 1;
+			s = t;
+			t = cur;
+			for (int i=0; i<n; i++)
+				if (!vst[i] && !del[i]) wei[i] += edge[cur][i];
+		}
+	}
+	int solve(){
+		int res = 2147483647;
+		for (int i=0,x,y; i<n-1; i++){
+			search(x,y);
+			res = min(res,wei[y]);
+			del[y] = 1;
+			for (int j=0; j<n; j++)
+				edge[x][j] = (edge[j][x] += edge[y][j]);
+		}
+		return res;
+	}
+}graph;
