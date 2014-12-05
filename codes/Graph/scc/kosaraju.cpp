@@ -1,11 +1,10 @@
 class Scc{
 public:
-	int n,vst[MAXN];
-	int nScc,bln[MAXN];
-	vector<int> E[MAXN], rE[MAXN], vc;
+	int n, nScc, vst[MXN], bln[MXN];
+	vector<int> E[MXN], rE[MXN], vec;
 	void init(int _n){
 		n = _n;
-		for (int i=0; i<MAXN; i++){
+		for (int i=0; i<MXN; i++){
 			E[i].clear();
 			rE[i].clear();
 		}
@@ -16,33 +15,27 @@ public:
 	}
 	void DFS(int u){
 		vst[u]=1;
-		FOR(it,E[u]){
-			if (!vst[*it])
-				DFS(*it);
-		}
-		vc.PB(u);
+		for (auto v : E[u])
+			if (!vst[v]) DFS(v);
+		vec.PB(u);
 	}
 	void rDFS(int u){
 		vst[u] = 1;
 		bln[u] = nScc;
-		FOR(it,rE[u]){
-			if (!vst[*it])
-				rDFS(*it);
-		}
+		for (auto v : rE[u])
+			if (!vst[v]) rDFS(v);
 	}
 	void solve(){
-		nScc=0;
-		vc.clear();
+		nScc = 0;
+		vec.clear();
 		FZ(vst);
-		for (int i=0; i<n; i++){
-			if (!vst[i])
-				DFS(i);
-		}
-		reverse(vc.begin(),vc.end());
+		for (int i=0; i<n; i++)
+			if (!vst[i]) DFS(i);
+		reverse(vec.begin(),vec.end());
 		FZ(vst);
-		FOR(it,vc){
-			if (!vst[*it]){
-				rDFS(*it);
+		for (auto v : vec){
+			if (!vst[v]){
+				rDFS(v);
 				nScc++;
 			}
 		}
