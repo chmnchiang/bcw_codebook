@@ -17,7 +17,4 @@ Difference of D1-D3 Thm
 							  <- mod 4 = 1 prime ->   <- mod 4 = 3 prime ->
 	then D1 - D3 = (e1+1)(e2+1)...(er+1) ... if (fi)s all even
 									0 ... if any fi is odd
---
-Pick’s Theorem
-A = i + b/2 - 1
 */
