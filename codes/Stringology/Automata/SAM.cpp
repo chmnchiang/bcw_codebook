@@ -1,39 +1,39 @@
-class SAM{ //SuffixAutomaton
-public:
-	class State{
-	public:
-		State *par, *go[26];
-		int val;
-		State (int _val) : 
-				par(0), val(_val){
-			MSET(go,0);
-		}
+class SAM{ public:
+	class State{ public:
+		int par, go[26], val;
+		State () : par(0), val(0){ FZ(go); }
+		State (int _val) : par(0), val(_val){	FZ(go);	}
 	};
-	State *root, *tail;
+	vector<State> vec;
+	int root, tail;
 	
-	void init(const string &str){
-		root = tail = new State(0);
-		for (int i=0; i<SZ(str); i++)
-			extend(str[i]-'a');
+	void init(int arr[], int len){
+		vec.resize(2);
+		vec[0] = vec[1] = State(0);
+		root = tail = 1;
+		for (int i=0; i<len; i++)
+			extend(arr[i]);
 	}
 	void extend(int w){
-		State *p = tail, *np = new State(p->val+1);
-		for ( ; p && p->go[w]==0; p=p->par)
-			p->go[w] = np;
+		int p = tail, np = vec.size();
+		vec.PB(State(vec[p].val+1));
+		for ( ; p && vec[p].go[w]==0; p=vec[p].par)
+			vec[p].go[w] = np;
 		if (p == 0){
-			np->par = root;
+			vec[np].par = root;
 		} else {
-			if (p->go[w]->val == p->val+1){
-				np->par = p->go[w];
+			if (vec[vec[p].go[w]].val == vec[p].val+1){
+				vec[np].par = vec[p].go[w];
 			} else {
-				State *q = p->go[w], *r = new State(0);
-				*r = *q;
-				r->val = p->val+1;
-				q->par = np->par = r;
-				for ( ; p && p->go[w]==q; p=p->par)
-					p->go[w] = r;
+				int q = vec[p].go[w], r = vec.size();
+				vec.PB(vec[q]);
+				vec[r].val = vec[p].val+1;
+				vec[q].par = vec[np].par = r;
+				for ( ; p && vec[p].go[w] == q; p=vec[p].par)
+					vec[p].go[w] = r;
 			}
 		}
 		tail = np;
 	}
 };
+
