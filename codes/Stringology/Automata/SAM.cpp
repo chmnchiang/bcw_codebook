@@ -1,3 +1,7 @@
+// par : fail link
+// val : a topological order ( useful for DP )
+// go[x] : automata edge ( x is integer in [0,26) )
+
 class SAM{ public:
 	class State{ public:
 		int par, go[26], val;
