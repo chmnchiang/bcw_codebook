@@ -20,7 +20,6 @@
 - 點、邊BCC  
 - steiner tree(?)  
 - 各種交點公式  
-- Simplex
 - 平面圖全局最小割 (Maybe add VE)
 - link-cut tree
 - Miller Rabin 分解需要的數字 ( < 1/3 long long is done)
