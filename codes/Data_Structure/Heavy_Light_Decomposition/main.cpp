@@ -3,8 +3,8 @@ int fa[MX],at[MX],belong[MX];
 int fr,bk,sz[MX],que[MX];
 vector<int> E[MX];
 
-struct Chain{
-	int n;
+struct Chain{ // 1-base on Tree
+	int n; //tree: vec[n-1] -> ... -> vec[0]
 	vector<int> vec;
 	vector<int> tree;
 
@@ -29,10 +29,11 @@ void DFS(int u){
 			DFS(v);
 		}
 	}
-	c.build_tree(0,c.n-1,0);
+	c.build_tree(0,c.n-1,0); // 0-base seg_tree
 }
-void build_chain(){
-	fr=bk=0; que[bk++] = 1; fa[1]=0;
+void build_chain(int nd){
+	fr=bk=0; que[bk++] = 1;
+	fa[nd]=0; // if want to change 0-base tree
 	while (fr < bk){
 		int u=que[fr++];
 		for (auto v : E[u]){
@@ -52,18 +53,18 @@ void build_chain(){
 		else belong[u] = belong[pos];
 		chain[belong[u]].vec.PB(u);
 	}
-	DFS(1);
+	DFS(nd);
 }
 vector<int> get_path(int u){
 	vector<int> res;
-	while (u){
+	while (u){ // if want to change 0-base tree
 		res.PB(belong[u]);
 		u = fa[chain[belong[u]].vec.back()];
 	}
 	return res;
 }
 int jump_chain(int a){
-	if (a == 0) return a;
+	if (a == 0) return a; // if want to change 0-base tree
 	return fa[chain[belong[a]].vec.back()];
 }
 pair<int,int> findLCA(int u, int v){
@@ -75,6 +76,7 @@ pair<int,int> findLCA(int u, int v){
 	vec2 = get_path(v);
 	int a=u, b=v;
 	for (auto v1 : vec1){
+		b = v;
 		for (auto v2 : vec2){
 			if (v1 == v2)
 				return sz[a] >= sz[b] ? MP(1,a) : MP(2,b);
@@ -94,7 +96,7 @@ int main(int argc, char** argv){
 		E[u].PB(v);
 		E[v].PB(u);
 	}
-	build_chain();
+	build_chain(1); // start node
 
 	return 0;
 }
