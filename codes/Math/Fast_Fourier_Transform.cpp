@@ -1,5 +1,5 @@
 typedef complex<double> cplx;
-const int PI = acos(-1);
+const double PI = acos(-1);
 const cplx I(0, 1);
 void fft(int n, cplx a[]) {
 	double theta = 2 * PI / n;
