@@ -1,21 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
 const int bL = 1000;
 const int bM = 10000;
 
 struct Bigint{
-    int v[bL],l;
-    Bigint(){ memset(v, 0, sizeof(v));l=0; }
+    int v[bL],l,s;
+    Bigint() : l(0), s(1) {
+        memset(v, 0, sizeof(v)); 
+    }
+
 
     void n(){
         for(;l;l--) if(v[l-1]) return;
     }
 
     Bigint(long long a){
+        s = 1;
+        if(a<0) {
+            s = -1; a = -a;
+        }
         for(l=0;a;v[l++]=a%bM,a/=bM);
     }
-    Bigint(char *a){
-        l=0;
+    Bigint(const char *a){
+        l=0; s=1;
         int t=0,i=strlen(a),q=1;
-        while(i){
+        int ls=0;
+        if(a[0] == '-') {
+            ls = 1; s = -1;
+        }
+        while(i>ls){
             t+=(a[--i]-'0')*q;
             if((q*=10)>=bM) {
                 v[l++]=t; t=0; q=1;
@@ -24,8 +38,9 @@ struct Bigint{
         if(t) v[l++]=t; 
     }
 
-    void prt() {
+    void print() const {
         if(l==0){ putchar('0');return; }
+        if(s==-1) putchar('-');
         printf("%d",v[l-1]);
         for(int i=l-2;i>=0;i--) printf("%.4d",v[i]);
     }
@@ -42,7 +57,15 @@ struct Bigint{
     bool operator == (const Bigint &b)const{ return cp3(b)==0; }
     bool operator > (const Bigint &b)const{ return cp3(b)==1; }
 
-    Bigint operator + (const Bigint &b) {
+    Bigint operator - () const {
+        Bigint r = (*this);
+        r.s = -r.s;
+        return r;
+    }
+
+    Bigint operator + (const Bigint &b) const {
+        if(s == -1) return -(-(*this)+(-b));
+        if(b.s == -1) return (*this)-(-b);
         Bigint r;
         r.l=max(l,b.l);
         for(int i=0;i<r.l;i++) {
@@ -56,7 +79,10 @@ struct Bigint{
         return r;
     }
 
-    Bigint operator - (const Bigint &b) {
+    Bigint operator - (const Bigint &b) const {
+        if(s == -1) return -(-(*this)-(-b));
+        if(b.s == -1) return (*this)+(-b);
+        if((*this)<b) return -(b-(*this));
         Bigint r;
         r.l=l;
         for(int i=0;i<l;i++) {
@@ -74,6 +100,7 @@ struct Bigint{
     Bigint operator * (const Bigint &b) {
         Bigint r;
         r.l=l+b.l;
+        r.s = s * b.s;
         for(int i=0;i<l;i++) {
             for(int j=0;j<b.l;j++) {
                 r.v[i+j]+=v[i]*b.v[j];
@@ -90,6 +117,7 @@ struct Bigint{
     Bigint operator / (const Bigint &b) {
         Bigint r;
         r.l=max(1,l-b.l+1);
+        r.s = s * b.s;
         for(int i=r.l-1;i>=0;i--) {
             int d=0,u=bM-1,m;
             while(d<u) {
