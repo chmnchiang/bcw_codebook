@@ -46,7 +46,9 @@ struct SA{
 };
 
 int main(){
-    // s is int array
+    // s is int array, n is array length
+    // s[0..n-1] != 0, and s[n] = 0
+    // resulting SA will be length n+1
     SA *sa = new SA(); 
     sa->build(s,n,128);
 }
