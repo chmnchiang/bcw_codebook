@@ -13,7 +13,7 @@ void suffix_array(char *ip){
 
 	for(int i=1;i<len;i*=2){
 		for(int j=0;j<len;j++){
-			if(j+i>len) tp[j][1]=0;
+			if(j+i>=len) tp[j][1]=0;
 			else tp[j][1]=rk[j+i]+1;
 			
 			tp[j][0]=rk[j];
