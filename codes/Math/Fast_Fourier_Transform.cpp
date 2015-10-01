@@ -1,14 +1,25 @@
+// const int MAXN = 262144;
+// (must be 2^k)
+
 typedef long double ld;
 typedef complex<ld> cplx;
 const ld PI = acosl(-1);
 const cplx I(0, 1);
-void fft(int n, cplx a[], bool inv)
+
+cplx omega[MAXN+1];
+void pre_fft()
 {
-  ld theta = 2 * PI / n;
+  for(int i=0; i<=MAXN; i++)
+    omega[i] = exp(i * 2 * PI / MAXN * I);
+}
+void fft(int n, cplx a[], bool inv=false)
+{
+  int basic = MAXN / n;
+  int theta = basic;
   for (int m = n; m >= 2; m >>= 1) {
     int mh = m >> 1;
     for (int i = 0; i < mh; i++) {
-      cplx w = exp(i * theta * (inv ? -I : I));
+      cplx w = omega[inv ? MAXN-(i*theta%MAXN) : i*theta%MAXN];
       for (int j = i; j < n; j += m) {
         int k = j + mh;
         cplx x = a[j] - a[k];
@@ -16,7 +27,7 @@ void fft(int n, cplx a[], bool inv)
         a[k] = w * x;
       }
     }
-    theta *= 2;
+    theta = (theta * 2) % MAXN;
   }
   int i = 0;
   for (int j = 1; j < n - 1; j++) {
