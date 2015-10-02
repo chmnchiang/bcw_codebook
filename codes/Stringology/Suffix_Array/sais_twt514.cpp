@@ -43,12 +43,18 @@ struct SA{
         sais(ns, nsa, p + nn, q + n, t + n, c + z, nn, nmxz + 1);
         MAGIC(for(int i = nn - 1; i >= 0; i--) sa[--x[s[p[nsa[i]]]]] = p[nsa[i]]);
     }
-};
+}sa;
 
-int main(){
+void suffix_array(int* ip, int len) {
+    // should padding a zero in the back
     // s is int array, n is array length
     // s[0..n-1] != 0, and s[n] = 0
     // resulting SA will be length n+1
-    SA *sa = new SA(); 
-    sa->build(s,n,128);
+    ip[len++] = 0;
+    sa.build(ip, len, 128);
+    // original 1-base
+    for (int i=0; i<l; i++) {
+        hei[i] = sa.hei[i + 1];
+        sa[i] = sa._sa[i + 1];
+    }
 }
