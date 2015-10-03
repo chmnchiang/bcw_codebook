@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<unistd.h>
 #include<cmath>
 #include<cstdio>
 #include<cstring>
@@ -14,11 +15,11 @@ using namespace std;
 #define S second
 #define MP make_pair
 #define PB push_back
-#define FOR(x,y) for(__typeof(y.begin())x=y.begin();x!=y.end();x++)
+#define ALL(x) begin(x),end(x)
+#define SZ(x) ((int)(x).size())
 #define IOS ios_base::sync_with_stdio(0); cin.tie(0)
 // Let's Fight!
 
-int main()
-{
-	return 0;
+int main() {
+    return 0;
 }
