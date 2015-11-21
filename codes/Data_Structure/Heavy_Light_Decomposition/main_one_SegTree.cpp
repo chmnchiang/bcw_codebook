@@ -64,15 +64,15 @@ vector<pii> getPathSeg(int u, int v){
 		int a = chain[belong[u]].back();
 		int b = chain[belong[v]].back();
 		if (dep[a] > dep[b]){
-			ret1.PB(MP(stPt[a],stPt[u]));
+			ret1.PB({stPt[a],stPt[u]});
 			u = fa[a];
 		} else {
-			ret2.PB(MP(stPt[b],stPt[v]));
+			ret2.PB({stPt[b],stPt[v]});
 			v = fa[b];
 		}
 	}
 	if (dep[u] > dep[v]) swap(u,v);
-	ret1.PB(MP(stPt[u],stPt[v]));
+	ret1.PB({stPt[u],stPt[v]});
 	reverse(ret2.begin(), ret2.end());
 	ret1.insert(ret1.end(),ret2.begin(),ret2.end());
 	return ret1;

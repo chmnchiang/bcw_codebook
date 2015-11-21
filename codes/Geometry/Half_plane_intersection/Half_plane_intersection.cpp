@@ -3,7 +3,6 @@
 using namespace std;
 
 #define PB push_back
-#define MP make_pair
 #define _x first
 #define _y second
 
@@ -137,7 +136,7 @@ int main(){
 	for(int i=0; i<N; i++){
 		double x1, x2, y1, y2;
 		cin >> x1 >> y1 >> x2 >> y2;
-		lnlst.PB(MP(pdd(x1, y1), pdd(x2, y2)));
+		lnlst.PB({pdd(x1, y1), pdd(x2, y2)});
 	}
  
 	halfPlaneInter();

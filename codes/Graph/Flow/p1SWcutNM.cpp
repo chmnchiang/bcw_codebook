@@ -42,7 +42,7 @@ class StoerWagner {
 				if(merged[v]) continue;
 				cs[v]=0;
 				sel[v]=0;
-				pq.push(MP(0,v));
+				pq.push({0,v});
 			}
 			int v,s,pv;
 			while(pq.size()) {
@@ -59,7 +59,7 @@ class StoerWagner {
 					int u=adj[v][i];
 					if(merged[u]||sel[u]) continue;
 					cs[u]+=cost[v][u];
-					pq.push(MP(cs[u],u));
+					pq.push({cs[u],u});
 				}
 			}
 			if(s<mc) {

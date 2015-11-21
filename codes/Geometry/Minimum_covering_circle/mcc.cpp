@@ -39,6 +39,6 @@ struct Mcc{
         }
       }
     }
-    return MP(cen,r2);
+    return {cen,r2};
   }
 }mcc;

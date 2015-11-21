@@ -5,7 +5,6 @@ using namespace std;
 #define FMO(n) memset((n),-1,sizeof(n))
 #define F first
 #define S second
-#define MP make_pair
 #define PB push_back
 #define ALL(x) begin(x),end(x)
 #define SZ(x) ((int)(x).size())

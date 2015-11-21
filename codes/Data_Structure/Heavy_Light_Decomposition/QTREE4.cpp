@@ -97,8 +97,8 @@ int main(int argc, char** argv){
 	scanf("%d", &N);
 	for (int i=0,u,v,w; i<N-1; i++){
 		scanf("%d%d%d", &u, &v, &w);
-		E[u].PB(MP(v,w));
-		E[v].PB(MP(u,w));
+		E[u].PB({v,w});
+		E[v].PB({u,w});
 	}
 	fr=bk=0;	que[bk++] = 1;
 	while (fr < bk){

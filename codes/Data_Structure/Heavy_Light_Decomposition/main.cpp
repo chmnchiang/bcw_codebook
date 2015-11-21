@@ -79,12 +79,12 @@ pair<int,int> findLCA(int u, int v){
 		b = v;
 		for (auto v2 : vec2){
 			if (v1 == v2)
-				return sz[a] >= sz[b] ? MP(1,a) : MP(2,b);
+				return sz[a] >= sz[b] ? {1,a} : {2,b};
 			b = jump_chain(b);
 		}
 		a = jump_chain(a);
 	}
-	return MP(0,0);
+	return {0,0};
 }
 int main(int argc, char** argv){
 	scanf("%d", &N);
