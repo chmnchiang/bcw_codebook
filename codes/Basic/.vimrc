@@ -3,7 +3,7 @@ syn on
 se ai ar sm nu rnu is
 se mouse=a bs=2 ww+=<,>,[,] so=6 ts=4 sw=4 ttm=100
 se makeprg=g++\ -Wall\ -Wshadow\ -O2\ -std=c++0x\ -o\ %<\ %
-au BufNewFile *.cpp 0r ~/default.cpp
+au BufNewFile *.cpp 0r ~/default.cpp | :0,22 fo
 filetype indent on
 
 map <F7> <ESC>:wa<CR>:make!<CR>
