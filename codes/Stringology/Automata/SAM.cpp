@@ -2,8 +2,8 @@
 // val : a topological order ( useful for DP )
 // go[x] : automata edge ( x is integer in [0,26) )
 
-class SAM{ public:
-	class State{ public:
+struct SAM{
+	struct State{
 		int par, go[26], val;
 		State () : par(0), val(0){ FZ(go); }
 		State (int _val) : par(0), val(_val){	FZ(go);	}

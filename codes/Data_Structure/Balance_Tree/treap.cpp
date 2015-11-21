@@ -1,5 +1,4 @@
-class Node{
-public:
+struct Node{
 	int pri,num,cnt,lc,rc;
 	Node () : pri(-1), num(0), cnt(0), lc(0), rc(0) {}
 	Node (int _num){

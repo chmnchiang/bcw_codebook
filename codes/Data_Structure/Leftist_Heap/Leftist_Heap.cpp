@@ -1,7 +1,6 @@
 const int MAXSIZE = 10000;
 
-class Node{
-public:
+struct Node{
 	int num,lc,rc;
 	Node () : num(0), lc(-1), rc(-1) {}
 	Node (int _v) : num(_v), lc(-1), rc(-1) {}
