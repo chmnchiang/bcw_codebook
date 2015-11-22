@@ -41,6 +41,7 @@
 | BSUIR 2014    | 2015/08/22    | A | B | C | D | E | F | G | H | I | J | K |
 | JAG 2015 Spring | 2015/08/29  | A | **B** | **C** | D | E | F | G | **H** | **I** | **J** | K | L |
 | Xian 2014       | 2015/09/13  | A | **B**  | C |   | **E**  | F | **G**  | H | I | **J**  | K |
+| NEERC 2011      | 2015/10/09  | A | B | C | D | E | **F**  | G | .  | I | **J**  | K | **L** |
 | Jakarta 2014    | 2015/10/24  | A | B | C | D | E | F | G | H | I | J | K |
 | Japan 2014      | 2015/10/31  | A | B | C | D | E | F | G | H | I | J | **K**|
 | Dhaka 2014      | 2015/11/14  | A | B | C | **D** | E | F | G | H | I | J |
