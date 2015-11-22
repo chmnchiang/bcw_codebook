@@ -44,7 +44,7 @@
 | Jakarta 2014    | 2015/10/24  | A | B | C | D | E | F | G | H | I | J | K |
 | Japan 2014      | 2015/10/31  | A | B | C | D | E | F | G | H | I | J | **K**|
 | Dhaka 2014      | 2015/11/14  | A | B | C | **D** | E | F | G | H | I | J |
-| Mudanjiang 2014 | 2015/11/22  | A | B | x | D | E | F | . | H | I | . | **K** |
+| Mudanjiang 2014 | 2015/11/22  | A | B | x | D | E | F | **G** | H | I | . | **K** |
 | JAG 2015 Autumn | 2015/11/23  | A | B | C | D | E | F | . | H | . | J | K |
 
 - A : 賽內AC  
