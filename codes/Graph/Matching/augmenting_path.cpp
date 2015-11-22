@@ -3,8 +3,7 @@ bool DFS(int u){
     if (!vst[v]){
       vst[v]=1;
       if (match[v] == -1 || DFS(match[v])){
-        match[v] = u;
-        match[u] = v;
+        match[v] = u; match[u] = v;
         return true;
       }
     }

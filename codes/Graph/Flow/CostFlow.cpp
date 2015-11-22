@@ -22,8 +22,7 @@ struct CostFlow {
 		while (true) {
 			for (int i=0; i<n; i++) {
 				dis[i] = INF;
-				prv[i] = prvL[i] = -1;
-				inq[i] = 0;
+        inq[i] = 0;
 			}
 			dis[s] = 0;
 			queue<int> que;
@@ -35,8 +34,7 @@ struct CostFlow {
 					int v = E[u][i].v;
 					long long w = E[u][i].c;
 					if (E[u][i].f > 0 && dis[v] > dis[u] + w) {
-						prv[v] = u;
-						prvL[v] = i;
+						prv[v] = u; prvL[v] = i;
 						dis[v] = dis[u] + w;
 						if (!inq[v]) {
 							inq[v] = 1;
@@ -47,18 +45,16 @@ struct CostFlow {
 			}
 			if (dis[t] == INF) break;
 			long long tf = INF;
-			int v = t;
-			while (v != s) {
-				int u = prv[v], l = prvL[v];
+			for (int v=t, u, l; v!=s; v=u) {
+				u = prv[v];
+        l = prvL[v];
 				tf = min(tf, E[u][l].f);
-				v = u;
 			}
-			v = t;
-			while (v != s) {
-				int u = prv[v], l = prvL[v];
+			for (int v=t, u, l; v!=s; v=u) {
+				u = prv[v];
+        l = prvL[v];
 				E[u][l].f -= tf;
 				E[v][E[u][l].r].f += tf;
-				v = u;
 			}
 			cost += tf * dis[t];
 			fl += tf;
