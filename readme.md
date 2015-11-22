@@ -11,7 +11,6 @@
 - nearest neighbor(只有+1)  
 - in/out center formula  
 - 半平面交<壞了了>  
-- 扣死複樓  
 - polya/burnside之類的計數定理(ex.矩陣樹?  
 - MOD類的東西/數論公式/不互質MOD  
 - 噁心 minkowski sum  
@@ -23,6 +22,7 @@
 - 平面圖全局最小割 (Maybe add VE)
 - link-cut tree
 - Miller Rabin 分解需要的數字 ( < 1/3 long long is done)
+- 大數負數除法是錯的
 
 # Alpha
 
