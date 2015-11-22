@@ -146,17 +146,21 @@ struct Bigint{
   Bigint operator / (const Bigint &b) {
     Bigint r;
     r.resize(max(1, len()-b.len()+1));
-    r.s = s * b.s;
+    int oriS = s;
+    Bigint b2 = b; // b2 = abs(b)
+    s = b2.s = r.s = 1;
     for (int i=r.len()-1; i>=0; i--) {
       int d=0, u=BIGMOD-1;
       while(d<u) {
         int m = (d+u+1)>>1;
         r.v[i] = m;
-        if((r*b) > (*this)) u = m-1;
+        if((r*b2) > (*this)) u = m-1;
         else d = m;
       }
       r.v[i] = d;
     }
+    s = oriS;
+    r.s = s * b.s;
     r.n();
     return r;
   }

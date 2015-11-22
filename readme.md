@@ -22,7 +22,6 @@
 - 平面圖全局最小割 (Maybe add VE)
 - link-cut tree
 - Miller Rabin 分解需要的數字 ( < 1/3 long long is done)
-- 大數負數除法是錯的
 
 # Alpha
 
