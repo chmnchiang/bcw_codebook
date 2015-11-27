@@ -1,10 +1,10 @@
-double cross(Point o, Point a, Point b){
+double cross(pdd o, pdd a, pdd b){
   return (a-o) % (b-o);
 }
-vector<Point> convex_hull(vector<Point> pt){
+vector<pdd> convex_hull(vector<pdd> pt){
   sort(pt.begin(),pt.end());
   int top=0;
-  vector<Point> stk(2*pt.size());
+  vector<pdd> stk(2*pt.size());
   for (int i=0; i<(int)pt.size(); i++){
     while (top >= 2 && cross(stk[top-2],stk[top-1],pt[i]) <= 0)
       top--;
