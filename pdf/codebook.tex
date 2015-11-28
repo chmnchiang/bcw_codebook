@@ -5,7 +5,6 @@
 \usepackage{amsthm}								%定義，例題
 \usepackage{amssymb}
 %\usepackage[margin=2cm]{geometry}
-\usepackage{fontspec}								%設定字體
 \usepackage{color}
 \usepackage[x11names]{xcolor}
 \usepackage{xeCJK}								%xeCJK
@@ -16,6 +15,7 @@
 \usepackage{enumerate}
 \usepackage{titlesec}
 \usepackage{amsmath}
+\usepackage{fontspec}								%設定字體
 
 %\usepackage[T1]{fontenc}
 \usepackage{amsmath, courier, listings, fancyhdr, graphicx}
@@ -37,9 +37,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setmainfont{Consolas}				%主要字型
-\setCJKmainfont{Consolas}			%中文字型
-%\setmainfont{sourcecodepro}
+% \setmainfont{Consolas}				%主要字型
+% \setCJKmainfont{Consolas}			%中文字型
+\setmainfont{Linux Libertine O}
+\setmonofont{Source Code Pro}
 \XeTeXlinebreaklocale "zh"						%中文自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt				%設定段落之間的距離
 \setcounter{secnumdepth}{3}						%目錄顯示第三層
@@ -51,7 +52,7 @@
 \makeatother
 \lstset{											% Code顯示
 language=C++,										% the language of the code
-basicstyle=\footnotesize, 						% the size of the fonts that are used for the code
+basicstyle=\footnotesize\ttfamily, 						% the size of the fonts that are used for the code
 %numbers=left,										% where to put the line-numbers
 numberstyle=\footnotesize,						% the size of the fonts that are used for the line-numbers
 stepnumber=1,										% the step between two line-numbers. If it's 1, each line  will be numbered
@@ -89,205 +90,6 @@ stringstyle=\itshape\color{Green4},
 
 \newpage
 
-\section{Basic}
-\subsection{.vimrc}
-\lstinputlisting{../codes/Basic/.vimrc}
-
-\subsection{IncreaseStackSize}
-\lstinputlisting{../codes/Basic/IncStack.cpp}
-
-\subsection{Default Code}
-\lstinputlisting{../codes/Basic/default.cpp}
-\newpage
-
-\section{Data Structure}
-\subsection{Bigint}
-\lstinputlisting{../codes/Data_Structure/Bigint/Bigint.cpp}
-
-% \subsection{Leftist Heap}
-% \lstinputlisting{../codes/Data_Structure/Leftist_Heap/Leftist_Heap.cpp}
-
-\subsection{unordered\_map}
-\lstinputlisting{../codes/Data_Structure/Balance_Tree/unordered_hashfunc.cpp}
-
-\subsection{extc\_balance\_tree}
-\lstinputlisting{../codes/Data_Structure/Balance_Tree/extc_bt.cpp}
-
-\newpage
-
-\subsection{Treap}
-\lstinputlisting{../codes/Data_Structure/Balance_Tree/treap.cpp}
-
-\subsection {Heavy Light Decomposition}
-\lstinputlisting{../codes/Data_Structure/Heavy_Light_Decomposition/main_one_SegTree.cpp}
-
-\section{Graph}
-
-\subsection{Tarjan}
-\lstinputlisting{../codes/Graph/Tarjan/Tarjan.cpp}
-
-\subsection{Strongly Connected Components}
-\lstinputlisting{../codes/Graph/scc/kosaraju.cpp}
-
-%\subsection{DMST}
-%\lstinputlisting{../codes/Graph/dmst/dmst.cpp}
-
-\subsection{DMST\_with\_sol}
-\lstinputlisting{../codes/Graph/dmst/dmst_sol.cpp}
-
-\subsection{Maximum Clique}
-\lstinputlisting{../codes/Graph/Maximum_Clique/Maximum_Clique.cpp}
-
-\subsection{MinimumMeanCycle}
-\lstinputlisting{../codes/Graph/MinMeanCycle/MinMeanCycle.cpp}
-
-\section{Flow}
-\subsection{ISAP} %Checked
-\lstinputlisting{../codes/Graph/Flow/isap.cpp}
-
-\subsection{Dinic} %Checked
-\lstinputlisting{../codes/Graph/Flow/dinic.cpp}
-
-\subsection{Cost Flow} %Checked
-\lstinputlisting{../codes/Graph/Flow/CostFlow.cpp}
-
-\subsection{Bipartite Matching (Augmenting Path)}
-\lstinputlisting{../codes/Graph/Matching/augmenting_path.cpp}
-
-\subsection{Kuhn Munkres}
-\lstinputlisting{../codes/Graph/Matching/Kuhn_Munkres.cpp}
-
-\subsection{SW-Mincut}
-\lstinputlisting{../codes/Graph/Flow/SW-mincut.cpp}
-
-\subsection{Maximum Simple Graph Matching}
-\lstinputlisting{../codes/Graph/Matching/Borrowed_General_Graph_Matching.cpp}
-
-\subsection{Minimum Weight Matching (Clique version)}
-\lstinputlisting{../codes/Graph/Matching/Minimum_General_Weighted_Matching.cpp}
-
-%\subsection{Maximum Simple Graph Matching (Possibly Wrong)}
-%\lstinputlisting{../codes/Graph/Matching/Maximum_Simple_Graph_Matching.cpp}
-
-
-\subsection{2-Commodity Flow}
-\lstinputlisting{../codes/Graph/Flow/2comFlow.cpp}
-
-%\subsection{(+1) SwGeneralGraphMaxMatching}
-%\lstinputlisting{../codes/Graph/Matching/p1GenMatching.cpp}
-
-\subsection{(+1) SW-mincut $O(NM)$}
-\lstinputlisting{../codes/Graph/Flow/p1SWcutNM.cpp}
-
-\section{Math}
-\subsection{ax+by=gcd}
-\lstinputlisting{../codes/Math/ax+by=gcd.cpp}
-
-\subsection{Chinese Remainder}
-\lstinputlisting{../codes/Math/Chinese_Remainder.cpp}
-
-\subsection{Fast Fourier Transform}
-\lstinputlisting{../codes/Math/Fast_Fourier_Transform.cpp}
-
-\subsection{(+1) ntt}
-\lstinputlisting{../codes/Math/p1_ntt.cpp}
-
-\subsection{Mod}
-\lstinputlisting{../codes/Math/MOD.cpp}
-
-\subsection{(+1) Miller Rabin}
-\lstinputlisting{../codes/Math/Miller_Rabin.cpp}
-
-\subsection{(+1) Pollard Rho}
-\lstinputlisting{../codes/Math/p1_PollardRho.cpp}
-
-\subsection{Algorithms about Primes}
-\lstinputlisting{../codes/Math/primes.cpp}
-
-\subsection{(+1) PolynomialGenerator}
-\lstinputlisting{../codes/Math/PolyGen.cpp}
-
-\subsection{Gauss Elimination}
-\lstinputlisting{../codes/Math/Gauss_Elimination.cpp}
-
-\subsection{Simplex}
-\lstinputlisting{../codes/Math/Simplex.cpp}
-
-\subsection{Theorom}
-\lstinputlisting{../codes/Math/theorem.cpp}
-
-\section{Geometry}
-\subsection{Point operators}
-\lstinputlisting{../codes/Geometry/Point_operators/Point_operators.cpp}
-
-\subsection{Intersection of two circles}
-\input{../codes/Geometry/Intersection_of_two_circles/Intersection_of_two_circles.tex}
-\lstinputlisting{../codes/Geometry/Intersection_of_two_circles/Intersection_of_two_circles.cpp}
-
-\subsection{Intersection of two lines}
-\lstinputlisting{../codes/Geometry/Intersection_of_two_lines/Intersection_of_two_lines.cpp}
-
-\newpage
-
-%TODO wrong when intersection is empty
-\subsection{Half Plane Intersection}
-\lstinputlisting{../codes/Geometry/Half_plane_intersection/Half_plane_intersection.cpp}
-
-%\subsection{Point Class}
-%\lstinputlisting{../codes/Geometry/Point_operators/point_class.cpp}
-
-\subsection{Convex Hull}
-\lstinputlisting{../codes/Geometry/Convex_Hull/convex_hull.cpp}
-
-\subsection{Minimum Covering Circle}
-\lstinputlisting{../codes/Geometry/Minimum_covering_circle/mcc.cpp}
-
-\newpage
-
-\subsection{(+1) KDTreeAndNearestPoint}
-\lstinputlisting{../codes/Geometry/KD_tree/KD_Tree.cpp}
-
-% \subsection{(+1) MinkowskiSum}
-% \lstinputlisting{../codes/Geometry/Minkowski_Sum/Minkowski_Sum.cpp}
-
-\section{Stringology}
-\subsection{Suffix Array}
-\lstinputlisting{../codes/Stringology/Suffix_Array/Suffix_Array.cpp}
-
-\subsection{Suffix Array (SAIS TWT514)}
-\lstinputlisting{../codes/Stringology/Suffix_Array/sais_twt514.cpp}
-
-\subsection{Aho-Corasick Algorithm}
-\lstinputlisting{../codes/Stringology/Automata/Aho-Corasick.cpp}
-
-\subsection{Z value}
-\lstinputlisting{../codes/Stringology/Z_Value/zvalue.cpp}
-
-\subsection{Z value (palindrome ver.)}
-\lstinputlisting{../codes/Stringology/Z_Value/zvalue_palindrome.cpp}
-
-\subsection{Lexicographically Smallest Rotation}
-\lstinputlisting{../codes/Stringology/smallest_rotation.cpp}
-
-%TODO update to vector version
-\subsection{Suffix Automaton}
-\lstinputlisting{../codes/Stringology/Automata/SAM.cpp}
-
-\section{Problems}
-%\subsection {Qtree IV}
-%\lstinputlisting{../codes/Data_Structure/Heavy_Light_Decomposition/QTREE4.cpp}
-
-\subsection{Find the maximun tangent (x,y is increasing)}
-\lstinputlisting{../codes/Problem/maxtan.cpp}
-
-%\subsection{cot4}
-%\lstinputlisting{../codes/Problem/cot4.cpp}
-
-\subsection{Orange Protection}
-\lstinputlisting{../codes/Problem/orange_protection.cpp}
-
-%\section{Java}
-%\subsection{Java Cheat Sheet}
-%\lstinputlisting[language=java]{../codes/Java/Java_Cheat_Sheet.java}
+\input{codebook_gen.tex}
 
 \end{document}
