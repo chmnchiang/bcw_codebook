@@ -45,12 +45,12 @@ struct CostFlow {
 			}
 			if (dis[t] == INF) break;
 			long long tf = INF;
-			for (int v=t; v!=s; v=u) {
-				int u=prv[v], l=prvL[v];
+			for (int v=t, u, l; v!=s; v=u) {
+				u=prv[v]; l=prvL[v];
 				tf = min(tf, E[u][l].f);
 			}
-			for (int v=t; v!=s; v=u) {
-				int u=prv[v], l=prvL[v];
+			for (int v=t, u, l; v!=s; v=u) {
+				u=prv[v]; l=prvL[v];
 				E[u][l].f -= tf;
 				E[v][E[u][l].r].f += tf;
 			}
