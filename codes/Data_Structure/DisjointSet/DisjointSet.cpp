@@ -10,15 +10,13 @@ struct DisjointSet {
       fa[i]=i;
       sz[i]=1;
     }
-    sp.clear();
+    sp.clear(); h.clear();
   }
   void assign(int *k, int v) {
     h.PB({k, *k});
     *k=v;
   }
-  void save() {
-    sp.PB(SZ(h));
-  }
+  void save() { sp.PB(SZ(h)) };
   void undo() {
     assert(!sp.empty());
     int last=sp.back(); sp.pop_back();
