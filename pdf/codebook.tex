@@ -37,8 +37,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setmainfont{Consolas}				%主要字型
-\setCJKmainfont{Consolas}			%中文字型
+%\setmainfont{Consolas}				%主要字型
+%\setCJKmainfont{Consolas}			%中文字型
+\setmainfont{Linux Libertine G}
+\setmonofont{Source Code Pro}
 %\setmainfont{sourcecodepro}
 \XeTeXlinebreaklocale "zh"						%中文自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt				%設定段落之間的距離
@@ -51,7 +53,7 @@
 \makeatother
 \lstset{											% Code顯示
 language=C++,										% the language of the code
-basicstyle=\footnotesize, 						% the size of the fonts that are used for the code
+basicstyle=\footnotesize\ttfamily, 						% the size of the fonts that are used for the code
 %numbers=left,										% where to put the line-numbers
 numberstyle=\footnotesize,						% the size of the fonts that are used for the line-numbers
 stepnumber=1,										% the step between two line-numbers. If it's 1, each line  will be numbered
@@ -216,8 +218,10 @@ stringstyle=\itshape\color{Green4},
 \subsection{Simplex}
 \lstinputlisting{../codes/Math/Simplex.cpp}
 
+\newpage
+
 \subsection{Theorom}
-\lstinputlisting{../codes/Math/theorem.cpp}
+\input{../codes/Math/theorem.tex}
 
 \section{Geometry}
 \subsection{Point operators}
@@ -229,8 +233,6 @@ stringstyle=\itshape\color{Green4},
 
 \subsection{Intersection of two lines}
 \lstinputlisting{../codes/Geometry/Intersection_of_two_lines/Intersection_of_two_lines.cpp}
-
-\newpage
 
 %TODO wrong when intersection is empty
 \subsection{Half Plane Intersection}
@@ -245,13 +247,13 @@ stringstyle=\itshape\color{Green4},
 \subsection{Minimum Covering Circle}
 \lstinputlisting{../codes/Geometry/Minimum_covering_circle/mcc.cpp}
 
-\newpage
-
 \subsection{(+1) KDTreeAndNearestPoint}
 \lstinputlisting{../codes/Geometry/KD_tree/KD_Tree.cpp}
 
-% \subsection{(+1) MinkowskiSum}
-% \lstinputlisting{../codes/Geometry/Minkowski_Sum/Minkowski_Sum.cpp}
+\subsection{(+1) MinkowskiSum}
+\lstinputlisting{../codes/Geometry/Minkowski_Sum/Minkowski_Sum.cpp}
+
+\newpage
 
 \section{Stringology}
 \subsection{Suffix Array}

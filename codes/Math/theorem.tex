@@ -1,0 +1,32 @@
+\subsubsection{Lucas\textquotesingle \ Theorem}
+	For non-negative integer $n,m$ and prime $p$, $\binom{m}{n}\equiv\prod_{i=0}^k\binom{m_i}{n_i}\pmod p$\\
+	where $m_i$ is the $i$-th digit of $m$ in base $p$.
+\subsubsection{Sum of Two Squares Thm (Legendre)}
+	For a given positive integer $n$, let\\
+	$D_1 =$ (\# of positive integers $d$ dividing $N$ that $1\equiv d\pmod 4$)\\
+	$D_3 =$ (\# of positive integers $d$ dividing $N$ that $3\equiv d\pmod 4$)\\
+	then $n$ can be written as a sum of two squares in exactly\\
+	$R(n) = 4(D_1-D_3)$ ways.
+\subsubsection{Difference of D1-D3 Thm}
+	let $n = 2^t \cdot (p_1^{e_1} \cdot ... \cdot p_r^{e_r}) \cdots (q_1^{f_1} \cdot ... \cdot q_s^{f_s})$\\
+	where $p_i, q_i$ are primes and $1 \equiv p_i\pmod 4 , 3 \equiv q_i\pmod 4$\\
+	then $D_1 - D_3$ = \begin{cases}
+  $(e_1+1)(e_2+1)...(e_r+1)$, & \text{if (}$f_i$\text{)s all even}\\
+	$0$,& \text{if any }$f_i$\text{ is odd}
+  \end{cases}
+\subsubsection{Krush–Kuhn–Tucker Conditions}
+\begin{body}
+  \textbf{Stationarity}\\
+  For maximizing $f(x)$: $\nabla f(x^*) = \sum_{i=1}^m \mu_i \nabla g_i(x^*) + \sum_{j=1}^l \lambda_j \nabla h_j(x^*)$\\
+  For minimizing $f(x)$: $-\nabla f(x^*) = \sum_{i=1}^m \mu_i \nabla g_i(x^*) + \sum_{j=1}^l \lambda_j \nabla h_j(x^*)$ \\
+\\
+  \textbf{Primal feasibility}\\
+  $g_i(x^*) \le 0, \mbox{ for all } i = 1, \ldots, m$\\
+  $h_j(x^*) = 0, \mbox{ for all } j = 1, \ldots, l \,\!$\\
+\\
+  \textbf{Dual feasibility}\\
+  $\mu_i \ge 0, \mbox{ for all } i = 1, \ldots, m$\\
+\\
+  \textbf{Complementary slackness}\\
+  $\mu_i g_i (x^*) = 0, \mbox{for all}\; i = 1,\ldots,m$
+\end{body}
