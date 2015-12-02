@@ -8,145 +8,144 @@ using namespace std;
 #define MP make_pair
 #define PB push_back
 #define FOR(x,y) for(__typeof(y.begin())x=y.begin();x!=y.end();x++)
-#define IOS ios_base::sync_with_stdio(0); cin.tie(0)
-// Let's Fight!
-
-const int MX = 17;
-const int MXF = (1<<17);
-
-const int perc[4] = {0, 1, 2, 6};
-const int per[4][6][3] = {
-	{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}},
-	{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}},
-	{{0, 1, 0}, {1, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}},
-	{{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}}
-};
-
-int N, K, M, P;
-string ip[MX];
-string lf[MX];
-string mem[(1<<MX)][17][7];
-bool us[MXF][17][7];
-
-bool us2[20][20][20][20];
-bool mem2[20][20][20][20];
-bool dp2(int st, int ps, int ed, int pe) {
-	if (us2[st][ps][ed][pe]) return mem2[st][ps][ed][pe];
-
-	us2[st][ps][ed][pe] = true;
-	string ord = ip[ed];
-	reverse(ord.begin(), ord.end());
-	
-	string q = "";
-	for (int k=0; k<M; k++) {
-		q += lf[ed][per[M][pe][k]];
-	}
-
-	string rord = ord + q;
-	//cout << "rord = " << rord << endl;
-
-	int zo[20] = {};
-	for (int k=0; k<N; k++) {
-		zo[rord[k]-'A'] = k;
-	}
-
-	bool can = true;
-	for (int k=0; k<K-1; k++) {
-		if (zo[ip[st][k]-'A'] > zo[ip[st][k+1]-'A']) {
-			can = false;
-			break;
-		}
-	}
-
-	if (not can) return mem2[st][ps][ed][pe] = false;;
-
-	for (int k=0; k<M-1; k++) {
-		if (zo[lf[st][per[M][ps][k]]-'A'] > zo[lf[st][per[M][ps][k+1]]-'A']) {
-			can = false;
-			break;
-		}
-	}
-
-	if (not can) return mem2[st][ps][ed][pe] = false;;
-	return mem2[st][ps][ed][pe] = true;;
+#define ALL(x) x.begin(),x.end()
+#define IOS ios_base::sync_with_stdio(0);cin.tie(0)
+#define SZ(x) ((int)(x).size())
+#ifdef ONLINE_JUDGE
+#define FILEIO(name) \
+  freopen(name".in", "r", stdin); \
+  freopen(name".out", "w", stdout);
+#else
+#define FILEIO(name)
+#endif
+ 
+#define _TOKEN_CAT2(x, y) x ## y
+#define _TOKEN_CAT(x, y) _TOKEN_CAT2(x, y)
+#define _MACRO_OVERL3(_1, _2, _3, _N, ...) _N
+#define _RANGE1(a) int _TOKEN_CAT(_t, __LINE__)=0; _TOKEN_CAT(_t, __LINE__)<(a); (_TOKEN_CAT(_t, __LINE__))++
+#define _RANGE2(i, a) int (i)=0; (i)<(a); (i)++
+#define _RANGE3(i, a, b) int (i)=a; (i)<(b); (i)++
+#define range(...) _MACRO_OVERL3(__VA_ARGS__, _RANGE3, _RANGE2, _RANGE1)(__VA_ARGS__)
+ 
+typedef pair<int, int> pii;
+typedef tuple<int, int, int> tup;
+ 
+int& operator / (tup &t, int a) 
+{
+    if (a == 0)
+        return get<0>(t);
+    else if (a == 1)
+        return get<1>(t);
+    else if (a == 2)
+        return get<2>(t);
+    assert(false);
 }
-
-string dp(int fg, int st, int p) {
-	if (not (fg & (1<<st))) return "!";
-
-	int cnt = __builtin_popcount(fg);
-	char c = st + 'A';
-	if (cnt == 1) {
-		//cout << "Fin = " << (c) << endl;
-		return string("") + c;
-	}
-
-	if (us[fg][st][p]) return mem[fg][st][p];
-
-	us[fg][st][p] = true;
-	string ans = "!";
-	for (int i=0; i<N; i++) {
-		if (not ((1<<i) & fg)) continue;
-		if (st == i) continue;
-
-		string ord = ip[i];
-		reverse(ord.begin(), ord.end());
-
-		for (int j=0; j<P; j++) {
-
-			if (not dp2(st, p, i, j)) continue;
-
-			string a = dp(fg^(1<<st), i, j);
-			if (a == "!") continue;
-			else {
-				if (ans == "!") {
-					//cout << a << endl;
-					ans = a + c;
-				} else if (ans > (a+c)) {
-					ans = (a+c);
-				}
-			}
-		}
-	}
-	//cout << "Ans = " << ans << endl;
-
-	return (mem[fg][st][p] = ans);
+ 
+const int MX = 1010101;
+int djs[MX];
+void djsInit(int n) 
+{
+    for (int i=0; i<n; i++) djs[i] = i;
 }
-
-int main() {
-	IOS;
-	cin >> N >> K;
-	M = N - K;
-	P = perc[M];
-
-	for (int i=0; i<N; i++) {
-		cin >> ip[i];
-
-		bool fd[20] = {};
-
-		for (int j=0; j<K; j++) {
-			fd[ip[i][j]-'A'] = true;
-		}
-
-
-		for (int j=0; j<N; j++) {
-			if (not fd[j]) lf[i] += char('A'+j);
-		}
-	}
-
-	//while(1);
-
-	string ans = "ZZZZZZZ";
-
-	int fg = (1<<N)-1;
-	for (int i=0; i<N; i++) {
-		for (int j=0; j<P; j++) {
-			string a = dp(fg, i, j);
-			if (a == "!") continue;
-			ans = min(ans, dp(fg, i, j));
-		}
-	}
-	cout << ans << endl;
-	return 0;
+int ffa(int a)
+{
+    return (djs[a] == a ? a : djs[a] = ffa(djs[a]));
 }
-
+ 
+template<typename T>
+vector<T>& operator << (vector<T>& v, T x) {
+    v.PB(x); return v;
+}
+ 
+vector<tup> blks;
+vector<tup> pts;
+map<pii, vector<int>> mp[3];
+int X, Y, Z, N;
+ 
+ 
+int main() 
+{
+    cin >> X >> Y >> Z >> N;
+    if (!N) {
+        cout << 1 << endl;
+        return 0;
+    }
+    for (int i=0; i<N; i++) {
+        int x, y, z;
+        cin >> x >> y >> z;
+        blks << tup{x, y, z};
+    }
+    sort(ALL(blks));
+ 
+#define REP(i, n) for (int (i)=0; (i)<(n); (i)++)
+ 
+    auto inr = [&](int x, int y, int z) {
+        return (x >= 0 and x < X and
+                y >= 0 and y < Y and
+                z >= 0 and z < Z);
+    };
+ 
+    for (auto p: blks) {
+        REP(i, 3)
+            REP(j, 3)
+                REP(k, 3) {
+            int x = p/0 + i-1,
+                y = p/1 + j-1,
+                z = p/2 + k-1;
+            if (not inr(x, y, z)) continue;
+            tup _p = tup{x, y, z};
+            pts << _p;
+            _p/2 = 0;
+            pts << _p;
+            _p/1 = 0;
+            pts << _p;
+            _p/0 = 0;
+            pts << _p;
+        }
+    }
+ 
+    sort(ALL(pts));
+    pts.resize(unique(ALL(pts)) - pts.begin());
+ 
+ 
+    int sz = SZ(pts);
+    djsInit(sz);
+    int ans = sz;
+ 
+    for (int i=0; i<sz; i++) {
+        auto p = pts[i];
+        int x, y, z;
+        tie(x, y, z) = p;
+        auto &s0 = mp[0][{x, y}],
+             &s1 = mp[1][{y, z}],
+             &s2 = mp[2][{x, z}];
+        auto pb = lower_bound(ALL(blks), p);
+        bool fg = (pb == blks.end() or *pb != p);
+        if (fg) {
+ 
+#define _magic(a) \
+            if (SZ(a)) { \
+                int b = a.back(); \
+                if (b >= 0) { \
+                    int f1 = ffa(b), f2 = ffa(i); \
+                    ans -= (f1 != f2); \
+                    djs[f1] = f2; \
+                } \
+            } \
+            a << i;
+ 
+            _magic(s0);
+            _magic(s1);
+            _magic(s2);
+        } else {
+            ans --;
+            s0 << -1;
+            s1 << -1;
+            s2 << -1;
+        }
+    }
+ 
+    cout << ans << endl;
+ 
+    return 0;
+}
