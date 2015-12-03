@@ -48,6 +48,7 @@
 | Dhaka 2014      | 2015/11/14  | A | B | C | **D** | E | F | G | H | I | J |
 | Mudanjiang 2014 | 2015/11/22  | A | B | x | D | E | F | **G** | H | I | . | **K** |
 | Daejeon 2014    | 2015/11/28  | **A** | B | C | D | E | F | G | H | I | J | K | **L** |
+| NEERC Moscow 2015 | 2015/12/03| A | **B** | C | D | E | F | _ | G | H | I | J | K | L |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
