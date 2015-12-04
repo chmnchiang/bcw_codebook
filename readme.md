@@ -6,7 +6,7 @@
   
 - 圓公切線公式/θ  
 - vonoroi diagram / delaunay trangulation  
-- 3D convex hull (N log N  
+- 3D convex hull (N log N ?) 
 - K-D tree(只有+1)  
 - nearest neighbor(只有+1)  
 - in/out center formula  
@@ -20,7 +20,7 @@
 - steiner tree(?)  
 - 各種交點公式  
 - 平面圖全局最小割 (Maybe add VE)
-- link-cut tree
+- link-cut tree (change better example code)
 
 # Alpha
 
