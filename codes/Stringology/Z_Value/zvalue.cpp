@@ -1,6 +1,4 @@
-char s[MAXLEN];
-int len,z[MAXLEN];
-void Z_value() {
+void Z_value(char *s, int *z, int len) {
 	int i,j,left,right;
 	left=right=0; z[0]=len;
 	for(i=1;i<len;i++) {
