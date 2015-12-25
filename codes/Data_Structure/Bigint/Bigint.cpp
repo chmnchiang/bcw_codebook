@@ -77,16 +77,20 @@ struct Bigint{
   }
 
   int cp3(const Bigint &b)const {
-    if (s != b.s) return s > b.s;
+    if (s != b.s) return s - b.s;
     if (s == -1) return -(-*this).cp3(-b);
-    if (len() != b.len()) return len()>b.len()?1:-1;
+    if (len() != b.len()) return len()-b.len();//int
     for (int i=len()-1; i>=0; i--)
-      if (v[i]!=b.v[i]) return v[i]>b.v[i]?1:-1;
+      if (v[i]!=b.v[i]) return v[i]-b.v[i];
     return 0;
   }
-  bool operator < (const Bigint &b)const{ return cp3(b)==-1; }
+
+  bool operator < (const Bigint &b)const{ return cp3(b)<0; }
+  bool operator <= (const Bigint &b)const{ return cp3(b)<=0; }
   bool operator == (const Bigint &b)const{ return cp3(b)==0; }
-  bool operator > (const Bigint &b)const{ return cp3(b)==1; }
+  bool operator != (const Bigint &b)const{ return cp3(b)!=0; }
+  bool operator > (const Bigint &b)const{ return cp3(b)>0; }
+  bool operator >= (const Bigint &b)const{ return cp3(b)>=0; }
 
   Bigint operator - () const {
     Bigint r = (*this);
