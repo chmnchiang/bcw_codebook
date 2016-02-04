@@ -9,19 +9,27 @@ using namespace std;
 #define ALL(x) begin(x),end(x)
 #define SZ(x) ((int)(x).size())
 #define IOS ios_base::sync_with_stdio(0); cin.tie(0)
+#ifdef ONLINE_JUDGE
+#define FILEIO(name) \
+    freopen(name".in", "r", stdin); \
+    freopen(name".out", "w", stdout);
+#else
+#define FILEIO(name)
+#endif
 template<typename A, typename B>
 ostream& operator <<(ostream &s, const pair<A,B> &p) {
-  return s<<"("<<p.first<<","<<p.second<<")";
+    return s<<"("<<p.first<<","<<p.second<<")";
 }
 template<typename T>
 ostream& operator <<(ostream &s, const vector<T> &c) {
-  s<<"[ ";
-  for (auto it : c) s << it << " ";
-  s<<"]";
-  return s;
+    s<<"[ ";
+    for (auto it : c) s << it << " ";
+    s<<"]";
+    return s;
 }
 // Let's Fight!
 
 int main() {
+
     return 0;
 }
