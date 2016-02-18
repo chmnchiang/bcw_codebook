@@ -44,6 +44,7 @@
 | Daejeon 2014    | 2015/11/28  | **A** | B | C | D | E | F | G | H | I | J | K | **L** |
 | NEERC Moscow 2015 | 2015/12/03| A | **B** | C | D | E | _ | G | H | I | J | K | L |
 | Singapore 2015  | 2015/12/10  | A | (B) | C | D | E | F | G | H | I | J | **K** |
+| Shanghai 2015   | 2016/02/18  | A | B | **C** | D | **E** | F | G | _ | **I** | **J** | K | L |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
