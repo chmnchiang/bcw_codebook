@@ -45,8 +45,8 @@
 | NEERC Moscow 2015 | 2015/12/03| A | **B** | C | D | E | _ | G | H | I | J | K | L |
 | Singapore 2015  | 2015/12/10  | A | (B) | C | D | E | F | G | H | I | J | **K** |
 | Shanghai 2015   | 2016/02/18  | A | B | **C** | D | **E** | F | G | _ | **I** | **J** | K | L |
-| XVI Open Cup Saratov | 2016/02/21 | A | _ | (C) | (D) | **E** | F | G | H | I | J | **K** |
 | WF 2006         | 2016/02/19  | A | B | C | D | E | _ | G | (H) | I | J |
+| XVI Open Cup Saratov | 2016/02/21 | A | **B** | (C) | **D** | **E** | F | G | H | I | J | **K** |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
