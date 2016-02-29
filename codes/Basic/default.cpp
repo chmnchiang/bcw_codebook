@@ -9,6 +9,8 @@ using namespace std;
 #define ALL(x) begin(x),end(x)
 #define SZ(x) ((int)(x).size())
 #define IOS ios_base::sync_with_stdio(0); cin.tie(0)
+#define REP(i,x) for (int i=0; i<(x); i++)
+#define REP1(i,a,b) for (int i=(a); i<=(b); i++)
 #ifdef ONLINE_JUDGE
 #define FILEIO(name) \
     freopen(name".in", "r", stdin); \
