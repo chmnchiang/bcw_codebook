@@ -51,6 +51,7 @@
 | WF 2006         | 2016/02/19  | A | B | C | D | E | _ | G | (H) | I | J |
 | XVI Open Cup Saratov | 2016/02/21 | A | **B** | **C** | **D** | **E** | F | G | H | I | J | **K** |
 | XVI Open Cup Bashkortostan | 2016/02/21 | A | **B** | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
+| WF 2007         | 2016/03/03  | A | B | (C) | D | (E) | F | G | (H) | I | _ |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
