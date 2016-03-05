@@ -16,7 +16,7 @@ struct DisjointSet {
     h.PB({k, *k});
     *k=v;
   }
-  void save() { sp.PB(SZ(h)) };
+  void save() { sp.PB(SZ(h)); }
   void undo() {
     assert(!sp.empty());
     int last=sp.back(); sp.pop_back();
