@@ -2,6 +2,7 @@
 !*/
 !*.py
 !*.cpp
+!*.cc
 !*.java
 !.vimrc
 !*.tex
