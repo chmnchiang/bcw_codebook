@@ -52,7 +52,7 @@
 | XVI Open Cup Saratov | 2016/02/21 | A | **B** | **C** | **D** | **E** | F | G | H | I | J | **K** |
 | XVI Open Cup Bashkortostan | 2016/02/21 | A | **B** | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
 | WF 2007         | 2016/03/03  | A | B | (C) | D | (E) | F | G | (H) | I | _ |
-| XIV Open Cup Saratov | 2016/03/05 | . | B | C | _ | E | F | . | _ | _ | J | K |
+| XIV Open Cup Saratov | 2016/03/05 | . | B | C | **D** | E | F | . | _ | _ | J | K |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
