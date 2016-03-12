@@ -33,7 +33,7 @@
 | ASC 32        | 2016/02/05    | | A | B | C | D | E | F | G | H | I | J | K |
 | ASC 31        | 2014/07/07    | | A | B | . | **D** | E | F | G | . | I | . | K |
 | ASC 30        | 2016/02/25    | | A | B | C | D | E | F | G | H | I | J |
-| ASC 29        | 2016/02/27    | | A | B | C | **D** | **E** | F | **G** | H | I | (J) |
+| ASC 29        | 2016/02/27    | | A | B | C | **D** | **E** | F | **G** | H | I | **J** |
 | ASC 28        | 2016/02/29    | | A | B | C | D | E | F | G | H | I | J |
 | BSUIR 2014    | 2015/08/22    | | A | B | C | D | E | F | G | H | I | J | K |
 | JAG 2015 Spring | 2015/08/29  | | A | **B** | **C** | D | E | F | G | **H** | **I** | **J** | K | L |
@@ -48,10 +48,10 @@
 | NEERC Moscow 2015 | 2015/12/03| | A | **B** | C | D | E | _ | G | H | I | J | K | L |
 | Singapore 2015  | 2015/12/10  | | A | (B) | C | D | E | F | G | H | I | J | **K** |
 | Shanghai 2015   | 2016/02/18  | | A | B | **C** | D | **E** | F | G | _ | **I** | **J** | K | L |
-| WF 2006         | 2016/02/19  | 1 | A | B | C | D | E | _ | G | (H) | I | J |
+| WF 2006         | 2016/02/19  | 1 | A | B | C | D | E | **F** | G | (H) | I | J |
 | XVI Open Cup Saratov | 2016/02/21 | 32 | A | **B** | **C** | **D** | **E** | F | G | H | I | J | **K** |
 | XVI Open Cup Bashkortostan | 2016/02/21 | 25 | A | **B** | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
-| WF 2007         | 2016/03/03  | 3 | A | B | (C) | D | (E) | F | G | (H) | I | _ |
+| WF 2007         | 2016/03/03  | 3 | A | B | (C) | D | (E) | F | G | (H) | I | **J** |
 | XIV Open Cup Saratov | 2016/03/05 | 19 | . | B | C | **D** | E | F | . | _ | _ | J | K |
 | WF 2008         | 2016/03/10  | 21 | A | B | . | . | . | F | **G** | . | I | J | K |
 | IX Open Cup Saratov | 2016/03/12 | 10 | A | . | C | D | E | **F** | . | x | I | J |
