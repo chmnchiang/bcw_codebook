@@ -51,9 +51,9 @@
 | WF 2006         | 2016/02/19  | 1 | A | B | C | D | E | **F** | G | (H) | I | J |
 | XVI Open Cup Saratov | 2016/02/21 | 32 | A | **B** | **C** | **D** | **E** | F | G | H | I | J | **K** |
 | XVI Open Cup Bashkortostan | 2016/02/28 | 25 | A | **B** | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
-| WF 2007         | 2016/03/03  | 3 | A | B | (C) | D | (E) | F | G | (H) | I | **J** |
+| WF 2007         | 2016/03/03  | 3 | A | B | **C** | D | (E) | F | G | (H) | I | **J** |
 | XIV Open Cup Saratov | 2016/03/05 | 19 | . | B | C | **D** | E | F | . | _ | _ | J | K |
-| WF 2008         | 2016/03/10  | 21 | A | B | . | . | . | F | **G** | . | I | J | K |
+| WF 2008         | 2016/03/10  | 21 | A | B | . | . | **E** | F | **G** | . | I | J | K |
 | IX Open Cup Saratov | 2016/03/12 | 10 | A | . | C | D | E | **F** | . | x | I | J |
 | XVI Open Cup Tatarstan | 2016/03/13 | 8 | A | B | C | D | E | F | G | H | I | J | K | L | M |
 
