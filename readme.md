@@ -56,6 +56,7 @@
 | WF 2008         | 2016/03/10  | 21 | A | B | . | . | **E** | F | **G** | **H** | I | J | K |
 | IX Open Cup Saratov | 2016/03/12 | 10 | A | **B** | C | D | E | **F** | . | x | I | J |
 | XVI Open Cup Tatarstan | 2016/03/13 | 8 | A | B | C | D | E | F | G | H | I | J | K | L | M |
+| XVI Open Cup Baltics | 2016/3/20 | 39 | . | . | (C) | D | E | **F** | G | H | I | J |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
