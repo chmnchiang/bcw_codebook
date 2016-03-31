@@ -59,6 +59,7 @@
 | XVI Open Cup Tatarstan | 2016/03/13 | 8 | A | B | C | D | E | F | G | H | I | J | K | L | M |
 | XVI Open Cup Baltics | 2016/3/20 | 39 | . | . | (C) | D | E | **F** | G | H | I | J |
 | Petr Winter, Feb, 2007 | 2016/03/26 | 1 | A | _ | x | D | E | F | G | H | I | J | K |
+| WF 2009         | 2016/03/31  | 5 | A | B | (C) | D | E | F | (G) | H | (I) | J | K |
 
 - A : 賽內AC  
 - **A** : 賽後AC  
