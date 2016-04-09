@@ -3,6 +3,8 @@
 // n < 3,474,749,660,383          6 :  pirmes <= 13
 // n < 2^64                       7 :
 // 2, 325, 9375, 28178, 450775, 9780504, 1795265022
+// Make sure testing integer is in range [2, n−2] if
+// you want to use magic.
 long long power(long long x,long long p,long long mod){
 	long long s=1,m=x;
 	while(p) {
@@ -29,7 +31,7 @@ bool miller_rabin(long long n,int s=100) {
 	long long u=n-1;
 	int t=0;
 	// n-1 = u*2^t
-	while(u&1) {
+	while(!(u&1)) {
 		u>>=1;
 		t++;
 	}
