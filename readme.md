@@ -53,11 +53,11 @@
 | XVI Open Cup Saratov | 2016/02/21 | 32 | A | **B** | **C** | **D** | **E** | F | G | H | I | J | **K** |
 | XVI Open Cup Bashkortostan | 2016/02/28 | 25 | A | **B** | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
 | WF 2007         | 2016/03/03  | 3 | A | B | **C** | D | (E) | F | G | (H) | I | **J** |
-| XIV Open Cup Saratov | 2016/03/05 | 19 | . | B | C | **D** | E | F | . | _ | _ | J | K |
+| XIV Open Cup Saratov | 2016/03/05 | 19 | . | B | C | **D** | E | F | . | _ | **I** | J | K |
 | WF 2008         | 2016/03/10  | 21 | A | B | . | . | **E** | F | **G** | **H** | I | J | K |
 | IX Open Cup Saratov | 2016/03/12 | 10 | A | **B** | C | D | E | **F** | . | x | I | J |
 | XVI Open Cup Tatarstan | 2016/03/13 | 8 | A | B | C | D | E | F | G | H | I | J | K | L | M |
-| XVI Open Cup Baltics | 2016/3/20 | 39 | . | . | (C) | D | E | **F** | G | H | I | J |
+| XVI Open Cup Baltics | 2016/03/20 | 39 | . | . | (C) | D | E | **F** | G | H | I | J |
 | Petr Winter, Feb, 2007 | 2016/03/26 | 1 | A | _ | x | D | E | F | G | H | I | J | K |
 | WF 2009         | 2016/03/31  | 5 | A | B | (C) | D | E | F | (G) | H | (I) | J | K |
 | VIII Open Cup Saratov | 2016/04/02 | 3 | (A) | B | C | **D** | E | F | G | H | I | J | K |
@@ -66,7 +66,7 @@
 | WF 2011         | 2016/04/07  | 12 | **A** | **B** | C | D | E | F | **G** | H | **I** | J | K |
 | PWTC 2016 Moscow | 2016/04/09 | 16 | A | (B) | C | . | E | F | G | H | **I** | J | K |
 | PWTC 2016 SPb SU + AU | 2016/04/10 | 3 | **A** | B | C | D | E | F | . | H | I | J | K | . |
-| WF 2012         | 2016/04/14  | 8 | . | B | C | D | E | **F** | G | _ | **I** | _ | K | L |
+| WF 2012         | 2016/04/14  | 8 | **A** | B | C | D | E | **F** | G | **H** | **I** | **J** | K | L |
 | PWTC 2016 Nizhny Novgorod SU | 2016/04/17 | 3 | A | B | C | D | E | F | G | H | **I** |
 
 
