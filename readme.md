@@ -68,6 +68,7 @@
 | PWTC 2016 SPb SU + AU | 2016/04/10 | 3 | **A** | B | C | D | E | F | . | H | I | J | K | . |
 | WF 2012         | 2016/04/14  | 8 | **A** | B | C | D | E | **F** | G | **H** | **I** | **J** | K | L |
 | PWTC 2016 Nizhny Novgorod SU | 2016/04/17 | 3 | A | B | C | D | E | F | G | H | **I** |
+| WF 2013         | 2016/04/21  | 2 | A | B | C | D | E | F | x | H | I | J | K |
 
 
 - A : 賽內AC  
