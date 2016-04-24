@@ -50,19 +50,12 @@ int deqfr[4005];
 vector<Car> deq[4005];
 
 inline bool better(const Car &a, const Car &b, const Car &c) {
-	/*
-	__int128_t u = (a.x-b.x);
-	u = u * (c.v-b.v);
-	__int128_t v = (b.x-c.x);
-	v = v * (b.v-a.v);
-	return u <= v;
-	*/
-	return (a.x-b.x)*(c.v-b.v) <= (b.x-c.x)*(b.v-a.v);
+	return (a.x-b.x)*(c.v-b.v) >= (b.x-c.x)*(b.v-a.v);
 }
 inline void push_deq(vector<Car> &d, int &fr, Car c) {
-	if (SZ(d)) assert(d.back().v <= c.v);
-	while (SZ(d) and d.back().x <= c.x) d.pop_back();
-//	while (SZ(d) >= 2 and better(d[SZ(d)-2],d[SZ(d)-1],c)) d.pop_back();
+	if (SZ(d)>fr) assert(d.back().v <= c.v);
+	while (SZ(d)>fr and d.back().x <= c.x) d.pop_back();
+	while (SZ(d)-fr >= 2 and better(d[SZ(d)-2],d[SZ(d)-1],c)) d.pop_back();
 	d.PB(c);
 }
 int main() {
@@ -86,26 +79,10 @@ int main() {
 				ll res = -INF;
 				int &fr = deqfr[tp];
 				vector<Car> &d = deq[tp];
-				/*
 				while (SZ(d)-fr > 1 and d[fr].at(ip[i].f) <= d[fr+1].at(ip[i].f)) fr++;
-				if (SZ(d) > fr)
-					res = d[fr].at(ip[i].f);
-					*/
-				for (auto it:d) res = max(res, it.at(ip[i].f));
-//				REP1(k,fr,SZ(d)-1)
-//					res = max(res, d[k].at(ip[i].f));
+				if (SZ(d) > fr)	res = d[fr].at(ip[i].f);
 				res += ip[i].p - ip[i].f * ip[i].f;
 				res = max(res, (ll)ip[i].p);
-				/*
-				ll res = -INF;
-				REP1(k,1,i-1) {
-					ll tmp = dp2[k][j-ip[i].t] - ip[k].f*ip[k].f + 2*ip[i].f*ip[k].f;
-					dp2[i][j] = max(dp2[i][j], tmp);
-				}
-				dp2[i][j] += ip[i].p - ip[i].f * ip[i].f;
-				dp2[i][j] = max(dp2[i][j], (ll)ip[i].p);
-				res = dp2[i][j];
-				*/
 				ans = max(ans, res);
 				Car c;
 				c.x = res - ip[i].f*ip[i].f;
