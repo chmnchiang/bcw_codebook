@@ -70,6 +70,7 @@
 | PWTC 2016 Nizhny Novgorod SU | 2016/04/17 | 3 | A | B | C | D | E | F | G | H | **I** |
 | WF 2013         | 2016/04/21  | 2 | A | B | C | D | E | F | x | H | I | J | K |
 | XVI Open Cup Japan | 2016/04/23 | 12 | A | B | **C** | D | **E** | F | G | H | I | J |
+| XVI Open Cup South Caucasus | 2016/04/24 | 16 | A | _ | _ | D | E | F | G | H | I | _ |
 
 
 - A : 賽內AC  
