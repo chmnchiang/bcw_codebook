@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include<bits/stdc++.h>/*{{{*/
 #include<unistd.h>
 using namespace std;
 #define FZ(n) memset((n),0,sizeof(n))
@@ -28,18 +28,18 @@ ostream& operator <<(ostream &s, const vector<T> &c) {
     for (auto it : c) s << it << " ";
     s<<"]";
     return s;
-}
+}/*}}}*/
 // Let's Fight!
 
 int N;
-bitset<80> edge[80];
+bitset<80> edge[80],goal;
 vector<int> ans,vec;
 int tot;
 
 bool DFS(int cur, int lst, bitset<80> ok, int lim) {
 	tot++;
 	if (cur >= lim) {
-		if ((int)ok.count() == N) {
+		if (ok == goal) {
 			ans = vec;
 			return true;
 		}
@@ -63,7 +63,9 @@ int main() {
 	IOS;
 	int cas = 0;
 	while (cin >> N) {
+    goal.reset();
 		REP(i,N) {
+      goal[i] = 1;
 			string s;
 			cin >> s;
 			edge[i].reset();
