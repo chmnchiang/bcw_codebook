@@ -72,7 +72,7 @@
 | XVI Open Cup Japan | 2016/04/23 | 12 | A | B | **C** | D | **E** | F | G | H | I | J |
 | XVI Open Cup South Caucasus | 2016/04/24 | 16 | A | _ | _ | D | E | F | G | H | I | _ |
 | WF 2014         | 2016/04/28 | 17 | A | **B** | C | D | **E** | **F** | **G** | **H** | **I** | **J** | K | **L** |
-| WF 2015         | 2016/05/05 | 6  | A | B | C | D | E | F | _ | H | I | J | (K) | L | **M** |
+| WF 2015         | 2016/05/05 | 6  | A | B | C | D | E | F | _ | H | I | J | **K** | L | **M** |
 
 
 - A : 賽內AC  
