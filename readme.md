@@ -70,7 +70,7 @@
 | PWTC 2016 Nizhny Novgorod SU | 2016/04/17 | 3 | A | B | C | D | E | F | G | H | **I** |
 | WF 2013         | 2016/04/21  | 2 | A | B | C | D | E | F | x | H | I | J | K |
 | XVI Open Cup Japan | 2016/04/23 | 12 | A | B | **C** | D | **E** | F | G | H | I | J |
-| XVI Open Cup South Caucasus | 2016/04/24 | 16 | A | _ | _ | D | E | F | G | H | I | _ |
+| XVI Open Cup South Caucasus | 2016/04/24 | 16 | A | _ | _ | D | E | F | G | H | I | **J** |
 | WF 2014         | 2016/04/28 | 17 | A | **B** | C | D | **E** | **F** | **G** | **H** | **I** | **J** | K | **L** |
 | WF 2015         | 2016/05/05 | 6  | A | B | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
 
