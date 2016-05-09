@@ -1,49 +1,14 @@
-#include<bits/stdc++.h>
-
-using namespace std;
-
-#define PB push_back
-#define SZ(x) ((int)(x).size())
-#define ALL(x) begin(x), end(x)
-#define F first
-#define S second
-#define x first
-#define y second
-#define IOS ios::sync_with_stdio(0);cin.tie(0)
-
-const double EPS = 1E-9;
-
-struct point : public pair<double, double> {
-
-    point() {}
-    point(double _x, double _y) : pair<double, double>(_x, _y) {
-    }
-
-    point operator + (const point he) const {
-        return {x+he.x, y+he.y};
-    }
-    point operator - (const point he) const {
-        return {x-he.x, y-he.y};
-    }
-    friend point operator * (const double c, const point &p) {
-        return {c*p.x, c*p.y};
-    }
-    point operator * (const double c) const {
-        return {c*x, c*y};
-    }
-    double operator * (const point he) const {
-        return x*he.x + y*he.y;
-    }
-    double cross (const point &he) const {
-        return x*he.y - y*he.x;
-    }
-    friend ostream& operator << (ostream& o, const point &p) {
-        cout << "(" << p.x << ", " << p.y << ")";
-        return o;
-    }
-};
-
 typedef pair<point, point> Line;
+ostream& operator << (ostream& o, const Line &p) {
+    return o << p.F << " - " << p.S;
+}
+
+template<typename T>
+ostream& operator << (ostream& o, const vector<T> &v) {
+    o << "[";
+    for (auto x: v) o << x << ", ";
+    return o << "]";
+}
 
 point interPnt(Line l1, Line l2, bool &res){
     point p1, p2, q1, q2;
@@ -82,18 +47,14 @@ vector<Line> halfPlaneInter(vector<Line> lines) {
         ata[i] = atan2(d.y, d.x);
     }
     sort(ALL(ord), [&](int i, int j) {
+        if (abs(ata[i] - ata[j]) < EPS) {
+            return (lines[i].S - lines[i].F).cross(lines[j].S - lines[i].F) < 0;
+        }
         return ata[i] < ata[j];
     });
     vector<Line> fin;
     for (int i=0; i<sz; i++) {
-        if (i and fabs(ata[ord[i]] - ata[ord[i-1]]) < EPS) {
-            Line li = lines[ord[i]];
-            Line lj = lines[ord[i-1]];
-            if ((li.S - li.F).cross(lj.S - li.F) >= 0)
-                continue;
-            else 
-                fin.back() = li;
-        } else {
+        if (!i or fabs(ata[ord[i]] - ata[ord[i-1]]) > EPS) {
             fin.PB(lines[ord[i]]);
         }
     }
@@ -120,7 +81,6 @@ vector<Line> halfPlaneInter(vector<Line> lines) {
            not isin(dq[SZ(dq)-1], dq[0], dq[1])) {
         dq.pop_front();
     }
-    vector<Line> res(SZ(dq));
-    copy(ALL(dq), res.begin());
+    vector<Line> res(ALL(dq));
     return res;
 }
