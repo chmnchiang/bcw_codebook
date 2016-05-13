@@ -16,7 +16,7 @@
 \usepackage{enumerate}
 \usepackage{titlesec}
 \usepackage{amsmath}
-
+\usepackage{pdfpages}
 %\usepackage[T1]{fontenc}
 \usepackage{amsmath, courier, listings, fancyhdr, graphicx}
 \topmargin=0pt
@@ -298,6 +298,8 @@ stringstyle=\itshape\color{Green4},
 \subsection{Suffix Automaton}
 \lstinputlisting{../codes/Stringology/Automata/SAM.cpp}
 
+\newpage
+
 \section{Problems}
 %\subsection {Qtree IV}
 %\lstinputlisting{../codes/Data_Structure/Heavy_Light_Decomposition/QTREE4.cpp}
@@ -313,6 +315,11 @@ stringstyle=\itshape\color{Green4},
 
 \subsection{Painter}
 \lstinputlisting{../codes/Problem/painter.cpp}
+
+\clearpage
+
+\subsection{Periodic Table}
+\includepdf[scale=0.7,angle=-90,pagecommand={\thispagestyle{fancy}}]{../codes/PeriodicTable/main.pdf}
 
 %\section{Java}
 %\subsection{Java Cheat Sheet}
