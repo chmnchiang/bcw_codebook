@@ -37,6 +37,7 @@
 | ASC 28        | 2016/02/29    | 2 | A | B | C | D | E | F | G | H | I | J |
 | ASC 27        | 2016/03/27    | 3 | A | B | C | D | x | F | G | H | I | J |
 | ASC 26        | 2016/08/07    | 5 | A | B | C | D | E | F | G | H | I | J |
+| ASC 25        | 2016/09/03    | 8 | **A** | B | C | D | E | F | G | H | I | J | 
 | BSUIR 2014    | 2015/08/22    | | A | B | C | D | E | F | G | H | I | J | K |
 | JAG 2015 Spring | 2015/08/29  | | A | **B** | **C** | D | E | F | G | **H** | **I** | **J** | K | L |
 | JAG 2015 Autumn | 2015/11/23  | 1 | A | B | C | D | E | F | G | H | . | J | K |
