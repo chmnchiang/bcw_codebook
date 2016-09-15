@@ -29,6 +29,7 @@ struct Bigint{
       }
     }
     if (num) push_back(num);
+    n();
   }
 
   int len() const {
