@@ -1,3 +1,4 @@
+using ld = double;
 vector<pdd> interCircle(pdd o1, double r1, pdd o2, double r2) {
   ld d2 = (o1 - o2) * (o1 - o2);
   ld d = sqrt(d2);
