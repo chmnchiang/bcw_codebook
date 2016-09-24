@@ -1,21 +1,11 @@
-typedef pair<point, point> Line;
-ostream& operator << (ostream& o, const Line &p) {
-    return o << p.F << " - " << p.S;
-}
+const double EPS = 1e-9;
 
-template<typename T>
-ostream& operator << (ostream& o, const vector<T> &v) {
-    o << "[";
-    for (auto x: v) o << x << ", ";
-    return o << "]";
-}
-
-point interPnt(Line l1, Line l2, bool &res){
-    point p1, p2, q1, q2;
+pdd interPnt(Line l1, Line l2, bool &res){
+    pdd p1, p2, q1, q2;
     tie(p1, p2) = l1;
     tie(q1, q2) = l2;
-	double f1 = (p2 - p1).cross(q1 - p1);
-	double f2 = (p2 - p1).cross(p1 - q2);
+	double f1 = cross(p2, q1, p1);
+    double f2 = -cross(p2, q2, p1);
 	double f = (f1 + f2);
 
     if(fabs(f) < EPS) {
@@ -30,8 +20,8 @@ point interPnt(Line l1, Line l2, bool &res){
 bool isin(Line l0, Line l1, Line l2) {
     // Check inter(l1, l2) in l0
     bool res;
-    point p = interPnt(l1, l2, res);
-    return (l0.S - l0.F).cross(p - l0.F) > 1e-9;
+    pdd p = interPnt(l1, l2, res);
+    return cross(l0.S, p, l0.F) > EPS;
 }
 
 /* If no solution, check: 1. ret.size() < 3
@@ -43,12 +33,12 @@ vector<Line> halfPlaneInter(vector<Line> lines) {
     vector<double> ata(sz), ord(sz);
     for (int i=0; i<sz; i++) {
         ord[i] = i;
-        point d = lines[i].S - lines[i].F;
+        pdd d = lines[i].S - lines[i].F;
         ata[i] = atan2(d.y, d.x);
     }
     sort(ALL(ord), [&](int i, int j) {
         if (abs(ata[i] - ata[j]) < EPS) {
-            return (lines[i].S - lines[i].F).cross(lines[j].S - lines[i].F) < 0;
+            return cross(lines[i].S, lines[j].S, lines[i].F) < 0;
         }
         return ata[i] < ata[j];
     });

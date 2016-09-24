@@ -1,6 +1,3 @@
-double cross(pdd o, pdd a, pdd b){
-  return (a-o) % (b-o);
-}
 vector<pdd> convex_hull(vector<pdd> pt){
   sort(pt.begin(),pt.end());
   int top=0;

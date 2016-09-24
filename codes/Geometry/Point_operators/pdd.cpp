@@ -1,47 +1,33 @@
-#include<bits/stdc++.h>
-
-using namespace std;
-
 #define x first
 #define y second
 
-typedef double dou;
-struct pdd : pair<dou, dou> {
-    using pair<dou, dou>::pair;
-    #define C ,
-    #define F(a,b,c,d) c a (const b &p) const { return d; }
-    #define op(a) operator a
-    #define O(a,b,c,d) c op(a) (const b &p) const { return d; } \
-                       void op(a##=) (const b &p) { (*this)=(*this) a p; }
-    explicit pdd(double a) : pdd(cos(a), sin(a)) {}
-    O(+    , pdd, pdd, {x+p.x C y+p.y})
-    O(-    , pdd, pdd, {x-p.x C y-p.y})
-    O(*    , dou, pdd, {x*p C y*p}    )
-    O(/    , dou, pdd, {x/p C y/p}    )
-    F(op(*), pdd, dou, x*p.x+y*p.y    )
-    F(cross, pdd, dou, x*p.y-y*p.x    )
-    F(rot  , dou, pdd, {x*cos(p)-y*sin(p) C x*sin(p)+y*cos(p)})
-    dou abs() { return hypot(x, y); }
-    dou arg() { return atan2(y, x); }
+#define cpdd const pdd
+struct pdd : pair<double, double> {
+    using pair<double, double>::pair;
+
+    pdd operator + (cpdd &p) const {
+        return {x+p.x, y+p.y};
+    }
+
+    pdd operator - () const {
+        return {-x, -y};
+    }
+
+    pdd operator - (cpdd &p) const {
+        return (*this) + (-p);
+    }
+
+    pdd operator * (double f) const {
+        return {f*x, f*y};
+    }
+
+    double operator * (cpdd &p) const {
+        return x*p.x + y*p.y;
+    }
 };
 
-template<typename T1, typename T2>
-ostream& operator << (ostream &o, const pair<T1, T2> &pair) {
-    return o << "(" << pair.x << ", " << pair.y << ")";
-}
-
-int main(){
-    pdd p = {1, 2};
-    cout << p << endl;
-    cout << p.abs() << endl;
-    p += p;
-    cout << p << p.abs() << endl;
-    pdd q = {2, 3};
-    cout << p*q << endl;
-    cout << p.cross(q) << endl;
-    cout << p << endl;
-    cout << p.rot(acos(-1)/2) << endl;
-    q *= 2;
-    cout << q << endl;
-}
-
+double abs(cpdd &p) { return hypot(p.x, p.y); }
+double arg(cpdd &p) { return atan2(p.y, p.x); }
+double cross(cpdd &p, cpdd &q) { return p.x*q.y - p.y*q.x; }
+double cross(cpdd &p, cpdd &q, cpdd &o) { return cross(p-o, q-o); }
+pdd operator * (double f, cpdd &p) { return p*f; } // !! Not f*p !!
