@@ -78,6 +78,7 @@
 | WF 2015         | 2016/05/05 | 6  | A | B | C | D | E | F | **G** | H | I | J | **K** | L | **M** |
 | XVI Open Cup Ukraine | 2016/05/08 | 49 | A | B | C | D | E | F | G | **H** | **I** | **J** | K | **L** | M |
 | EC Final 2015 | 2016/05/12 | 3 | A | B | _ | D | _ | F | G | H | _ | J | x | L | M |
+| NEERC Moscow 2010 | 2016/09/04 | 4 | A | **B** | C | D | E | F | G | H | I | J | K | L |
 
 
 - A : 賽內AC  
