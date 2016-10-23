@@ -1,10 +1,12 @@
 struct BccVertex {
-  int n,nScc,step,dfn[MXN],low[MXN];
-  vector<int> E[MXN],sccv[MXN];
-  int top,stk[MXN];
+  int n,nBcc,step,root,dfn[MXN],low[MXN];
+  vector<int> E[MXN], ap;
+  vector<pii> bcc[MXN];
+  int top;
+  pii stk[MXN];
   void init(int _n) {
     n = _n;
-    nScc = step = 0;
+    nBcc = step = 0;
     for (int i=0; i<n; i++) E[i].clear();
   }
   void add_edge(int u, int v) {
@@ -13,39 +15,44 @@ struct BccVertex {
   }
   void DFS(int u, int f) {
     dfn[u] = low[u] = step++;
-    stk[top++] = u;
+    int son = 0;
     for (auto v:E[u]) {
       if (v == f) continue;
       if (dfn[v] == -1) {
+        son++;
+        stk[top++] = {u,v};
         DFS(v,u);
-        low[u] = min(low[u], low[v]);
         if (low[v] >= dfn[u]) {
-          int z;
-          sccv[nScc].clear();
+          if(v != root) ap.PB(v);
           do {
-            z = stk[--top];
-            sccv[nScc].PB(z);
-          } while (z != v);
-          sccv[nScc].PB(u);
-          nScc++;
+            assert(top > 0);
+            bcc[nBcc].PB(stk[--top]);
+          } while (stk[top] != pii(u,v));
+          nBcc++;
         }
+        low[u] = min(low[u], low[v]);
       } else {
+        if (dfn[v] < dfn[u]) stk[top++] = pii(u,v);
         low[u] = min(low[u],dfn[v]);
       }
     }
+    if (u == root && son > 1) ap.PB(u);
   }
-  vector<vector<int>> solve() {
-    vector<vector<int>> res;
+  // return the edges of each bcc;
+  vector<vector<pii>> solve() {
+    vector<vector<pii>> res;
     for (int i=0; i<n; i++) {
       dfn[i] = low[i] = -1;
     }
+    ap.clear();
     for (int i=0; i<n; i++) {
       if (dfn[i] == -1) {
         top = 0;
+        root = i;
         DFS(i,i);
       }
     }
-    REP(i,nScc) res.PB(sccv[i]);
+    REP(i,nBcc) res.PB(bcc[i]);
     return res;
   }
 }graph;
