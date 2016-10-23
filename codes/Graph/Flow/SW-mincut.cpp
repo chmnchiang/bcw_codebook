@@ -1,18 +1,22 @@
-struct SW{ // O(V^3)
+struct SW{ // O(V^3) 0-base
 	static const int MXN = 514;
 	int n,vst[MXN],del[MXN];
 	int edge[MXN][MXN],wei[MXN];
 	void init(int _n){
 		n = _n;
-		FZ(edge);
-		FZ(del);
+		for (int i=0; i<n; i++) {
+			for (int j=0; j<n; j++)
+				edge[i][j] = 0;
+			del[i] = 0;
+		}
 	}
 	void add_edge(int u, int v, int w){
 		edge[u][v] += w;
 		edge[v][u] += w;
 	}
 	void search(int &s, int &t){
-		FZ(vst); FZ(wei);
+		for (int i=0; i<n; i++)
+			vst[i] = wei[i] = 0;
 		s = t = -1;
 		while (true){
 			int mx=-1, cur=0;

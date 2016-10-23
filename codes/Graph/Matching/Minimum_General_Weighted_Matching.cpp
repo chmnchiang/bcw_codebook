@@ -1,5 +1,5 @@
 struct Graph {
-  // Minimum General Weighted Matching (Perfect Match)
+  // Minimum General Weighted Matching (Perfect Match) 0-base
   static const int MXN = 105;
 
   int n, edge[MXN][MXN];
@@ -8,7 +8,9 @@ struct Graph {
 
   void init(int _n) {
     n = _n;
-    FZ(edge);
+    for (int i=0; i<n; i++)
+      for (int j=0; j<n; j++)
+        edge[i][j] = 0;
   }
   void add_edge(int u, int v, int w) {
     edge[u][v] = edge[v][u] = w;
@@ -43,7 +45,8 @@ struct Graph {
     }
     while (true){
       int found = 0;
-      FZ(dis); FZ(onstk);
+      for (int i=0; i<n; i++)
+        dis[i] = onstk[i] = 0;
       for (int i=0; i<n; i++){
         stk.clear();
         if (!onstk[i] && SPFA(i)){

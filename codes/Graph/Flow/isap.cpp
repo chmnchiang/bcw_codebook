@@ -1,5 +1,6 @@
 struct Isap{
   static const int MXN = 10000;
+  static const int INF = 2147483647;
   struct Edge{ int v,f,re; };
   int n,s,t,h[MXN],gap[MXN];
   vector<Edge> E[MXN];
@@ -28,9 +29,9 @@ struct Isap{
     return res;
   }
   int flow(int res=0){
-    FZ(h); FZ(gap);
+    for (int i=0; i<n; i++) h[i] = gap[i] = 0;
     gap[0] = n;
-    while (h[s] < n) res += DFS(s,2147483647);
+    while (h[s] < n) res += DFS(s,INF);
     return res;
   }
 }flow;

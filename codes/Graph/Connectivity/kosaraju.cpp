@@ -3,7 +3,7 @@ struct Scc{
   vector<int> E[MXN], rE[MXN], vec;
   void init(int _n){
     n = _n;
-    for (int i=0; i<MXN; i++){
+    for (int i=0; i<n; i++){
       E[i].clear();
       rE[i].clear();
     }
@@ -27,11 +27,11 @@ struct Scc{
   void solve(){
     nScc = 0;
     vec.clear();
-    FZ(vst);
+    for (int i=0; i<n; i++) vst[i] = 0;
     for (int i=0; i<n; i++)
       if (!vst[i]) DFS(i);
     reverse(vec.begin(),vec.end());
-    FZ(vst);
+    for (int i=0; i<n; i++) vst[i] = 0;
     for (auto v : vec){
       if (!vst[v]){
         rDFS(v);

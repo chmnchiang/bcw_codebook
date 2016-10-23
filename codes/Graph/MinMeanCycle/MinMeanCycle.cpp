@@ -38,7 +38,8 @@ double karp_mmc() {
     }
     if (avg < mmc) tie(mmc, st) = tie(avg, i);
   }
-  FZ(vst); edgeID.clear(); cycle.clear(); rho.clear();
+  for(int i=0; i<n; i++) vst[i] = 0;
+  edgeID.clear(); cycle.clear(); rho.clear();
   for (int i=n; !vst[st]; st=prv[i--][st]) {
     vst[st]++;
     edgeID.PB(prve[i][st]);

@@ -12,7 +12,7 @@ struct Dinic{
     E[v].PB({u,0,SZ(E[u])-1});
   }
   bool BFS(){
-    FMO(level);
+    for (int i=0; i<n; i++) level[i] = -1;
     queue<int> que;
     que.push(s);
     level[s] = 0;

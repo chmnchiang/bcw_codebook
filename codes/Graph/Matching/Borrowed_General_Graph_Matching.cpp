@@ -1,5 +1,5 @@
 struct GenMatch { // 1-base
-	static const int MAXN = 250;
+	static const int MAXN = 514;
 	int V;
 	bool el[MAXN][MAXN];
 	int pr[MAXN];
@@ -11,16 +11,18 @@ struct GenMatch { // 1-base
 	int ans;
 	void init(int _V) {
 		V = _V;
-		FZ(el); FZ(pr);
-		FZ(inq); FZ(inp); FZ(inb);
-		FZ(bk); FZ(djs);
+		for(int i = 0; i <= V; i++) {
+			for(int j = 0; j <= V; j++) el[i][j] = 0;
+			pr[i] = bk[i] = djs[i] = 0;
+			inq[i] = inp[i] = inb[i] = 0;
+		}
 		ans = 0;
 	}
 	void add_edge(int u, int v) {
 		el[u][v] = el[v][u] = 1;
 	}
 	int lca(int u,int v) {
-		memset(inp,0,sizeof(inp));
+		for(int i = 0; i <= V; i++) inp[i] = 0;
 		while(1) {
 			u = djs[u];
 			inp[u] = true;
@@ -45,7 +47,7 @@ struct GenMatch { // 1-base
 	}
 	void blo(int u,int v) {
 		nb = lca(u,v);
-		memset(inb,0,sizeof(inb));
+		for (int i=0; i<=V; i++) inb[i] = 0;
 		upd(u); upd(v);
 		if(djs[u] != nb) bk[u] = v;
 		if(djs[v] != nb) bk[v] = u;
@@ -59,10 +61,11 @@ struct GenMatch { // 1-base
 			}
 	}
 	void flow() {
-		memset(inq,false,sizeof(inq));
-		memset(bk,0,sizeof(bk));
-		for(int i = 1; i <= V;i++)
+		for(int i = 1; i <= V; i++) {
+			inq[i] = 0;
+			bk[i] = 0;
 			djs[i] = i;
+		}
 
 		while(qe.size()) qe.pop();
 		qe.push(st);
@@ -98,7 +101,7 @@ struct GenMatch { // 1-base
 		}
 	}
 	int solve() {
-		memset(pr,0,sizeof(pr));
+		for(int i = 0; i <= V; i++) pr[i] = 0;
 		for(int u = 1; u <= V; u++)
 			if(pr[u] == 0) {
 				st = u;
@@ -110,15 +113,15 @@ struct GenMatch { // 1-base
 			}
 		return ans;
 	}
-};
+}G;
 
 int main() {
-	gp.init(V);
+	G.init(V);
 	for(int i=0; i<E; i++) {
 		int u, v;
 		cin >> u >> v;
-		gp.edge(u, v);
+		G.add_edge(u, v);
 	}
-	cout << gp.solve() << endl;
+	cout << G.solve() << endl;
 }
 
