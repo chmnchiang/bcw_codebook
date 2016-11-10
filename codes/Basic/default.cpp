@@ -1,3 +1,4 @@
+#pragma GCC optimize ("O2")
 #include<bits/stdc++.h>
 #include<unistd.h>
 using namespace std;
