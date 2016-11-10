@@ -1,12 +1,20 @@
-// only one segment tree / no 0/1 base issue
+// only one segment tree / 0-base
+// should call init after input N
 // getPathSeg return the segment in order u->v
 // fa[root] = root
+
 typedef pair<int,int> pii;
 
 int N,fa[MXN],belong[MXN],dep[MXN],sz[MXN],que[MXN];
 int step,line[MXN],stPt[MXN],edPt[MXN];
 vector<int> E[MXN], chain[MXN];
 
+void init() {
+  REP(i,N) {
+    E[i].clear();
+    chain[i].clear();
+  }
+}
 void DFS(int u){
 	vector<int> &c = chain[belong[u]];
 	for (int i=c.size()-1; i>=0; i--){
@@ -25,7 +33,7 @@ void DFS(int u){
 }
 void build_chain(int st){
 	int fr,bk;
-	fr=bk=0; que[bk++] = 1; fa[st]=st; dep[st]=0;
+	fr=bk=0; que[bk++]=st; fa[st]=st; dep[st]=0;
 	while (fr < bk){
 		int u=que[fr++];
 		for (auto v : E[u]){
@@ -79,7 +87,7 @@ vector<pii> getPathSeg(int u, int v){
 }
 // Usage
 void build(){
-	build_chain(1); //change root
+	build_chain(0); //change root
 	init(0,step,0); //init segment tree
 }
 int get_answer(int u, int v){
