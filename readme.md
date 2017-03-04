@@ -81,6 +81,11 @@
 | NEERC Moscow 2010 | 2016/09/04 | 4 | A | **B** | C | D | E | F | G | H | I | J | K | L |
 | NEERC Northern 2009 | 2016/10/08 | 2 | A | B | C | D | E | F | G | H | I | J | K |
 | Daejeon 2015 | 2016/10/22 | 1 | A | B | C | D | E | F | G | H | I | J | K | L |
+| NEERC Northern 2016 | 2016/12/03 | 8 | A | B | C | D | E | F | G |  | I | J | K |
+| NEERC Moscow 2016 | 2016/12/17 | 3 | A | B | C |  | E | F | G | H | I |  | K | L |
+| China Final 2016 | 2017/02/24 | 2 | A | B | C | D | E | F | G | H | I | J | K | L |
+| GP Wroclaw 2017 | 2017/02/26 | 16 | A | B | C | D | | F | G | | I | | |
+| CCPC Final 2016 | 2017/03/03 | 7 | A | B | C | D | E | F | G | H | I | J | x | L |
 
 
 - A : 賽內AC  
