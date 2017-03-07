@@ -86,6 +86,8 @@
 | China Final 2016 | 2017/02/24 | 2 | A | B | C | D | E | F | G | H | I | J | K | L |
 | GP Wroclaw 2017 | 2017/02/26 | 16 | A | B | C | D | | F | G | | I | | |
 | CCPC Final 2016 | 2017/03/03 | 7 | A | B | C | D | E | F | G | H | I | J | x | L |
+| XVI Open Cup SPB | 2017/03/05 | 5 | A | **B** | **C** || D | E | F | G | H | I | J | K | L |
+| XVI Open Cup Ekaterinburg | 2017/03/05 | 14 | _ || B | C | D | E | F | G | H | I | J | K |
 
 
 - A : 賽內AC  
