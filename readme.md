@@ -88,6 +88,9 @@
 | CCPC Final 2016 | 2017/03/03 | 7 | A | B | C | D | E | F | G | H | I | J | x | L |
 | XVI Open Cup SPB | 2017/03/05 | 5 | A | **B** | **C** || D | E | F | G | H | I | J | K | L |
 | XVI Open Cup Ekaterinburg | 2017/03/05 | 14 | _ || B | C | D | E | F | G | H | I | J | K |
+| NEERC 2016 | 2017/03/10 | 2 | A | _ | C | _ | E | F | G | H | _ | J | K | L | _ |
+| BSUIR 2016 Semifinal | 2017/03/11 | 2 | A | B | C | D | E | F | G | H | I | J | K |
+| XVI Open Cup Siberia | 2017/03/12 | 5 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | (9) | 10 | 11 | (12) |
 
 
 - A : 賽內AC  
