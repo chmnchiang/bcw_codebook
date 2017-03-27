@@ -91,6 +91,10 @@
 | NEERC 2016 | 2017/03/10 | 2 | A | _ | C | _ | E | F | G | H | _ | J | K | L | _ |
 | BSUIR 2016 Semifinal | 2017/03/11 | 2 | A | B | C | D | E | F | G | H | I | J | K |
 | XVI Open Cup Siberia | 2017/03/12 | 5 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | (9) | 10 | 11 | (12) |
+| XVII Open Cup Europe | 2017/03/17 | 3 | A | B | C | D | E | F | _ | H | _ | J | K | L |
+| XVII Open Cup Siberia | 2017/03/18 | 3 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | (10) | 11 |
+| XVII Open Cup Eastern | 2017/03/24 | 3 | A | B | C | D | E | F | G | H | I | _ | K | L |
+
 
 
 - A : 賽內AC  
