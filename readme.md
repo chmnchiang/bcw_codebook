@@ -96,6 +96,7 @@
 | XVII Open Cup Eastern | 2017/03/24 | 3 | A | B | C | D | E | F | G | H | I | _ | K | L |
 | XVII Open Cup SPb | 2017/03/31 | 3 | A | B | **C** | D | E | F | G | H | I | J | K |
 | XVII Open Cup Eurasia | 2017/04/02 | 4 | 1 | 2 | 3 | **4** | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+| XVII Open Cup Japan | 2017/04/03 | 7 | _ | B | C | D | E | _ | G | H | I | J |
 
 
 
