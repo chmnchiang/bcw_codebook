@@ -100,7 +100,7 @@
 | XVI Open Cup Europe | 2017/04/07 | 3 | A | B | _ | C | D | E | F | **G** | H | I | J | K | L |
 | XVII Open Cup America | 2017/04/16 | 21 | A | B | C | D | E | _ | G | _ | _ | J | **K** |
 | XVI Open Cup Peterhof | 2017/04/21 | 3 | A | B | C | D | E | F | G | H | _ |
-
+| PSTC 2016 Pavel Khaustov Contest 2 | 2017/04/22 | 3 | _ | B | C | D | E | F | **G** | _ | I |
 
 
 - A : 賽內AC  
