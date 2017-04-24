@@ -86,8 +86,8 @@
 | China Final 2016 | 2017/02/24 | 2 | A | B | C | D | E | F | G | H | I | J | K | L |
 | GP Wroclaw 2017 | 2017/02/26 | 16 | A | B | C | D | | F | G | | I | | |
 | CCPC Final 2016 | 2017/03/03 | 7 | A | B | C | D | E | F | G | H | I | J | x | L |
-| XVI Open Cup SPB | 2017/03/05 | 5 | A | **B** | **C** || D | E | F | G | H | I | J | K | L |
-| XVI Open Cup Ekaterinburg | 2017/03/05 | 14 | _ || B | C | D | E | F | G | H | I | J | K |
+| XVI Open Cup SPB | 2017/03/05 | 5 | A | **B** | **C** | D | E | F | G | H | I | J | K | L |
+| XVI Open Cup Ekaterinburg | 2017/03/05 | 14 | _ | B | C | D | E | F | G | H | I | J | K |
 | NEERC 2016 | 2017/03/10 | 2 | A | _ | C | _ | E | F | G | H | _ | J | K | L | _ |
 | BSUIR 2016 Semifinal | 2017/03/11 | 2 | A | B | C | D | E | F | G | H | I | J | K |
 | XVI Open Cup Siberia | 2017/03/12 | 5 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | (9) | 10 | 11 | (12) |
@@ -101,6 +101,7 @@
 | XVII Open Cup America | 2017/04/16 | 21 | A | B | C | D | E | _ | G | _ | _ | J | **K** |
 | XVI Open Cup Peterhof | 2017/04/21 | 3 | A | B | C | D | E | F | G | H | _ |
 | PSTC 2016 Pavel Khaustov Contest 2 | 2017/04/22 | 3 | _ | B | C | D | E | F | **G** | _ | I |
+| XVII Open Cup Moscow | 2017/04/23 | 10 | A | B | C | D | **E** | _ | G | H | I | J | K |
 
 
 - A : 賽內AC  
