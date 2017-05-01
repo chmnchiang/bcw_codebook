@@ -102,6 +102,8 @@
 | XVI Open Cup Peterhof | 2017/04/21 | 3 | A | B | C | D | E | F | G | H | _ |
 | PSTC 2016 Pavel Khaustov Contest 2 | 2017/04/22 | 3 | _ | B | C | D | E | F | **G** | _ | I |
 | XVII Open Cup Moscow | 2017/04/23 | 10 | A | B | C | D | **E** | _ | G | H | I | J | K |
+| PSTC 2016 Moscow IPT Contest | 2017/04/28 | 2 | A | (B) | C | D | E | F | G | **H** | I | J | K |
+| XVII Open Cup Ural | 2017/04/30 | 2 | A | B | C | D | E | F | G | H | I | J | K | L | M |
 
 
 - A : 賽內AC  
