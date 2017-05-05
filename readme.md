@@ -104,6 +104,7 @@
 | XVII Open Cup Moscow | 2017/04/23 | 10 | A | B | C | D | **E** | _ | G | H | I | J | K |
 | PSTC 2016 Moscow IPT Contest | 2017/04/28 | 2 | A | **B** | C | D | E | F | G | **H** | I | J | K |
 | XVII Open Cup Ural | 2017/04/30 | 2 | A | B | C | D | E | F | G | H | I | J | K | L | M |
+| PSTC 2016 Petr Mitrichev 16 | 2017/05/05 | 2 | _ | B | C | _ | E | F | G | H | I | **J** |
 
 
 - A : 賽內AC  
