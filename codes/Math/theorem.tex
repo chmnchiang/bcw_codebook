@@ -10,12 +10,12 @@
 \subsubsection{Difference of D1-D3 Thm}
 	let $n = 2^t \cdot (p_1^{e_1} \cdot ... \cdot p_r^{e_r}) \cdots (q_1^{f_1} \cdot ... \cdot q_s^{f_s})$\\
 	where $p_i, q_i$ are primes and $1 \equiv p_i\pmod 4 , 3 \equiv q_i\pmod 4$\\
-	then $D_1 - D_3$ = \begin{cases}
-  $(e_1+1)(e_2+1)...(e_r+1)$, & \text{if (}$f_i$\text{)s all even}\\
-	$0$,& \text{if any }$f_i$\text{ is odd}
-  \end{cases}
+	then
+  $ D_1 - D_3 = \begin{cases}
+  (e_1+1)(e_2+1)...(e_r+1), & \text{if }f_i\text{ all even}\\
+	0, & \text{if any }f_i \text{ is odd}
+  \end{cases} $
 \subsubsection{Krush–Kuhn–Tucker Conditions}
-\begin{body}
   \textbf{Stationarity}\\
   For maximizing $f(x)$: $\nabla f(x^*) = \sum_{i=1}^m \mu_i \nabla g_i(x^*) + \sum_{j=1}^l \lambda_j \nabla h_j(x^*)$\\
   For minimizing $f(x)$: $-\nabla f(x^*) = \sum_{i=1}^m \mu_i \nabla g_i(x^*) + \sum_{j=1}^l \lambda_j \nabla h_j(x^*)$ \\
@@ -29,11 +29,8 @@
 \\
   \textbf{Complementary slackness}\\
   $\mu_i g_i (x^*) = 0, \mbox{for all}\; i = 1,\ldots,m$
-\end{body}
 \subsubsection{Chinese remainder theorem}
-\begin{body}
   $x \equiv r_i \mod p_i $\\
   $N = \prod p_i$\\
   $N_i = N / p_i$\\
   $x \equiv \sum r_i N_i (N_i)^{-1}_{p_i} \mod N$
-\end{body}
