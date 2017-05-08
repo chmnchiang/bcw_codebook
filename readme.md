@@ -105,6 +105,9 @@
 | PSTC 2016 Moscow IPT Contest | 2017/04/28 | 2 | A | **B** | C | D | E | F | G | **H** | I | J | K |
 | XVII Open Cup Ural | 2017/04/30 | 2 | A | B | C | D | E | F | G | H | I | J | K | L | M |
 | PSTC 2016 Petr Mitrichev 16 | 2017/05/05 | 2 | _ | B | C | _ | E | F | G | H | I | **J** |
+| Moscow Pre-Finals 2016 Kent Nikaido | 2017/05/06 | 4 | A | B | C | D | (E) | F | G | H | I | J | K |
+| NAIPC 2016 | 2017/05/07 | 3 | A | B | C | D | E | F | G | H | I | J | K |
+
 
 
 - A : 賽內AC  
