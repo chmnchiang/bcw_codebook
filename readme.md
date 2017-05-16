@@ -107,7 +107,10 @@
 | PSTC 2016 Petr Mitrichev 16 | 2017/05/05 | 2 | _ | B | C | _ | E | F | G | H | I | **J** |
 | Moscow Pre-Finals 2016 Kent Nikaido | 2017/05/06 | 4 | A | B | C | D | (E) | F | G | H | I | J | K |
 | NAIPC 2016 | 2017/05/07 | 3 | A | B | C | D | E | F | G | H | I | J | K |
-
+| XVII Open Cup Tatarstan | 2017/05/09 | 14 | A | (B) | C | E | F | (G) | H | I | J | J | K | L |
+| XVII Open Cup Two Capitals | 2017/05/12 | 11 | A | B | C | D | E | F | (G) | H | I | J | K |
+| XVI Open Cup Warsaw | 2017/05/14 | 13 | A | B | **C** | D | E | _ | G | H | (I) | J | 
+| Japan 2016 | 2017/05/16  | 2 | A | B | C | D | E | F | G | H | I | J | K |
 
 
 - A : 賽內AC  
