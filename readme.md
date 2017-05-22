@@ -111,6 +111,9 @@
 | XVII Open Cup Two Capitals | 2017/05/12 | 11 | A | B | C | D | E | F | (G) | H | I | J | K |
 | XVI Open Cup Warsaw | 2017/05/14 | 13 | A | B | **C** | D | E | _ | G | H | (I) | J | 
 | Japan 2016 | 2017/05/16  | 2 | A | B | C | D | E | F | G | H | I | J | K |
+| Moscow Pre-Finals 2016 Japanese OI Team Selection | 2017/05/21 | 13 | A | **B** | C | D | E | **F** | G | H | I |
+| BSUIR 2017 Open | 2017/05/22 | 7 | A | B | C | (D) | E | F | G | H | I | **J** |
+| NEERC 2015 | 2017/05/23 | 1 | A | B | C | D | E | F | G | H | (I) | J | K | L |
 
 
 - A : 賽內AC  

@@ -1,0 +1,128 @@
+//a34021501 {{{
+#include<bits/stdc++.h>
+#include<unistd.h>
+using namespace std;
+#define F first
+#define S second
+#define MP make_pair
+#define PB push_back
+#define IOS ios_base::sync_with_stdio(0); cin.tie(0);
+#define SZ(x) ((int)((x).size()))
+#define ALL(x) begin(x),end(x)
+#define REP(i,x) for (int i=0; i<(x); i++)
+#define REP1(i,a,b) for (int i=(a); i<=(b); i++)
+
+typedef long long ll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef long double ld;
+
+#ifdef HAO123
+#define FILEIO(name)
+#else
+#define FILEIO(name) \
+  freopen(name".in", "r", stdin); \
+  freopen(name".out", "w", stdout);
+#endif
+
+#ifdef HAO123
+template<typename T>
+void _dump( const char* s, T&& head ) { cerr<<s<<"="<<head<<endl; }
+
+template<typename T, typename... Args>
+void _dump( const char* s, T&& head, Args&&... tail ) {
+  int c=0;
+  while ( *s!=',' || c!=0 ) {
+    if ( *s=='(' || *s=='[' || *s=='{' ) c++;
+    if ( *s==')' || *s==']' || *s=='}' ) c--;
+    cerr<<*s++;
+  }
+  cerr<<"="<<head<<", ";
+  _dump(s+1,tail...);
+}
+
+#define dump(...) do { \
+  fprintf(stderr, "%s:%d - ", __PRETTY_FUNCTION__, __LINE__); \
+  _dump(#__VA_ARGS__, __VA_ARGS__); \
+} while (0)
+
+template<typename Iter>
+ostream& _out( ostream &s, Iter b, Iter e ) {
+  s<<"[";
+  for ( auto it=b; it!=e; it++ ) s<<(it==b?"":" ")<<*it;
+  s<<"]";
+  return s;
+}
+
+template<typename A, typename B>
+ostream& operator <<( ostream &s, const pair<A,B> &p ) { return s<<"("<<p.first<<","<<p.second<<")"; }
+template<typename T>
+ostream& operator <<( ostream &s, const vector<T> &c ) { return _out(s,ALL(c)); }
+template<typename T, size_t N>
+ostream& operator <<( ostream &s, const array<T,N> &c ) { return _out(s,ALL(c)); }
+template<typename T>
+ostream& operator <<( ostream &s, const set<T> &c ) { return _out(s,ALL(c)); }
+template<typename A, typename B>
+ostream& operator <<( ostream &s, const map<A,B> &c ) { return _out(s,ALL(c)); }
+#else
+#define dump(...)
+#endif
+// }}}
+// Let's Fight! !111111111!
+
+const int MX = 100005;
+
+int N;
+int dp[MX][2], dp2[MX][2];
+vector<pii> ip;
+
+int cost(int i, int k) {
+  int res = 0;
+  int a = ip[i].F;
+  int b = ip[k].F;
+  if (a > b) swap(a,b);
+  for (int j=i; j<N; j++) if (a < ip[j].F and ip[j].F < b) res++;
+  return res;
+}
+int main() {
+  IOS;
+  cin >> N;
+  ip.resize(N);
+  for (int i=0; i<N; i++) {
+    cin>>ip[i].S>>ip[i].F;
+  }
+  sort(ALL(ip));
+  for (auto &i: ip) swap(i.F, i.S);
+  dp[N-1][0] = dp[N-1][1] = 1;
+  dp2[N-1][0] = dp2[N-1][1] = 0;
+  for (int i=N-2; i>=0; i--) {
+    dp[i][0] = dp[i][1] = dp2[i][0] = dp2[i][1] = 0;
+    int fail0 = 0;
+    int fail1 = 0;
+    for (int k=i+1; k<N; k++) {
+      if (ip[i].S == ip[k].S) continue;
+      if (ip[k].F > ip[i].F) {
+        fail0 = 1;
+        dp[i][0] += dp[k][1];
+        dp2[i][0] += dp2[k][1] + cost(i,k) * dp[k][1];
+      }
+      if (ip[k].F < ip[i].F) {
+        fail1 = 1;
+        dp[i][1] += dp[k][0];
+        dp2[i][1] += dp2[k][0] + cost(i,k) * dp[k][0];
+      }
+    }
+    dump(dp[i][0],dp[i][1]);
+    if (!fail0) dp[i][0]++;
+    if (!fail1) dp[i][1]++;
+  }
+  REP(i,N) cout<<dp2[i][0]<<" "<<dp2[i][1]<<endl;
+  int ans = 0;
+  REP(i,N) ans += dp2[i][0] + dp2[i][1];
+  cout<<ans<<endl;
+
+
+
+  return 0;
+}
+
