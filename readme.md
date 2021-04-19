@@ -1,17 +1,25 @@
 # CodeBook of Team bcw0x1bd2.
 
-- use \lstinputlisting{filename.cpp} to include external file.
-  
-# TODO  
-  
-- vonoroi diagram / delaunay trangulation  
-- 3D convex hull (N log N ?) 
-- in/out center formula  
-- 噁心 minkowski sum  
-- steiner tree(?)  
-- link-cut tree (change better example code)
+We (@hanhanW, @kevin00036, @chmnchiang) have not participated in competitive
+programming for quite a while. It is kind of cool to see this codebook gaining
+quite a few stars.
 
-# Alpha
+Keep in mind that this codebook has not been maintained for a long time.
+If you want to use our code, here are some files I think need extra checks:
+- `Stringology/smallest_rotation`
+
+# Contest Result
+
+Here are the meaning of the marks:
+
+- A : 賽內AC  (AC during contest)
+- **A** : 賽後AC  (AC after contest)
+- (A) : 精神AC  (We thought we knew the solution but too hard to implement)
+- _ : 慘了了  (No one knew the exact solution)
+- x : 放棄  (We gave up)
+- . : 沒討論  (We did not discuss)
+
+The solution files is in `Contest/`
 
 | Contest       | Date          | Rank |   |   |   |   |   |   |   |   |   |   |   |   |   |
 | ------------- |:-------------:|:----:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -114,11 +122,3 @@
 | Moscow Pre-Finals 2016 Japanese OI Team Selection | 2017/05/21 | 13 | A | **B** | C | D | E | **F** | G | H | I |
 | BSUIR 2017 Open | 2017/05/22 | 7 | A | B | C | (D) | E | F | G | H | I | **J** |
 | NEERC 2015 | 2017/05/23 | 1 | A | B | C | D | E | F | G | H | (I) | J | K | L |
-
-
-- A : 賽內AC  
-- **A** : 賽後AC  
-- (A) : 精神AC  
-- _ : 慘了了  
-- x : 放棄
-- . : 沒討論 
